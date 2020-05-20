@@ -60,7 +60,7 @@ Coded by www.creative-tim.com
       </div>
       <div class="sidebar-wrapper">
         <ul class="nav">
-          <li class="active ">
+          <li>
             <a href="./dashboard.html">
               <i class="nc-icon nc-bank"></i>
               <p>Dashboard</p>
@@ -78,12 +78,18 @@ Coded by www.creative-tim.com
               <p>Formandos</p>
             </a>
           </li>
-          <li>
+          <li class="active ">
             <a href="escolas.php">
               <i class="nc-icon nc-tile-56"></i>
               <p>Escolas</p>
             </a>
           </li>
+            <li>
+                <a href="formacoes.php">
+                    <i class="nc-icon nc-tile-56"></i>
+                    <p>Formações</p>
+                </a>
+            </li>
         </ul>
       </div>
     </div>
