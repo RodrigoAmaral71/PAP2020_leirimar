@@ -52,23 +52,24 @@ Coded by www.creative-tim.com
             <img src="../assets/img/logo-big.png">
           </div> -->
         </a>
+          <h6>2019/20</h6>
       </div>
       <div class="sidebar-wrapper">
         <ul class="nav">
           <li>
-            <a href="./dashboard.html">
+            <a href="./dashboard.php">
               <i class="nc-icon nc-bank"></i>
               <p>Dashboard</p>
             </a>
           </li>
-          <li class="active ">
-            <a href="formadores.html">
+          <li>
+            <a href="formadores.php">
               <i class="nc-icon nc-tile-56"></i>
               <p>Formadores</p>
             </a>
           </li>
           <li>
-            <a href="formandos.html">
+            <a href="formandos.php">
               <i class="nc-icon nc-tile-56"></i>
               <p>Formandos</p>
             </a>
@@ -85,6 +86,18 @@ Coded by www.creative-tim.com
               <p>Formações</p>
             </a>
           </li>
+          <li class="active ">
+            <a href="anosLetivos.php">
+              <i class="nc-icon nc-tile-56"></i>
+              <p>Anos Letivos</p>
+            </a>
+          </li>
+            <li>
+                <a href="tiposFuncionários.php">
+                    <i class="nc-icon nc-tile-56"></i>
+                    <p>Funcionários</p>
+                </a>
+            </li>
         </ul>
       </div>
     </div>
@@ -136,53 +149,37 @@ Coded by www.creative-tim.com
           <div class="col-md-12">
             <div class="card">
               <div class="card-header">
-                <h4 class="card-title"> FORMADORES</h4>
+                    <h4 class="card-title"> ANOS LETIVOS</h4>
               </div>
               <div class="card-body">
                 <div class="table-responsive">
                   <table class="table">
                     <thead class=" text-primary">
-                      <th>id</th>
-                      <th>Nome</th>
-                      <th>Escola</th>
-                      <th>Grupo</th>
-                      <th>Formação Actual</th>
-                      <th>Telefone</th>
-                      <th>Localidade</th>
-                      <th><center><a class="btn-sm btn-success" href="#"><i class="fa fa-plus"></i></a></center></th>
+                      <tr>
+                        <th>id</th>
+                        <th>Ano</th>
+                        <th>Nº Formações</th>
+                        <th>Nº Formandos</th>
+                        <th>Nº Formadores</th>
+                        <th><center><a class="btn-sm btn-success" href="#"><i class="fa fa-plus"></i></a></center></th>
+                      </tr>
                     </thead>
-                    <tbody>
-                    <tr>
-                      <td>1</td>
-                      <td>Manuel</td>
-                      <td>E. Sec. Pinhal do Rei</td>
-                      <td>550-Informática</td>
-                      <td>Programação Web</td>
-                      <td>912345678</td>
-                      <td>Marinha Grande</td>
-                      <td><center><a class="btn-sm btn-info" href="#"><i class="fas fa-pencil-alt"></a></i> <a class="btn-sm btn-danger" href="#"><i class='fas fa-eraser'></a></i></center></td>
-                    </tr>
-                    <tr>
-                      <td>1</td>
-                      <td>Manuel</td>
-                      <td>E. Sec. Pinhal do Rei</td>
-                      <td>550-Informática</td>
-                      <td>Programação Web</td>
-                      <td>912345678</td>
-                      <td>Marinha Grande</td>
-                      <td><center><a class="btn-sm btn-info" href="#"><i class="fas fa-pencil-alt"></a></i> <a class="btn-sm btn-danger" href="#"><i class='fas fa-eraser'></a></i></center></td>
-                    </tr>
-                    <tr>
-                      <td>1</td>
-                      <td>Manuel</td>
-                      <td>E. Sec. Pinhal do Rei</td>
-                      <td>550-Informática</td>
-                      <td>Programação Web</td>
-                      <td>912345678</td>
-                      <td>Marinha Grande</td>
-                      <td><center><a class="btn-sm btn-info" href="#"><i class="fas fa-pencil-alt"></a></i> <a class="btn-sm btn-danger" href="#"><i class='fas fa-eraser'></a></i></center></td>
-                    </tr>
-                    </tbody>
+
+                      <?php
+                      $con=mysqli_connect("localhost","root","","pap2020formacao");
+                      $sql="SELECT * FROM anolectivos";
+                      $result=mysqli_query($con,$sql);
+                      while($dados=mysqli_fetch_array($result)){;
+                      ?>
+                      <tbody>
+                      <td><?php echo $dados['anoLectivoId']; ?></td>
+                      <td> <?php echo $dados['anoLectivoNome']; ?></td>
+                      <td> &nbsp <?php // echo $dados['']; ?></td>
+                      <td> &nbsp <?php // echo $dados['']; ?></td>
+                      <td> &nbsp <?php // echo $dados['']; ?></td>
+                      <td><center><a class="btn-sm btn-info" id="editar" name="editar" href="#"><i class="fas fa-pencil-alt"></a></i> <a class="btn-sm btn-danger" id="delete" name="delete" href="#"><i class='fas fa-eraser'></i></a></center></td>
+                      </tbody>
+                      <?php } ?>
                   </table>
                 </div>
               </div>

@@ -34,6 +34,12 @@ Coded by www.creative-tim.com
   <link href="../assets/demo/demo.css" rel="stylesheet" />
 
   <script src='https://kit.fontawesome.com/a076d05399.js'></script>
+
+  <style>
+    .fa-history{
+      color:black;
+    }
+  </style>
 </head>
 
 <body class="">
@@ -52,23 +58,24 @@ Coded by www.creative-tim.com
             <img src="../assets/img/logo-big.png">
           </div> -->
         </a>
+        <h6>2019/20</h6>
       </div>
       <div class="sidebar-wrapper">
         <ul class="nav">
           <li>
-            <a href="./dashboard.html">
+            <a href="./dashboard.php">
               <i class="nc-icon nc-bank"></i>
               <p>Dashboard</p>
             </a>
           </li>
           <li>
-            <a href="formadores.html">
+            <a href="formadores.php">
               <i class="nc-icon nc-tile-56"></i>
               <p>Formadores</p>
             </a>
           </li>
           <li class="active ">
-            <a href="formandos.html">
+            <a href="formandos.php">
               <i class="nc-icon nc-tile-56"></i>
               <p>Formandos</p>
             </a>
@@ -83,6 +90,18 @@ Coded by www.creative-tim.com
             <a href="formacoes.php">
               <i class="nc-icon nc-tile-56"></i>
               <p>Formações</p>
+            </a>
+          </li>
+          <li>
+            <a href="anosLetivos.php">
+              <i class="nc-icon nc-tile-56"></i>
+              <p>Anos Letivos</p>
+            </a>
+          </li>
+          <li>
+            <a href="tiposFuncionários.php">
+              <i class="nc-icon nc-tile-56"></i>
+              <p>Funcionários</p>
             </a>
           </li>
         </ul>
@@ -148,45 +167,26 @@ Coded by www.creative-tim.com
                         <th>Grupo</th>
                         <th>Formação Actual</th>
                         <th>Telefone</th>
-                        <th>Localidade</th>
-                        <th>Créditos</th>
+                        <th>Email</th>
                         <th><center><a class="btn-sm btn-success" href="#"><i class="fa fa-plus"></i></a></center></th>
                     </thead>
+                      <?php
+                      $con=mysqli_connect("localhost","root","","pap2020formacao");
+                      $sql=("SELECT * FROM funcionarios INNER JOIN registos");
+                      $result=mysqli_query($con,$sql);
+                      while($dados=mysqli_fetch_array($result)){;
+                      ?>
                     <tbody>
-                      <tr>
-                        <td>1</td>
-                        <td>Manuel</td>
-                        <td>E. Sec. Pinhal do Rei</td>
-                        <td>550-Informática</td>
-                        <td>Programação Web</td>
-                        <td>912345678</td>
-                        <td>Marinha Grande</td>
-                        <td>XXXX</td>
-                        <td><center><a class="btn-sm btn-info" href="#"><i class="fas fa-pencil-alt"></a></i> <a class="btn-sm btn-danger" href="#"><i class='fas fa-eraser'></a></i></center></td>
-                      </tr>
-                      <tr>
-                        <td>1</td>
-                        <td>Manuel</td>
-                        <td>E. Sec. Pinhal do Rei</td>
-                        <td>550-Informática</td>
-                        <td>Programação Web</td>
-                        <td>912345678</td>
-                        <td>Marinha Grande</td>
-                        <td>XXXX</td>
-                        <td><center><a class="btn-sm btn-info" href="#"><i class="fas fa-pencil-alt"></a></i> <a class="btn-sm btn-danger" href="#"><i class='fas fa-eraser'></a></i></center></td>
-                      </tr>
-                      <tr>
-                        <td>1</td>
-                        <td>Manuel</td>
-                        <td>E. Sec. Pinhal do Rei</td>
-                        <td>550-Informática</td>
-                        <td>Programação Web</td>
-                        <td>912345678</td>
-                        <td>Marinha Grande</td>
-                        <td>XXXX</td>
-                        <td><center><a class="btn-sm btn-info" href="#"><i class="fas fa-pencil-alt"></a></i> <a class="btn-sm btn-danger" href="#"><i class='fas fa-eraser'></a></i></center></td>
-                      </tr>
+                        <td><?php echo $dados['funcionarioId']; ?></td>
+                        <td><?php echo $dados['funcionarioNome']; ?></td>
+                        <td> &nbsp <?php echo $dados['registoEscola']; ?></td>
+                        <td> &nbsp <?php // echo $dados['']; ?></td>
+                        <td> &nbsp <?php // echo $dados['']; ?></td>
+                        <td><?php echo $dados['funcionarioTelefone']; ?></td>
+                        <td><?php echo $dados['funcionarioEmail']; ?></td>
+                        <td><center><a class="btn-sm btn-info" id="editar" name="editar" href="#"><i class="fas fa-pencil-alt"></a></i> <a class="btn-sm btn-danger" id="delete" name="delete" href="#"><i class='fas fa-eraser'></i></a></center></td>
                     </tbody>
+                    <?php } ?>
                   </table>
                 </div>
               </div>

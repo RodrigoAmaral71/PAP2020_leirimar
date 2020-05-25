@@ -52,23 +52,24 @@ Coded by www.creative-tim.com
             <img src="../assets/img/logo-big.png">
           </div> -->
         </a>
+          <h6>2019/20</h6>
       </div>
       <div class="sidebar-wrapper">
         <ul class="nav">
           <li>
-            <a href="./dashboard.html">
+            <a href="./dashboard.php">
               <i class="nc-icon nc-bank"></i>
               <p>Dashboard</p>
             </a>
           </li>
           <li>
-            <a href="formadores.html">
+            <a href="formadores.php">
               <i class="nc-icon nc-tile-56"></i>
               <p>Formadores</p>
             </a>
           </li>
           <li>
-            <a href="formandos.html">
+            <a href="formandos.php">
               <i class="nc-icon nc-tile-56"></i>
               <p>Formandos</p>
             </a>
@@ -83,6 +84,18 @@ Coded by www.creative-tim.com
                 <a href="formacoes.php">
                     <i class="nc-icon nc-tile-56"></i>
                     <p>Formações</p>
+                </a>
+            </li>
+            <li>
+                <a href="anosLetivos.php">
+                    <i class="nc-icon nc-tile-56"></i>
+                    <p>Anos Letivos</p>
+                </a>
+            </li>
+            <li>
+                <a href="tiposFuncionários.php">
+                    <i class="nc-icon nc-tile-56"></i>
+                    <p>Funcionários</p>
                 </a>
             </li>
         </ul>
@@ -144,21 +157,21 @@ Coded by www.creative-tim.com
                     <thead class=" text-primary">
                       <th>id</th>
                       <th>Nome</th>
-                      <th>Telefone</th>
-                      <th>Email</th>
-                      <th>Localidade</th>
-                      <th>Código Postal</th>
-                      <th>Código</th>
+                      <th>Formador</th>
+                      <th>Horas</th>
+                      <th>&nbsp</th>
+                      <th>Data de Início</th>
+                      <th>Data de Fim</th>
                       <th><center><a class="btn-sm btn-success" href="#"><i class="fa fa-plus"></i></a></center></th>
                     </thead>
                     <tbody>
                       <td>1</td>
                       <td>Programação Web</td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
+                      <td>Manuel</td>
+                      <td>50</td>
+                      <td>&nbsp</td>
+                      <td>1/6/2020</td>
+                      <td>26/6/2020</td>
                       <td><center><a class="btn-sm btn-info" href="#"><i class="fas fa-pencil-alt"></a></i> <a class="btn-sm btn-danger" href="apagarEscola.php"><i class='fas fa-eraser'></a></i></center></td>
                     </tbody>
                   </table>

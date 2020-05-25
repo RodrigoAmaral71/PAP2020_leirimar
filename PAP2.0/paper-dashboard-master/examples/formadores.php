@@ -48,11 +48,8 @@ Coded by www.creative-tim.com
         </a>
         <a href="https://www.creative-tim.com" class="simple-text logo-normal">
           BACKOFFICE
-          <!-- <div class="logo-image-big">
-            <img src="../assets/img/logo-big.png">
-          </div> -->
         </a>
-          <h6>2019/20</h6>
+        <h6>2019/20</h6>
       </div>
       <div class="sidebar-wrapper">
         <ul class="nav">
@@ -62,7 +59,7 @@ Coded by www.creative-tim.com
               <p>Dashboard</p>
             </a>
           </li>
-          <li>
+          <li class="active ">
             <a href="formadores.php">
               <i class="nc-icon nc-tile-56"></i>
               <p>Formadores</p>
@@ -74,30 +71,30 @@ Coded by www.creative-tim.com
               <p>Formandos</p>
             </a>
           </li>
-          <li class="active ">
+          <li>
             <a href="escolas.php">
               <i class="nc-icon nc-tile-56"></i>
               <p>Escolas</p>
             </a>
           </li>
-            <li>
-                <a href="formacoes.php">
-                    <i class="nc-icon nc-tile-56"></i>
-                    <p>Formações</p>
-                </a>
-            </li>
-            <li>
-                <a href="anosLetivos.php">
-                    <i class="nc-icon nc-tile-56"></i>
-                    <p>Anos Letivos</p>
-                </a>
-            </li>
-            <li>
-                <a href="tiposFuncionários.php">
-                    <i class="nc-icon nc-tile-56"></i>
-                    <p>Funcionários</p>
-                </a>
-            </li>
+          <li>
+            <a href="formacoes.php">
+              <i class="nc-icon nc-tile-56"></i>
+              <p>Formações</p>
+            </a>
+          </li>
+          <li>
+            <a href="anosLetivos.php">
+              <i class="nc-icon nc-tile-56"></i>
+              <p>Anos Letivos</p>
+            </a>
+          </li>
+          <li>
+            <a href="tiposFuncionários.php">
+              <i class="nc-icon nc-tile-56"></i>
+              <p>Funcionários</p>
+            </a>
+          </li>
         </ul>
       </div>
     </div>
@@ -149,39 +146,35 @@ Coded by www.creative-tim.com
           <div class="col-md-12">
             <div class="card">
               <div class="card-header">
-                <h4 class="card-title"> ESCOLAS</h4>
+                <h4 class="card-title"> FORMADORES</h4>
               </div>
               <div class="card-body">
                 <div class="table-responsive">
                   <table class="table">
                     <thead class=" text-primary">
-                      <th>id</th>
-                      <th>Nome</th>
-                      <th>Telefone</th>
-                      <th>Email</th>
-                      <th>Localidade</th>
-                      <th>Código Postal</th>
-                      <th>Código</th>
-                      <th><center><a class="btn-sm btn-success" href="adicionarEscola.php"><i class="fa fa-plus"></i></a></center></th>
+                      <tr>
+                        <th>id</th>
+                        <th>Nome</th>
+                        <th>Escola</th>
+                        <th>Grupo</th>
+                        <th>Formação Actual</th>
+                        <th>Telefone</th>
+                        <th>Email</th>
+                        <th><center><a class="btn-sm btn-success" href="#"><i class="fa fa-plus"></i></a></center></th>
+                      </tr>
                     </thead>
-
-                    <?php
-                    $con=mysqli_connect("localhost","root","","pap2020formacao");
-                    $sql="SELECT * FROM escolas";
-                    $result=mysqli_query($con,$sql);
-                    while($dados=mysqli_fetch_array($result)){;
-                    ?>
                     <tbody>
-                      <td><?php echo $dados['escolaId']; ?></td>
-                      <td><?php echo $dados['escolaNome']; ?></td>
-                      <td><?php echo $dados['escolaTelefone']; ?></td>
-                      <td><?php echo $dados['escolaEmail']; ?></td>
-                      <td><?php echo $dados['escolaLocalidade']; ?></td>
-                      <td><?php echo $dados['escolaCodigoPostal1']; ?> - <?php echo $dados['escolaCodigoPostal2']; ?></td>
-                      <td><?php echo $dados['escolaCodigo']; ?></td>
-                      <td><center><a class="btn-sm btn-info" id="editar" name="editar" href="#"><i class="fas fa-pencil-alt"></a></i> <a class="btn-sm btn-danger" id="delete" name="delete" href="apagarEscola.php?id=<?php echo $dados['escolaId']; ?>"><i class='fas fa-eraser'></i></a></center></td>
+                      <tr>
+                        <td>1</td>
+                        <td>Manuel</td>
+                        <td>E. Sec. Pinhal do Rei</td>
+                        <td>550-Informática</td>
+                        <td>Programação Web</td>
+                        <td>912345678</td>
+                        <td>manuel@aemgn.pt</td>
+                        <td><center><a class="btn-sm btn-info" href="#"><i class="fas fa-pencil-alt"></a></i> <a class="btn-sm btn-danger" href="#"><i class='fas fa-eraser'></a></i></center></td>
+                      </tr>
                     </tbody>
-                    <?php } ?>
                   </table>
                 </div>
               </div>

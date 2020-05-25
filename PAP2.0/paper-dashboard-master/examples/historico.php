@@ -32,8 +32,12 @@ Coded by www.creative-tim.com
   <link href="../assets/css/paper-dashboard.css?v=2.0.1" rel="stylesheet" />
   <!-- CSS Just for demo purpose, don't include it in your project -->
   <link href="../assets/demo/demo.css" rel="stylesheet" />
+  <!-- fa-icons -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-  <script src='https://kit.fontawesome.com/a076d05399.js'></script>
+    <script src='https://kit.fontawesome.com/a076d05399.js'></script>
+
 </head>
 
 <body class="">
@@ -46,11 +50,8 @@ Coded by www.creative-tim.com
           </div>
           <!-- <p>CT</p> -->
         </a>
-        <a href="https://www.creative-tim.com" class="simple-text logo-normal">
+        <a href="dashboard.html" class="simple-text logo-normal">
           BACKOFFICE
-          <!-- <div class="logo-image-big">
-            <img src="../assets/img/logo-big.png">
-          </div> -->
         </a>
           <h6>2019/20</h6>
       </div>
@@ -68,24 +69,24 @@ Coded by www.creative-tim.com
               <p>Formadores</p>
             </a>
           </li>
-          <li>
+          <li class="active ">
             <a href="formandos.php">
               <i class="nc-icon nc-tile-56"></i>
               <p>Formandos</p>
             </a>
           </li>
-          <li class="active ">
+          <li>
             <a href="escolas.php">
               <i class="nc-icon nc-tile-56"></i>
               <p>Escolas</p>
             </a>
           </li>
-            <li>
-                <a href="formacoes.php">
-                    <i class="nc-icon nc-tile-56"></i>
-                    <p>Formações</p>
-                </a>
-            </li>
+          <li>
+            <a href="formacoes.php">
+              <i class="nc-icon nc-tile-56"></i>
+              <p>Formações</p>
+            </a>
+          </li>
             <li>
                 <a href="anosLetivos.php">
                     <i class="nc-icon nc-tile-56"></i>
@@ -145,50 +146,90 @@ Coded by www.creative-tim.com
       </nav>
       <!-- End Navbar -->
       <div class="content">
+        <!-- Gráfico -->
         <div class="row">
           <div class="col-md-12">
-            <div class="card">
-              <div class="card-header">
-                <h4 class="card-title"> ESCOLAS</h4>
+            <div class="card ">
+              <div class="card-header ">
+                <h5 class="card-title">Informação Pessoal</h5>
               </div>
-              <div class="card-body">
-                <div class="table-responsive">
-                  <table class="table">
-                    <thead class=" text-primary">
-                      <th>id</th>
-                      <th>Nome</th>
-                      <th>Telefone</th>
-                      <th>Email</th>
-                      <th>Localidade</th>
-                      <th>Código Postal</th>
-                      <th>Código</th>
-                      <th><center><a class="btn-sm btn-success" href="adicionarEscola.php"><i class="fa fa-plus"></i></a></center></th>
-                    </thead>
-
-                    <?php
-                    $con=mysqli_connect("localhost","root","","pap2020formacao");
-                    $sql="SELECT * FROM escolas";
-                    $result=mysqli_query($con,$sql);
-                    while($dados=mysqli_fetch_array($result)){;
-                    ?>
-                    <tbody>
-                      <td><?php echo $dados['escolaId']; ?></td>
-                      <td><?php echo $dados['escolaNome']; ?></td>
-                      <td><?php echo $dados['escolaTelefone']; ?></td>
-                      <td><?php echo $dados['escolaEmail']; ?></td>
-                      <td><?php echo $dados['escolaLocalidade']; ?></td>
-                      <td><?php echo $dados['escolaCodigoPostal1']; ?> - <?php echo $dados['escolaCodigoPostal2']; ?></td>
-                      <td><?php echo $dados['escolaCodigo']; ?></td>
-                      <td><center><a class="btn-sm btn-info" id="editar" name="editar" href="#"><i class="fas fa-pencil-alt"></a></i> <a class="btn-sm btn-danger" id="delete" name="delete" href="apagarEscola.php?id=<?php echo $dados['escolaId']; ?>"><i class='fas fa-eraser'></i></a></center></td>
-                    </tbody>
-                    <?php } ?>
-                  </table>
-                </div>
+              <div class="card-body ">
+                  <div class="table-responsive">
+                      <table class="table">
+                          <thead class=" text-primary">
+                              <th>id</th>
+                              <th>Nome</th>
+                              <th>Formação</th>
+                              <th>Grupo</th>
+                              <th>Formação Actual</th>
+                              <th>Telefone</th>
+                              <th>Email</th>
+                              <th>Créditos</th>
+                              <th>&nbsp;</th>
+                          </thead>
+                          <tbody>
+                          <tr>
+                              <td>1</td>
+                              <td>Manuel</td>
+                              <td>E. Sec. Pinhal do Rei</td>
+                              <td>550-Informática</td>
+                              <td>Programação Web</td>
+                              <td>912345678</td>
+                              <td>manuel@gmail.com</td>
+                              <td>XXXX</td>
+                              <td><center><a class="btn-sm btn-info" href="#"><i class="fas fa-pencil-alt"></a></i> <a class="btn-sm btn-danger" href="#"><i class='fas fa-eraser'></a></i></center></td>
+                          </tr>
+                          </tbody>
+                      </table>
+                  </div>
+              </div>
+              <div class="card-footer ">
+                <hr>
               </div>
             </div>
+              <div class="card ">
+                  <div class="card-header ">
+                      <h5 class="card-title">Histórico</h5>
+                  </div>
+                  <div class="card-body ">
+                      <div class="table-responsive">
+                          <table class="table">
+                              <thead class=" text-primary">
+                                  <th>id</th>
+                                  <th>Formação</th>
+                                  <th>Formador</th>
+                                  <th>Créditos Ganhos</th>
+                                  <th>&nbsp;</th>
+                                  <th>Horas</th>
+                                  <th>Data de Início</th>
+                                  <th>Data de Fim</th>
+
+                              </thead>
+                              <tbody>
+                              <tr>
+                                  <td>1</td>
+                                  <td>Programação Web</td>
+                                  <td>Manuel</td>
+                                  <td>XXXX</td>
+                                  <th>&nbsp;</th>
+                                  <td>50</td>
+                                  <td>1/6/2020</td>
+                                  <td>26/6/2020</td>
+                                  <td><center><a class="btn-sm btn-light" href="#"><i class="fa fa-print"></i></a> <a class="btn-sm btn-info" href="#"><i class="fas fa-pencil-alt"></a></i> <a class="btn-sm btn-danger" href="#"><i class='fas fa-eraser'></a></i></center></td>
+                              </tr>
+                              </tbody>
+                          </table>
+                      </div>
+                  </div>
+                  <div class="card-footer ">
+                      <hr>
+                  </div>
+              </div>
           </div>
         </div>
       </div>
+
+      <!-- footer -->
       <footer class="footer footer-black  footer-white ">
         <div class="container-fluid">
           <div class="row">
@@ -211,6 +252,10 @@ Coded by www.creative-tim.com
       </footer>
     </div>
   </div>
+
+
+
+
   <!--   Core JS Files   -->
   <script src="../assets/js/core/jquery.min.js"></script>
   <script src="../assets/js/core/popper.min.js"></script>
@@ -225,6 +270,12 @@ Coded by www.creative-tim.com
   <!-- Control Center for Now Ui Dashboard: parallax effects, scripts for the example pages etc -->
   <script src="../assets/js/paper-dashboard.min.js?v=2.0.1" type="text/javascript"></script><!-- Paper Dashboard DEMO methods, don't include it in your project! -->
   <script src="../assets/demo/demo.js"></script>
+  <script>
+    $(document).ready(function() {
+      // Javascript method's body can be found in assets/assets-for-demo/js/demo.js
+      demo.initChartsPages();
+    });
+  </script>
 </body>
 
 </html>

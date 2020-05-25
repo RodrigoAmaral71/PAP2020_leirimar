@@ -35,13 +35,6 @@ Coded by www.creative-tim.com
   <!-- fa-icons -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
-    <style>
-        .preto{
-            color: black;
-            font-family: Arial;
-        }
-    </style>
 </head>
 
 <body class="">
@@ -61,7 +54,7 @@ Coded by www.creative-tim.com
       </div>
       <div class="sidebar-wrapper">
         <ul class="nav">
-          <li>
+          <li class="active ">
             <a href="./dashboard.php">
               <i class="nc-icon nc-bank"></i>
               <p>Dashboard</p>
@@ -79,18 +72,18 @@ Coded by www.creative-tim.com
               <p>Formandos</p>
             </a>
           </li>
-          <li class="active ">
+          <li>
             <a href="escolas.php">
               <i class="nc-icon nc-tile-56"></i>
               <p>Escolas</p>
             </a>
           </li>
-            <li>
-                <a href="formacoes.php">
-                    <i class="nc-icon nc-tile-56"></i>
-                    <p>Formações</p>
-                </a>
-            </li>
+          <li>
+            <a href="formacoes.php">
+              <i class="nc-icon nc-tile-56"></i>
+              <p>Formações</p>
+            </a>
+          </li>
             <li>
                 <a href="anosLetivos.php">
                     <i class="nc-icon nc-tile-56"></i>
@@ -149,57 +142,203 @@ Coded by www.creative-tim.com
         </div>
       </nav>
       <!-- End Navbar -->
-      <!-- FORMADORES -->
       <div class="content">
-
-        <!-- Gráfico -->
         <div class="row">
-          <div class="col-md-12">
-            <div class="card ">
-              <div class="card-header ">
-                <h5 class="card-title">Adicionar Nova Escola</h5>
-              </div>
-                <hr>
+          <!-- FORMADORES -->
+          <div class="col-lg-3 col-md-3 col-sm-6">
+            <div class="card card-stats">
               <div class="card-body ">
-                  <form action="confirmaAdicionarEscola.php" method="post">
-                      <div class="form-group row">
-                          <div class="col-md-12">
-                              <input type="text" class="form-control" placeholder="Nome" id="escolaNome" name="escolaNome" required>
-                          </div>
-                      </div>
-                      <div class="form-group row">
-                          <div class="col-md-12">
-                              <input type="text" class="form-control" placeholder="Morada" id="escolaMorada" name="escolaMorada" required>
-                          </div>
-                      </div>
-                      <div class="form-group row">
-                          <div class="col-md-1">
-                              <input type="text" class="form-control" placeholder="Código" id="escolaCodigoPostal1" name="escolaCodigoPostal1" required>
-                          </div>
-                          <div class="col-md-1">
-                              <input type="text" class="form-control" placeholder="Postal" id="escolaCodigoPostal2" name="escolaCodigoPostal2" required>
-                          </div>
-                          <div class="col-md-10">
-                              <input type="text" class="form-control" placeholder="Localidade" id="escolaLocalidade" name="escolaLocalidade" required>
-                          </div>
-                      </div>
-                      <div class="form-group row">
-                          <div class="col-md-5">
-                              <input type="email" class="form-control" placeholder="Email" id="escolaEmail" name="escolaEmail" required>
-                          </div>
-                          <div class="col-md-2">
-                              <input type="text" class="form-control" placeholder="Telefone" id="escolaTelefon" name="escolaTelefone" required>
-                          </div>
-                          <div class="col-md-5">
-                              <input type="text" class="form-control" placeholder="Código" id="escolaCodigo" name="escolaCodigo" required>
-                          </div>
-                      </div>
-                      <input type="submit" class="btn btn-success fa fa-plus preto" value="Adicionar">
-                  </form>
+                <div class="row">
+                  <div class="col-5 col-md-4">
+                    <div class="icon-big text-center icon-warning">
+                      <i class="nc-icon fa fa-file-text-o text-primary"></i>
+                    </div>
+                  </div>
+                  <div class="col-7 col-md-8">
+                    <div class="numbers">
+                      <p class="card-category">Formadores</p>
+                      <p class="card-title">*count*<p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="card-footer ">
+                <hr>
+                <div class="stats">
+                  <a href="dashboard.html"><i class="fa fa-refresh"></i></a>
+                  Update
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- FORMANDOS -->
+          <div class="col-lg-3 col-md-3 col-sm-6">
+            <div class="card card-stats">
+              <div class="card-body ">
+                <div class="row">
+                  <div class="col-5 col-md-4">
+                    <div class="icon-big text-center icon-warning">
+                      <i class="nc-icon fa fa-file-text-o text-primary"></i>
+                    </div>
+                  </div>
+                  <div class="col-7 col-md-8">
+                    <div class="numbers">
+                      <p class="card-category">Formandos</p>
+                      <p class="card-title">*count*<p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="card-footer ">
+                <hr>
+                <div class="stats">
+                  <a href="dashboard.html"><i class="fa fa-refresh"></i></a>
+                  Update
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- ESCOLAS -->
+          <div class="col-lg-3 col-md-3 col-sm-6">
+            <div class="card card-stats">
+              <div class="card-body ">
+                <div class="row">
+                  <div class="col-5 col-md-4">
+                    <div class="icon-big text-center icon-warning">
+                      <i class="nc-icon fa fa-file-text-o text-primary"></i>
+                    </div>
+                  </div>
+                  <div class="col-7 col-md-8">
+                    <div class="numbers">
+                      <p class="card-category">Escolas</p>
+                      <p class="card-title">
+                        <?php
+                        $con=mysqli_connect("localhost","root","","pap2020formacao");
+                        $sql="SELECT count(*) as countEscolas FROM escolas";
+                        $result=mysqli_query($con,$sql);
+                        $dados=mysqli_fetch_array($result);
+                        echo $dados['countEscolas'];
+                        ?>
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="card-footer ">
+                <hr>
+                <div class="stats">
+                  <a href="dashboard.html"><i class="fa fa-refresh"></i></a>
+                  Update
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- FORMAÇÕES -->
+          <div class="col-lg-3 col-md-3 col-sm-6">
+            <div class="card card-stats">
+              <div class="card-body ">
+                <div class="row">
+                  <div class="col-5 col-md-4">
+                    <div class="icon-big text-center icon-warning">
+                      <i class="nc-icon fa fa-file-text-o text-primary"></i>
+                    </div>
+                  </div>
+                  <div class="col-7 col-md-8">
+                    <div class="numbers">
+                      <p class="card-category">Formações</p>
+                      <p class="card-title">*count*<p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="card-footer ">
+                <hr>
+                <div class="stats">
+                  <a href="dashboard.html"><i class="fa fa-refresh"></i></a>
+                  Update
+                </div>
               </div>
             </div>
           </div>
         </div>
+
+
+
+
+        <!-- Gráfico -->
+        <div class="row">
+          <div class="col-md-6">
+            <div class="card ">
+              <div class="card-header ">
+                <h5 class="card-title">Gráfico</h5>
+              </div>
+              <div class="card-body ">
+                <canvas id=chartHours width="400" height="100"></canvas>
+              </div>
+              <div class="card-footer ">
+                <hr>
+                <div class="stats">
+                    <a href="dashboard.php"><i class="fa fa-refresh"></i></a> Update
+                </div>
+              </div>
+            </div>
+          </div>
+            <div class="col-md-6">
+                <div class="card ">
+                    <div class="card-header ">
+                        <h5 class="card-title">Gráfico</h5>
+                    </div>
+                    <div class="card-body ">
+                        <canvas id=chartHours width="400" height="100"></canvas>
+                    </div>
+                    <div class="card-footer ">
+                        <hr>
+                        <div class="stats">
+                            <a href="dashboard.php"><i class="fa fa-refresh"></i></a> Update
+                        </div>
+                    </div>
+                </div>
+            </div>
+      </div>
+          <div class="row">
+              <div class="col-md-12">
+                  <div class="card ">
+                      <div class="card-header ">
+                          <h5 class="card-title">Pedidos</h5>
+                      </div>
+                      <div class="card-body ">
+                          <table class="table">
+                              <thead class=" text-primary">
+                              <tr>
+                                  <th>id</th>
+                                  <th>Nome</th>
+                                  <th>Formação</th>
+                                  <th>Escola</th>
+                                  <th>Grupo Disciplinar</th>
+                                  <th>&nbsp</th>
+                              </tr>
+                              </thead>
+                              <tbody>
+                              <tr>
+                                  <td>1</td>
+                                  <td>Manuel</td>
+                                  <td>Programação Web</td>
+                                  <td>Escola Secundária Pinhal do Rei</td>
+                                  <td>550-Informática</td>
+                                  <td><center><a class="btn-sm btn-success" href="dashboard.html"><i class="fa fa-check"></i></a> <a class="btn-sm btn-danger" href="#"><i class="fa fa-remove"></i></a></center></td>
+                              </tr>
+                              </tbody>
+                          </table>
+                      </div>
+                      <div class="card-footer ">
+                          <hr>
+                          <div class="stats">
+                              <a href="dashboard.php"><i class="fa fa-refresh"></i></a> Update
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
       </div>
 
       <!-- footer -->
