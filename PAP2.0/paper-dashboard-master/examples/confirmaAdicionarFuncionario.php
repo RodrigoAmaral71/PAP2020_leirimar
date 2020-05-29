@@ -1,4 +1,5 @@
 <?php
+    if(isset($_POST['submit'])){
        $nome= $_POST['escolaNome'];
        $morada= $_POST['escolaMorada'];
        $codigoPostal1= $_POST['escolaCodigoPostal1'];
@@ -7,6 +8,7 @@
        $email= $_POST['escolaEmail'];
        $telefone= $_POST['escolaTelefone'];
        $codigo= $_POST['escolaCodigo'];
+    }
 
     $con=mysqli_connect('localhost', 'root','','pap2020formacao');
     $sql="INSERT INTO escolas VALUES (0, '".$nome."','".$codigo."','".$morada."','".$codigoPostal1."','".$codigoPostal2."','".$localidade."','".$email."','".$telefone."')";

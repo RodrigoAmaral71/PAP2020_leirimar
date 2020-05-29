@@ -12,6 +12,7 @@ Coded by www.creative-tim.com
 
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 -->
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -32,15 +33,16 @@ Coded by www.creative-tim.com
   <link href="../assets/css/paper-dashboard.css?v=2.0.1" rel="stylesheet" />
   <!-- CSS Just for demo purpose, don't include it in your project -->
   <link href="../assets/demo/demo.css" rel="stylesheet" />
+  <!-- fa-icons -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-  <script src='https://kit.fontawesome.com/a076d05399.js'></script>
-    <script>
-        function confirma(id) {
-            if(confirm('De certeza que quer eliminar o registo com o id:'+id +'?')){
-                window.location="apagarFuncionario.php?id="+id;
-            }
+    <style>
+        .preto{
+            color: black;
+            font-family: Arial;
         }
-    </script>
+    </style>
 </head>
 
 <body class="">
@@ -53,7 +55,7 @@ Coded by www.creative-tim.com
           </div>
           <!-- <p>CT</p> -->
         </a>
-        <a href="https://www.creative-tim.com" class="simple-text logo-normal">
+        <a href="../dashboard.html" class="simple-text logo-normal">
           BACKOFFICE
         </a>
           <h6>
@@ -72,7 +74,7 @@ Coded by www.creative-tim.com
       <div class="sidebar-wrapper">
         <ul class="nav">
           <li>
-            <a href="./dashboard.php">
+            <a href="dashboard.php">
               <i class="nc-icon nc-bank"></i>
               <p>Dashboard</p>
             </a>
@@ -95,19 +97,19 @@ Coded by www.creative-tim.com
               <p>Escolas</p>
             </a>
           </li>
-          <li>
-            <a href="formacoes.php">
-              <i class="nc-icon nc-tile-56"></i>
-              <p>Formações</p>
-            </a>
-          </li>
-          <li>
-            <a href="anosLetivos.php">
-              <i class="nc-icon nc-tile-56"></i>
-              <p>Anos Letivos</p>
-            </a>
-          </li>
+            <li>
+                <a href="formacoes.php">
+                    <i class="nc-icon nc-tile-56"></i>
+                    <p>Formações</p>
+                </a>
+            </li>
             <li class="active ">
+                <a href="anosLetivos.php">
+                    <i class="nc-icon nc-tile-56"></i>
+                    <p>Anos Letivos</p>
+                </a>
+            </li>
+            <li>
                 <a href="tiposFuncionários.php">
                     <i class="nc-icon nc-tile-56"></i>
                     <p>Funcionários</p>
@@ -159,58 +161,47 @@ Coded by www.creative-tim.com
         </div>
       </nav>
       <!-- End Navbar -->
+      <!-- FORMADORES -->
       <div class="content">
+
+        <!-- Gráfico -->
         <div class="row">
           <div class="col-md-12">
-            <div class="card">
-              <div class="card-header">
-                    <h4 class="card-title"> FORMADORES-FORMANDOS</h4>
+            <div class="card ">
+              <div class="card-header ">
+                <h5 class="card-title">Editar Ano Letivo</h5>
               </div>
-              <div class="card-body">
-                <div class="table-responsive">
-                  <table class="table">
-                    <thead class=" text-primary">
-                    <tr>
-                        <th>id</th>
-                        <th>Nome</th>
-                        <th>Escola</th>
-                        <th>Grupo</th>
-                        <th>Código Postal</th>
-                        <th>Telefone</th>
-                        <th>Email</th>
-                        <th>NIF</th>
-                        <th><center><a class="btn-sm btn-success" href="adicionarFuncionario.php"><i class="fa fa-plus"></i></a></center></th>
-                    </tr>
-                    </thead>
-                      <?php
+                <hr>
+              <div class="card-body ">
+                  <form name="form" action="confirmaEditarAnoLetivo.php" method="post">
+                      <div class="form-group row">
+                          <?php
                           $con=mysqli_connect("localhost","root","","pap2020formacao");
-                          $sql=("SELECT * FROM funcionarios INNER JOIN funcionarioEscolas ON funcionarioId=funcionarioEscolaFuncionarioId INNER JOIN escolas ON funcionarioEscolasEscolaId=escolaId");
+                          $id=intval($_GET['id']);
+                          $sql=("SELECT * FROM anolectivos");
                           $result=mysqli_query($con,$sql);
-                          while($dados=mysqli_fetch_array($result)){
-                      ?>
-                      <tbody>
-                        <tr>
-                          <td><?php echo $dados['funcionarioId']; ?></td>
-                          <td><?php echo $dados['funcionarioNome']; ?></td>
-                          <td><?php echo $dados['escolaNome']; ?></td>
-                          <td><?php echo $dados['funcionarioGrupoDisciplinar']; ?></td>
-                          <td><?php echo $dados['funcionarioCodigoPostal1']; ?> - <?php echo $dados['funcionarioCodigoPostal2']; ?></td>
-                          <td><?php echo $dados['funcionarioTelefone']; ?></td>
-                          <td><?php echo $dados['funcionarioEmail']; ?></td>
-                          <td><?php echo $dados['funcionarioNIF']; ?></td>
-                          <td><center><a class="btn-sm" href="historico.php"><i class="fa fa-refresh"></a></i>
-                           <a class="btn-sm btn-info" href="#"><i class="fas fa-pencil-alt"></a></i>
-                           <a onclick="confirma(<?php echo $dados['funcionarioId'];?>);" class="btn-sm btn-danger" id="delete" name="delete" href="#"><i class='fas fa-eraser'></a></i></center></td>
-                          <?php } ?>
-                        </tr>
-                    </tbody>
-                  </table>
-                </div>
+                          $dados=mysqli_fetch_array($result);
+                          ?>
+                              <input name="id" id="id" type="hidden" value="<?php echo $dados['anoLectivoId']?>">
+                          <div class="col-md-6">
+                              <input type="text" class="form-control" id="nome" name="nome" value="<?php echo $dados['anoLectivoNome']?>">
+                          </div>
+                          <div class="col-md-6">
+                              <select class="form-control" id="estado" name="estado" required>
+                                    <option value="<?php $dados['anoLectivoEstado']?>1">Activo</option>
+                                    <option value="<?php $dados['anoLectivoEstado']?>2">Inactivo</option>
+                              </select>
+                          </div>
+                      </div>
+                      <input name="0" type="submit" class="btn btn-success fa fa-plus preto" value="Confirmar">
+                  </form>
               </div>
             </div>
           </div>
         </div>
       </div>
+
+      <!-- footer -->
       <footer class="footer footer-black  footer-white ">
         <div class="container-fluid">
           <div class="row">
@@ -233,6 +224,10 @@ Coded by www.creative-tim.com
       </footer>
     </div>
   </div>
+
+
+
+
   <!--   Core JS Files   -->
   <script src="../assets/js/core/jquery.min.js"></script>
   <script src="../assets/js/core/popper.min.js"></script>
@@ -247,6 +242,12 @@ Coded by www.creative-tim.com
   <!-- Control Center for Now Ui Dashboard: parallax effects, scripts for the example pages etc -->
   <script src="../assets/js/paper-dashboard.min.js?v=2.0.1" type="text/javascript"></script><!-- Paper Dashboard DEMO methods, don't include it in your project! -->
   <script src="../assets/demo/demo.js"></script>
+  <script>
+    $(document).ready(function() {
+      // Javascript method's body can be found in assets/assets-for-demo/js/demo.js
+      demo.initChartsPages();
+    });
+  </script>
 </body>
 
 </html>

@@ -32,15 +32,16 @@ Coded by www.creative-tim.com
   <link href="../assets/css/paper-dashboard.css?v=2.0.1" rel="stylesheet" />
   <!-- CSS Just for demo purpose, don't include it in your project -->
   <link href="../assets/demo/demo.css" rel="stylesheet" />
+  <!-- fa-icons -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-  <script src='https://kit.fontawesome.com/a076d05399.js'></script>
-    <script>
-        function confirma(id) {
-            if(confirm('De certeza que quer eliminar o registo com o id:'+id +'?')){
-                window.location="apagarFuncionario.php?id="+id;
-            }
+    <style>
+        .preto{
+            color: black;
+            font-family: Arial;
         }
-    </script>
+    </style>
 </head>
 
 <body class="">
@@ -53,7 +54,7 @@ Coded by www.creative-tim.com
           </div>
           <!-- <p>CT</p> -->
         </a>
-        <a href="https://www.creative-tim.com" class="simple-text logo-normal">
+        <a href="../dashboard.html" class="simple-text logo-normal">
           BACKOFFICE
         </a>
           <h6>
@@ -72,7 +73,7 @@ Coded by www.creative-tim.com
       <div class="sidebar-wrapper">
         <ul class="nav">
           <li>
-            <a href="./dashboard.php">
+            <a href="dashboard.php">
               <i class="nc-icon nc-bank"></i>
               <p>Dashboard</p>
             </a>
@@ -83,7 +84,7 @@ Coded by www.creative-tim.com
               <p>Formadores</p>
             </a>
           </li>
-          <li>
+          <li class="active ">
             <a href="formandos.php">
               <i class="nc-icon nc-tile-56"></i>
               <p>Formandos</p>
@@ -95,19 +96,19 @@ Coded by www.creative-tim.com
               <p>Escolas</p>
             </a>
           </li>
-          <li>
-            <a href="formacoes.php">
-              <i class="nc-icon nc-tile-56"></i>
-              <p>Formações</p>
-            </a>
-          </li>
-          <li>
-            <a href="anosLetivos.php">
-              <i class="nc-icon nc-tile-56"></i>
-              <p>Anos Letivos</p>
-            </a>
-          </li>
-            <li class="active ">
+            <li>
+                <a href="formacoes.php">
+                    <i class="nc-icon nc-tile-56"></i>
+                    <p>Formações</p>
+                </a>
+            </li>
+            <li>
+                <a href="anosLetivos.php">
+                    <i class="nc-icon nc-tile-56"></i>
+                    <p>Anos Letivos</p>
+                </a>
+            </li>
+            <li>
                 <a href="tiposFuncionários.php">
                     <i class="nc-icon nc-tile-56"></i>
                     <p>Funcionários</p>
@@ -159,58 +160,56 @@ Coded by www.creative-tim.com
         </div>
       </nav>
       <!-- End Navbar -->
+      <!-- FORMADORES -->
       <div class="content">
+
+        <!-- Gráfico -->
         <div class="row">
           <div class="col-md-12">
-            <div class="card">
-              <div class="card-header">
-                    <h4 class="card-title"> FORMADORES-FORMANDOS</h4>
+            <div class="card ">
+              <div class="card-header ">
+                <h5 class="card-title">Adicionar Novo Formando</h5>
               </div>
-              <div class="card-body">
-                <div class="table-responsive">
-                  <table class="table">
-                    <thead class=" text-primary">
-                    <tr>
-                        <th>id</th>
-                        <th>Nome</th>
-                        <th>Escola</th>
-                        <th>Grupo</th>
-                        <th>Código Postal</th>
-                        <th>Telefone</th>
-                        <th>Email</th>
-                        <th>NIF</th>
-                        <th><center><a class="btn-sm btn-success" href="adicionarFuncionario.php"><i class="fa fa-plus"></i></a></center></th>
-                    </tr>
-                    </thead>
-                      <?php
-                          $con=mysqli_connect("localhost","root","","pap2020formacao");
-                          $sql=("SELECT * FROM funcionarios INNER JOIN funcionarioEscolas ON funcionarioId=funcionarioEscolaFuncionarioId INNER JOIN escolas ON funcionarioEscolasEscolaId=escolaId");
-                          $result=mysqli_query($con,$sql);
-                          while($dados=mysqli_fetch_array($result)){
-                      ?>
-                      <tbody>
-                        <tr>
-                          <td><?php echo $dados['funcionarioId']; ?></td>
-                          <td><?php echo $dados['funcionarioNome']; ?></td>
-                          <td><?php echo $dados['escolaNome']; ?></td>
-                          <td><?php echo $dados['funcionarioGrupoDisciplinar']; ?></td>
-                          <td><?php echo $dados['funcionarioCodigoPostal1']; ?> - <?php echo $dados['funcionarioCodigoPostal2']; ?></td>
-                          <td><?php echo $dados['funcionarioTelefone']; ?></td>
-                          <td><?php echo $dados['funcionarioEmail']; ?></td>
-                          <td><?php echo $dados['funcionarioNIF']; ?></td>
-                          <td><center><a class="btn-sm" href="historico.php"><i class="fa fa-refresh"></a></i>
-                           <a class="btn-sm btn-info" href="#"><i class="fas fa-pencil-alt"></a></i>
-                           <a onclick="confirma(<?php echo $dados['funcionarioId'];?>);" class="btn-sm btn-danger" id="delete" name="delete" href="#"><i class='fas fa-eraser'></a></i></center></td>
-                          <?php } ?>
-                        </tr>
-                    </tbody>
-                  </table>
-                </div>
+                <hr>
+              <div class="card-body ">
+                  <form action="confirmaAdicionarFormando.php" method="post">
+                      <div class="form-group row">
+                          <div class="col-md-12">
+                              <select name="nome" id="nome" class="form-control">
+                                  <?php
+                                  $con=mysqli_connect("localhost","root","","pap2020formacao");
+                                  $sql=("SELECT * FROM funcionarios");
+                                  $result=mysqli_query($con,$sql);
+                                  while($dados=mysqli_fetch_array($result)){
+                                      ?>
+                                      <option> <?php echo $dados['funcionarioNome']; ?></option>
+                                  <?php } ?>
+                              </select>
+                          </div>
+                      </div>
+                      <div class="form-group row">
+                          <div class="col-md-12">
+                              <select name="formacao" id="formacao" class="form-control">
+                                  <?php
+                                  $con=mysqli_connect("localhost","root","","pap2020formacao");
+                                  $sql=("SELECT * FROM formacoes");
+                                  $result=mysqli_query($con,$sql);
+                                  while($dados=mysqli_fetch_array($result)){
+                                      ?>
+                                      <option> <?php echo $dados['formacaoNome']; ?></option>
+                                  <?php } ?>
+                              </select>
+                          </div>
+                      </div>
+                      <input type="submit" class="btn btn-success fa fa-plus preto" value="Adicionar">
+                  </form>
               </div>
             </div>
           </div>
         </div>
       </div>
+
+      <!-- footer -->
       <footer class="footer footer-black  footer-white ">
         <div class="container-fluid">
           <div class="row">
@@ -233,6 +232,10 @@ Coded by www.creative-tim.com
       </footer>
     </div>
   </div>
+
+
+
+
   <!--   Core JS Files   -->
   <script src="../assets/js/core/jquery.min.js"></script>
   <script src="../assets/js/core/popper.min.js"></script>
@@ -247,6 +250,12 @@ Coded by www.creative-tim.com
   <!-- Control Center for Now Ui Dashboard: parallax effects, scripts for the example pages etc -->
   <script src="../assets/js/paper-dashboard.min.js?v=2.0.1" type="text/javascript"></script><!-- Paper Dashboard DEMO methods, don't include it in your project! -->
   <script src="../assets/demo/demo.js"></script>
+  <script>
+    $(document).ready(function() {
+      // Javascript method's body can be found in assets/assets-for-demo/js/demo.js
+      demo.initChartsPages();
+    });
+  </script>
 </body>
 
 </html>

@@ -34,6 +34,13 @@ Coded by www.creative-tim.com
   <link href="../assets/demo/demo.css" rel="stylesheet" />
 
   <script src='https://kit.fontawesome.com/a076d05399.js'></script>
+    <script>
+        function confirma(id) {
+            if(confirm('De certeza que quer eliminar o registo com o id:'+id +'?')){
+                window.location="apagarFormadores.php?id="+id;
+            }
+        }
+    </script>
 </head>
 
 <body class="">
@@ -44,12 +51,22 @@ Coded by www.creative-tim.com
           <div class="logo-image-small">
             <img src="../assets/img/logo-small.png">
           </div>
-          <!-- <p>CT</p> -->
         </a>
         <a href="https://www.creative-tim.com" class="simple-text logo-normal">
           BACKOFFICE
         </a>
-        <h6>2019/20</h6>
+          <h6>
+              <select>
+                  <?php
+                  $con=mysqli_connect("localhost","root","","pap2020formacao");
+                  $sql=("SELECT * FROM anolectivos");
+                  $result=mysqli_query($con,$sql);
+                  while($dados=mysqli_fetch_array($result)){
+                      ?>
+                      <option> <?php echo $dados['anoLectivoNome']; ?></option>
+                  <?php } ?>
+              </select>
+          </h6>
       </div>
       <div class="sidebar-wrapper">
         <ul class="nav">
@@ -157,24 +174,28 @@ Coded by www.creative-tim.com
                         <th>Nome</th>
                         <th>Escola</th>
                         <th>Grupo</th>
-                        <th>Formação Actual</th>
                         <th>Telefone</th>
                         <th>Email</th>
-                        <th><center><a class="btn-sm btn-success" href="#"><i class="fa fa-plus"></i></a></center></th>
+                        <th><center><a class="btn-sm btn-success" href="adicionarFormador.php"><i class="fa fa-plus"></i></a></center></th>
                       </tr>
                     </thead>
-                    <tbody>
-                      <tr>
-                        <td>1</td>
-                        <td>Manuel</td>
-                        <td>E. Sec. Pinhal do Rei</td>
-                        <td>550-Informática</td>
-                        <td>Programação Web</td>
-                        <td>912345678</td>
-                        <td>manuel@aemgn.pt</td>
-                        <td><center><a class="btn-sm btn-info" href="#"><i class="fas fa-pencil-alt"></a></i> <a class="btn-sm btn-danger" href="#"><i class='fas fa-eraser'></a></i></center></td>
-                      </tr>
-                    </tbody>
+                      <?php
+                      $con=mysqli_connect("localhost","root","","pap2020formacao");
+                      $sql=("SELECT * FROM funcionarios INNER JOIN funcionarioescolas ON funcionarioId=funcionarioEscolaFuncionarioId INNER JOIN escolas ON funcionarioEscolasEscolaId=escolaId where funcionarioFuncionarioTipoId!=2");
+                      $result=mysqli_query($con,$sql);
+                      while($dados=mysqli_fetch_array($result)){
+                          ?>
+                          <tbody>
+                          <td><?php echo $dados['funcionarioId']; ?></td>
+                          <td><?php echo $dados['funcionarioNome']; ?></td>
+                          <td><?php echo $dados['escolaNome']; ?></td>
+                          <td><?php echo $dados['funcionarioGrupoDisciplinar']; ?></td>
+                          <td><?php echo $dados['funcionarioTelefone']; ?></td>
+                          <td><?php echo $dados['funcionarioEmail']; ?></td>
+                          <td><center><a class="btn-sm btn-info" id="editar" name="editar" href="#"><i class="fas fa-pencil-alt"></a></i>
+                                  <a onclick="confirma(<?php echo $dados['funcionarioId'];?>);" class="btn-sm btn-danger" id="delete" name="delete" href="#"><i class='fas fa-eraser'></i></a></center></td>
+                          </tbody>
+                      <?php } ?>
                   </table>
                 </div>
               </div>

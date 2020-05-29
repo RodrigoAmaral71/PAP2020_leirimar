@@ -34,6 +34,13 @@ Coded by www.creative-tim.com
   <link href="../assets/demo/demo.css" rel="stylesheet" />
 
   <script src='https://kit.fontawesome.com/a076d05399.js'></script>
+    <script>
+        function confirma(id) {
+            if(confirm('De certeza que quer eliminar o registo com o id:'+id +'?')){
+                window.location="apagarFormando.php?id="+id;
+            }
+        }
+    </script>
 
   <style>
     .fa-history{
@@ -58,7 +65,18 @@ Coded by www.creative-tim.com
             <img src="../assets/img/logo-big.png">
           </div> -->
         </a>
-        <h6>2019/20</h6>
+          <h6>
+              <select>
+                  <?php
+                  $con=mysqli_connect("localhost","root","","pap2020formacao");
+                  $sql=("SELECT * FROM anolectivos");
+                  $result=mysqli_query($con,$sql);
+                  while($dados=mysqli_fetch_array($result)){
+                      ?>
+                      <option> <?php echo $dados['anoLectivoNome']; ?></option>
+                  <?php } ?>
+              </select>
+          </h6>
       </div>
       <div class="sidebar-wrapper">
         <ul class="nav">
@@ -168,23 +186,24 @@ Coded by www.creative-tim.com
                         <th>Formação Actual</th>
                         <th>Telefone</th>
                         <th>Email</th>
-                        <th><center><a class="btn-sm btn-success" href="#"><i class="fa fa-plus"></i></a></center></th>
+                        <th><center><a class="btn-sm btn-success" href="adicionarFormando.php"><i class="fa fa-plus"></i></a></center></th>
                     </thead>
                       <?php
                       $con=mysqli_connect("localhost","root","","pap2020formacao");
-                      $sql=("SELECT * FROM funcionarios INNER JOIN registos");
+                      $sql=("SELECT * FROM funcionarios INNER JOIN funcionarioescolas ON funcionarioId=funcionarioEscolaFuncionarioId INNER JOIN escolas ON funcionarioEscolasEscolaId=escolaId INNER JOIN formacaoinscritos ON funcionarioId=formacaoInscritoFuncionarioId INNER JOIN formacoes ON formacaoInscritoFormacaoId=formacaoId WHERE formacaoInscritoPapel='formando'");
                       $result=mysqli_query($con,$sql);
-                      while($dados=mysqli_fetch_array($result)){;
+                      while($dados=mysqli_fetch_array($result)){
                       ?>
                     <tbody>
                         <td><?php echo $dados['funcionarioId']; ?></td>
                         <td><?php echo $dados['funcionarioNome']; ?></td>
-                        <td> &nbsp <?php echo $dados['registoEscola']; ?></td>
-                        <td> &nbsp <?php // echo $dados['']; ?></td>
-                        <td> &nbsp <?php // echo $dados['']; ?></td>
+                        <td><?php echo $dados['escolaNome']; ?></td>
+                        <td> &nbsp <?php echo $dados['funcionarioGrupoDisciplinar']; ?></td>
+                        <td> &nbsp <?php echo $dados['formacaoNome']; ?></td>
                         <td><?php echo $dados['funcionarioTelefone']; ?></td>
                         <td><?php echo $dados['funcionarioEmail']; ?></td>
-                        <td><center><a class="btn-sm btn-info" id="editar" name="editar" href="#"><i class="fas fa-pencil-alt"></a></i> <a class="btn-sm btn-danger" id="delete" name="delete" href="#"><i class='fas fa-eraser'></i></a></center></td>
+                        <td><center><a class="btn-sm btn-info" id="editar" name="editar" href="#"><i class="fas fa-pencil-alt"></a></i>
+                         <a onclick="confirma(<?php echo $dados['funcionarioId'];?>);" class="btn-sm btn-danger" id="delete" name="delete" href="#"><i class='fas fa-eraser'></i></a></center></td>
                     </tbody>
                     <?php } ?>
                   </table>

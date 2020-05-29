@@ -34,6 +34,13 @@ Coded by www.creative-tim.com
   <link href="../assets/demo/demo.css" rel="stylesheet" />
 
   <script src='https://kit.fontawesome.com/a076d05399.js'></script>
+    <script>
+        function confirma(id) {
+            if(confirm('De certeza que quer elminar o registo com o id:'+id +'?')){
+                window.location="apagarFormacao.php?id="+id;
+            }
+        }
+    </script>
 </head>
 
 <body class="">
@@ -48,11 +55,19 @@ Coded by www.creative-tim.com
         </a>
         <a href="https://www.creative-tim.com" class="simple-text logo-normal">
           BACKOFFICE
-          <!-- <div class="logo-image-big">
-            <img src="../assets/img/logo-big.png">
-          </div> -->
         </a>
-          <h6>2019/20</h6>
+          <h6>
+              <select>
+                  <?php
+                  $con=mysqli_connect("localhost","root","","pap2020formacao");
+                  $sql=("SELECT * FROM anolectivos");
+                  $result=mysqli_query($con,$sql);
+                  while($dados=mysqli_fetch_array($result)){
+                      ?>
+                      <option> <?php echo $dados['anoLectivoNome']; ?></option>
+                  <?php } ?>
+              </select>
+          </h6>
       </div>
       <div class="sidebar-wrapper">
         <ul class="nav">
@@ -158,22 +173,38 @@ Coded by www.creative-tim.com
                       <th>id</th>
                       <th>Nome</th>
                       <th>Formador</th>
+                      <th>Ano Letivo</th>
                       <th>Horas</th>
                       <th>&nbsp</th>
                       <th>Data de Início</th>
                       <th>Data de Fim</th>
-                      <th><center><a class="btn-sm btn-success" href="#"><i class="fa fa-plus"></i></a></center></th>
+                      <th>&nbsp</th>
+                      <th>Créditos</th>
+                      <th>Estado</th>
+                      <th><center><a class="btn-sm btn-success" href="adicionarFormacao.php"><i class="fa fa-plus"></i></a></center></th>
                     </thead>
+                      <?php
+                      $con=mysqli_connect("localhost","root","","pap2020formacao");
+                      $sql=("SELECT * FROM formacoes INNER JOIN formacaoinscritos ON formacaoId=formacaoInscritoFormacaoId INNER JOIN funcionarios ON formacaoInscritoFuncionarioId=funcionarioId INNER JOIN anolectivos ON formacaoAnoLectivoId=anoLectivoId WHERE formacaoInscritoPapel='formador'");
+                      $result=mysqli_query($con,$sql);
+                      while($dados=mysqli_fetch_array($result)){
+                      ?>
                     <tbody>
-                      <td>1</td>
-                      <td>Programação Web</td>
-                      <td>Manuel</td>
-                      <td>50</td>
+                      <td><?php echo $dados['formacaoId']; ?></td>
+                      <td><?php echo $dados['formacaoNome']; ?></td>
+                      <td><?php echo $dados['funcionarioNome']; ?></td>
+                      <td><?php echo $dados['anoLectivoNome']; ?></td>
+                      <td><?php echo $dados['formacaoHoras']; ?></td>
                       <td>&nbsp</td>
-                      <td>1/6/2020</td>
-                      <td>26/6/2020</td>
-                      <td><center><a class="btn-sm btn-info" href="#"><i class="fas fa-pencil-alt"></a></i> <a class="btn-sm btn-danger" href="apagarEscola.php"><i class='fas fa-eraser'></a></i></center></td>
+                      <td><?php echo $dados['formacaoDataInicio']; ?></td>
+                      <td><?php echo $dados['formacaoDataFim']; ?></td>
+                      <th>&nbsp</th>
+                      <td><?php echo $dados['formacaoCreditos']; ?></td>
+                      <td><?php echo $dados['formacaoEstado']; ?></td>
+                      <td><center><a id="edit" name="edit" class="btn-sm btn-info" href="#"><i class="fas fa-pencil-alt"></a></i>
+                       <a onclick="confirma(<?php echo $dados['anoLectivoId'];?>);" id="delete" name="delete" class="btn-sm btn-danger" href="apagarFormacao.php?id=<?php echo $dados['formacaoId']; ?>"><i class='fas fa-eraser'></a></i></center></td>
                     </tbody>
+                      <?php } ?>
                   </table>
                 </div>
               </div>

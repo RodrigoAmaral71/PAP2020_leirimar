@@ -12,6 +12,7 @@ Coded by www.creative-tim.com
 
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 -->
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -34,6 +35,15 @@ Coded by www.creative-tim.com
   <link href="../assets/demo/demo.css" rel="stylesheet" />
 
   <script src='https://kit.fontawesome.com/a076d05399.js'></script>
+
+    <script>
+        function confirma(id) {
+            if(confirm('De certeza que quer eliminar o registo com o id:'+id +'?')){
+                window.location="apagarAnoLetivo.php?id="+id;
+            }
+        }
+    </script>
+
 </head>
 
 <body class="">
@@ -52,7 +62,18 @@ Coded by www.creative-tim.com
             <img src="../assets/img/logo-big.png">
           </div> -->
         </a>
-          <h6>2019/20</h6>
+          <h6>
+              <select>
+                  <?php
+                  $con=mysqli_connect("localhost","root","","pap2020formacao");
+                  $sql="SELECT * FROM anolectivos";
+                  $result=mysqli_query($con,$sql);
+                  while($dados=mysqli_fetch_array($result)){
+                      ?>
+                      <option> <?php echo $dados['anoLectivoNome']; ?></option>
+                  <?php } ?>
+              </select>
+          </h6>
       </div>
       <div class="sidebar-wrapper">
         <ul class="nav">
@@ -158,10 +179,8 @@ Coded by www.creative-tim.com
                       <tr>
                         <th>id</th>
                         <th>Ano</th>
-                        <th>Nº Formações</th>
-                        <th>Nº Formandos</th>
-                        <th>Nº Formadores</th>
-                        <th><center><a class="btn-sm btn-success" href="#"><i class="fa fa-plus"></i></a></center></th>
+                        <th>Estado</th>
+                        <th><center><a class="btn-sm btn-success" href="adicionarAnoLetivo.php"><i class="fa fa-plus"></i></a></center></th>
                       </tr>
                     </thead>
 
@@ -172,12 +191,13 @@ Coded by www.creative-tim.com
                       while($dados=mysqli_fetch_array($result)){;
                       ?>
                       <tbody>
-                      <td><?php echo $dados['anoLectivoId']; ?></td>
-                      <td> <?php echo $dados['anoLectivoNome']; ?></td>
-                      <td> &nbsp <?php // echo $dados['']; ?></td>
-                      <td> &nbsp <?php // echo $dados['']; ?></td>
-                      <td> &nbsp <?php // echo $dados['']; ?></td>
-                      <td><center><a class="btn-sm btn-info" id="editar" name="editar" href="#"><i class="fas fa-pencil-alt"></a></i> <a class="btn-sm btn-danger" id="delete" name="delete" href="#"><i class='fas fa-eraser'></i></a></center></td>
+                          <td><?php echo $dados['anoLectivoId']; ?></td>
+                          <td><?php echo $dados['anoLectivoNome']; ?></td>
+                          <td><?php echo $dados['anoLectivoEstado']; ?></td>
+                      <td><center>
+                      <a class="btn-sm btn-info" id="editar" name="editar" href="editarAnoLetivo.php?id=<?php echo $dados['anoLectivoId'];?>"><i class="fas fa-pencil-alt"></i></a>
+                      <a onclick="confirma(<?php echo $dados['anoLectivoId'];?>);" class="btn-sm btn-danger" id="delete" name="delete" href="#"><i class='fas fa-eraser'></i></a>
+                      </center></td>
                       </tbody>
                       <?php } ?>
                   </table>

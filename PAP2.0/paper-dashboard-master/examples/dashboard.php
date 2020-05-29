@@ -50,7 +50,18 @@ Coded by www.creative-tim.com
         <a href="dashboard.html" class="simple-text logo-normal">
           BACKOFFICE
         </a>
-          <h6>2019/20</h6>
+          <h6>
+          <select>
+              <?php
+              $con=mysqli_connect("localhost","root","","pap2020formacao");
+              $sql=("SELECT * FROM anolectivos");
+              $result=mysqli_query($con,$sql);
+              while($dados=mysqli_fetch_array($result)){
+              ?>
+              <option> <?php echo $dados['anoLectivoNome']; ?></option>
+              <?php } ?>
+          </select>
+          </h6>
       </div>
       <div class="sidebar-wrapper">
         <ul class="nav">
@@ -157,7 +168,14 @@ Coded by www.creative-tim.com
                   <div class="col-7 col-md-8">
                     <div class="numbers">
                       <p class="card-category">Formadores</p>
-                      <p class="card-title">*count*<p>
+                      <p class="card-title"><?php
+                          $con=mysqli_connect("localhost","root","","pap2020formacao");
+                          $sql="SELECT count(*) as nFormadores FROM formacaoInscritos WHERE formacaoInscritoPapel='formador'";
+                          $result=mysqli_query($con,$sql);
+                          $dados=mysqli_fetch_array($result);
+                          echo $dados['nFormadores'];
+                          ?>
+                      </p>
                     </div>
                   </div>
                 </div>
@@ -165,7 +183,7 @@ Coded by www.creative-tim.com
               <div class="card-footer ">
                 <hr>
                 <div class="stats">
-                  <a href="dashboard.html"><i class="fa fa-refresh"></i></a>
+                  <a href="dashboard.php"><i class="fa fa-refresh"></i></a>
                   Update
                 </div>
               </div>
@@ -184,7 +202,15 @@ Coded by www.creative-tim.com
                   <div class="col-7 col-md-8">
                     <div class="numbers">
                       <p class="card-category">Formandos</p>
-                      <p class="card-title">*count*<p>
+                      <p class="card-title">
+                          <?php
+                          $con=mysqli_connect("localhost","root","","pap2020formacao");
+                          $sql="SELECT count(*) as nFormandos FROM formacaoInscritos WHERE formacaoInscritoPapel='formando'";
+                          $result=mysqli_query($con,$sql);
+                          $dados=mysqli_fetch_array($result);
+                          echo $dados['nFormandos'];
+                          ?>
+                      </p>
                     </div>
                   </div>
                 </div>
@@ -192,7 +218,7 @@ Coded by www.creative-tim.com
               <div class="card-footer ">
                 <hr>
                 <div class="stats">
-                  <a href="dashboard.html"><i class="fa fa-refresh"></i></a>
+                  <a href="dashboard.php"><i class="fa fa-refresh"></i></a>
                   Update
                 </div>
               </div>
@@ -214,10 +240,10 @@ Coded by www.creative-tim.com
                       <p class="card-title">
                         <?php
                         $con=mysqli_connect("localhost","root","","pap2020formacao");
-                        $sql="SELECT count(*) as countEscolas FROM escolas";
+                        $sql="SELECT count(*) as nEscolas FROM escolas";
                         $result=mysqli_query($con,$sql);
                         $dados=mysqli_fetch_array($result);
-                        echo $dados['countEscolas'];
+                        echo $dados['nEscolas'];
                         ?>
                       </p>
                     </div>
@@ -227,7 +253,7 @@ Coded by www.creative-tim.com
               <div class="card-footer ">
                 <hr>
                 <div class="stats">
-                  <a href="dashboard.html"><i class="fa fa-refresh"></i></a>
+                  <a href="dashboard.php"><i class="fa fa-refresh"></i></a>
                   Update
                 </div>
               </div>
@@ -246,7 +272,14 @@ Coded by www.creative-tim.com
                   <div class="col-7 col-md-8">
                     <div class="numbers">
                       <p class="card-category">Formações</p>
-                      <p class="card-title">*count*<p>
+                      <p class="card-title"><?php
+                          $con=mysqli_connect("localhost","root","","pap2020formacao");
+                          $sql="SELECT count(*) as nFormacoes FROM formacoes";
+                          $result=mysqli_query($con,$sql);
+                          $dados=mysqli_fetch_array($result);
+                          echo $dados['nFormacoes'];
+                          ?>
+                      </p>
                     </div>
                   </div>
                 </div>
@@ -254,7 +287,7 @@ Coded by www.creative-tim.com
               <div class="card-footer ">
                 <hr>
                 <div class="stats">
-                  <a href="dashboard.html"><i class="fa fa-refresh"></i></a>
+                  <a href="dashboard.php"><i class="fa fa-refresh"></i></a>
                   Update
                 </div>
               </div>

@@ -53,7 +53,18 @@ Coded by www.creative-tim.com
         <a href="dashboard.html" class="simple-text logo-normal">
           BACKOFFICE
         </a>
-          <h6>2019/20</h6>
+          <h6>
+              <select>
+                  <?php
+                  $con=mysqli_connect("localhost","root","","pap2020formacao");
+                  $sql=("SELECT * FROM anolectivos");
+                  $result=mysqli_query($con,$sql);
+                  while($dados=mysqli_fetch_array($result)){
+                      ?>
+                      <option> <?php echo $dados['anoLectivoNome']; ?></option>
+                  <?php } ?>
+              </select>
+          </h6>
       </div>
       <div class="sidebar-wrapper">
         <ul class="nav">
