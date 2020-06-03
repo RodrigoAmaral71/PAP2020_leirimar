@@ -90,7 +90,7 @@ Coded by www.creative-tim.com
               <p>Formandos</p>
             </a>
           </li>
-          <li class="active ">
+          <li>
             <a href="escolas.php">
               <i class="nc-icon nc-tile-56"></i>
               <p>Escolas</p>
@@ -108,7 +108,7 @@ Coded by www.creative-tim.com
                     <p>Anos Letivos</p>
                 </a>
             </li>
-            <li>
+            <li class="active ">
                 <a href="tiposFuncionários.php">
                     <i class="nc-icon nc-tile-56"></i>
                     <p>Funcionários</p>
@@ -168,41 +168,61 @@ Coded by www.creative-tim.com
           <div class="col-md-12">
             <div class="card ">
               <div class="card-header ">
-                <h5 class="card-title">Adicionar Nova Escola</h5>
+                <h5 class="card-title">Adicionar Novo Funcionário</h5>
               </div>
                 <hr>
               <div class="card-body ">
-                  <form action="confirmaAdicionarEscola.php" method="post">
+                  <form action="confirmaAdicionarFuncionario.php" method="post">
                       <div class="form-group row">
                           <div class="col-md-12">
-                              <input type="text" class="form-control" placeholder="Nome" id="escolaNome" name="escolaNome" required>
+                              <input type="text" class="form-control" placeholder="Nome" id="nome" name="nome" required>
                           </div>
                       </div>
                       <div class="form-group row">
                           <div class="col-md-12">
-                              <input type="text" class="form-control" placeholder="Morada" id="escolaMorada" name="escolaMorada" required>
+                              <input type="text" class="form-control" placeholder="Morada" id="morada" name="morada" required>
                           </div>
                       </div>
                       <div class="form-group row">
                           <div class="col-md-1">
-                              <input type="text" class="form-control" placeholder="Código" id="escolaCodigoPostal1" name="escolaCodigoPostal1" required>
+                              <input type="text" class="form-control" placeholder="Código" id="cp1" name="cp1" required>
                           </div>
                           <div class="col-md-1">
-                              <input type="text" class="form-control" placeholder="Postal" id="escolaCodigoPostal2" name="escolaCodigoPostal2" required>
+                              <input type="text" class="form-control" placeholder="Postal" id="cp2" name="cp2" required>
                           </div>
                           <div class="col-md-10">
-                              <input type="text" class="form-control" placeholder="Localidade" id="escolaLocalidade" name="escolaLocalidade" required>
+                              <input type="text" class="form-control" placeholder="Localidade" id="localidade" name="localidade" required>
                           </div>
                       </div>
                       <div class="form-group row">
                           <div class="col-md-5">
-                              <input type="email" class="form-control" placeholder="Email" id="escolaEmail" name="escolaEmail" required>
+                              <input type="email" class="form-control" placeholder="Email" id="email" name="email" required>
                           </div>
                           <div class="col-md-2">
-                              <input type="text" class="form-control" placeholder="Telefone" id="escolaTelefon" name="escolaTelefone" required>
+                              <input type="text" class="form-control" placeholder="Telefone" id="telefone" name="telefone" required>
                           </div>
                           <div class="col-md-5">
-                              <input type="text" class="form-control" placeholder="Código" id="escolaCodigo" name="escolaCodigo" required>
+                              <select class="form-control" id="tipo" name="tipo" required>
+                                  <option value="-1">Tipo de Funcionário</option>
+                                  <option value="1">professor</option>
+                                  <option value="2">funcionario</option>
+                                  <option value="3">secretaria</option>
+                                  <option value="4">administracao</option>
+                              </select>
+                          </div>
+                      </div>
+                      <div class="form-group row">
+                          <div class="col-md-3">
+                              <input type="text" class="form-control" placeholder="NIF" id="nif" name="nif" required>
+                          </div>
+                          <div class="col-md-3">
+                              <input type="text" class="form-control" placeholder="IBAN" id="iban" name="iban">
+                          </div>
+                          <div class="col-md-3">
+                              <input type="text" class="form-control" placeholder="Escalão" id="escalao" name="escalao">
+                          </div>
+                          <div class="col-md-3">
+                              <input type="text" class="form-control" placeholder="Grupo Disciplinar" id="gd" name="gd">
                           </div>
                       </div>
                       <input type="submit" class="btn btn-success fa fa-plus preto" value="Adicionar">

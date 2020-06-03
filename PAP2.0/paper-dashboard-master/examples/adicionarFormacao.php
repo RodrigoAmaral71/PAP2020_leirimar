@@ -174,31 +174,16 @@ Coded by www.creative-tim.com
               <div class="card-body ">
                   <form action="confirmaAdicionarFormacao.php" method="post">
                       <div class="form-group row">
-                          <div class="col-md-10">
+                          <div class="col-md-12">
                               <input type="text" class="form-control" placeholder="Nome" id="nome" name="nome" required>
-                          </div>
-                          <div class="col-md-2">
-                              <input type="text" class="form-control" placeholder="Horas" id="horas" name="horas" required>
                           </div>
                       </div>
                       <div class="form-group row">
-                          <div class="col-md-6">
-                              <input type="text" class="form-control" placeholder="Créditos" id="creditos" name="creditos" required>
+                          <div class="col-md-10">
+                              <input type="text" class="form-control" placeholder="Publico Alvo" id="publico" name="publico" required>
                           </div>
-                          <div class="col-md-6">
-                              <select class="form-control" name="formador" id="formador">
-                                  <?php
-                                  $con=mysqli_connect("localhost","root","","pap2020formacao");
-                                  $sql="SELECT * FROM funcionarios INNER JOIN formacaoinscritos ON funcionarioId=formacaoInscritoFuncionarioId INNER JOIN formacoes ON formacaoInscritoFormacaoId=formacaoId";
-                                  $result=mysqli_query($con,$sql);
-                                  ?>
-                                  <option value="-1">Formador</option>
-                                  <?php
-                                  while($dados=mysqli_fetch_array($result)){
-                                      ?>
-                                      <option> <?php echo $dados['funcionarioNome']; ?></option>
-                                  <?php } ?>
-                              </select>
+                          <div class="col-md-2">
+                              <input type="text" class="form-control" placeholder="Horas" id="horas" name="horas" required>
                           </div>
                       </div>
                       <div class="form-group row">
@@ -227,18 +212,14 @@ Coded by www.creative-tim.com
                       </div>
                       <div class="form-group row">
                           <div class="col-md-6">
-                              <input type="text" class="form-control" placeholder="Publico Alvo" id="publico" name="publico" required>
+                              <input type="text" class="form-control" placeholder="Créditos" id="creditos" name="creditos" required>
                           </div>
                           <div class="col-md-6">
-                              <select class="form-control" id="letivo" name="anoletivo" required>
-                                  <?php
-                                  $con=mysqli_connect("localhost","root","","pap2020formacao");
-                                  $sql=("SELECT * FROM anolectivos");
-                                  $result=mysqli_query($con,$sql);
-                                  while($dados=mysqli_fetch_array($result)){
-                                      ?>
-                                      <option value="<?php echo $dados['anoLectivoId']; ?>"> <?php echo $dados['anoLectivoNome']; ?></option>
-                                  <?php } ?>
+                              <select class="form-control" id="anoletivo" name="anoletivo" required>
+                                      <option value="-1">Ano Letivo</option>
+                                      <option value="1">2019/20</option>
+                                      <option value="2">2018/19</option>
+                                      <option value="3">2017/18</option>
                               </select>
                           </div>
                       </div>

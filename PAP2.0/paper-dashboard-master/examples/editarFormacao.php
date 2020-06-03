@@ -78,7 +78,7 @@ Coded by www.creative-tim.com
               <p>Dashboard</p>
             </a>
           </li>
-          <li class="active ">
+          <li>
             <a href="formadores.php">
               <i class="nc-icon nc-tile-56"></i>
               <p>Formadores</p>
@@ -96,7 +96,7 @@ Coded by www.creative-tim.com
               <p>Escolas</p>
             </a>
           </li>
-            <li>
+            <li class="active ">
                 <a href="formacoes.php">
                     <i class="nc-icon nc-tile-56"></i>
                     <p>Formações</p>
@@ -168,37 +168,69 @@ Coded by www.creative-tim.com
           <div class="col-md-12">
             <div class="card ">
               <div class="card-header ">
-                <h5 class="card-title">Adicionar Novo Formador</h5>
+                <h5 class="card-title">Editar Formação</h5>
               </div>
                 <hr>
               <div class="card-body ">
-                  <form action="confirmaAdicionarFormador.php" method="post">
+                  <form action="confirmaEditarFormacao.php" method="post">
+                      <?php
+                      $con=mysqli_connect("localhost","root","","pap2020formacao");
+                      $sql=("SELECT * FROM formacoes INNER JOIN formacaoinscritos ON formacaoId=formacaoInscritoFormacaoId INNER JOIN funcionarios ON formacaoInscritoFuncionarioId=funcionarioId INNER JOIN anolectivos ON formacaoAnoLectivoId=anoLectivoId");
+                      $result=mysqli_query($con,$sql);
+                      ?>
                       <div class="form-group row">
                           <div class="col-md-12">
-                              <select name="nome" id="nome" class="form-control">
-                                  <?php
-                                  $con=mysqli_connect("localhost","root","","pap2020formacao");
-                                  $sql=("SELECT * FROM funcionarios");
-                                  $result=mysqli_query($con,$sql);
-                                  while($dados=mysqli_fetch_array($result)){
-                                      ?>
-                                      <option> <?php echo $dados['funcionarioNome']; ?></option>
-                                  <?php } ?>
+                              <input type="text" class="form-control" placeholder="Nome" id="nome" name="nome" value="<?php echo $dados['formacaoNome'] ?>">
+                          </div>
+                      </div>
+                      <div class="form-group row">
+                          <div class="col-md-10">
+                              <input type="text" class="form-control" placeholder="Publico Alvo" id="publico" name="publico" value="<?php echo $dados['formacaoPublicoAlvo'] ?>">
+                          </div>
+                          <div class="col-md-2">
+                              <input type="text" class="form-control" placeholder="Horas" id="horas" name="horas" value="<?php echo $dados['formacaoHoras'] ?>">
+                          </div>
+                      </div>
+                      <div class="form-group row">
+                          <div class="col-md-6">
+                              <label for="dataInicio">Data de Início</label>
+                              <input type="date" class="form-control" id="dataInicio" name="dataInicio" value="<?php echo $dados['formacaoDataInicio'] ?>">
+                          </div>
+                          <div class="col-md-6">
+                              <label for="dataFim">Data de Fim</label>
+                              <input type="date" class="form-control" id="dataFim" name="dataFim" value="<?php echo $dados['formacaoDataFim'] ?>">
+                          </div>
+                      </div>
+                      <div class="form-group row">
+                          <div class="col-md-6">
+                              <input type="text" class="form-control" placeholder="Local" id="local" name="local" value="<?php echo $dados['formacaoLocal'] ?>">
+                          </div>
+                          <div class="col-md-6">
+                              <select class="form-control" id="estado" name="estado" >
+                                  <option value="-1">Estado</option>
+                                  <option value="1">pendente</option>
+                                  <option value="2">iniciada</option>
+                                  <option value="3">terminada</option>
+                                  <option value="4">cancelada</option>
+                              </select>
+                          </div>
+                      </div>
+                      <div class="form-group row">
+                          <div class="col-md-6">
+                              <input type="text" class="form-control" placeholder="Créditos" id="creditos" name="creditos"value="<?php echo $dados['formacaoCreditos'] ?>" >
+                          </div>
+                          <div class="col-md-6">
+                              <select class="form-control" id="anoletivo" name="anoletivo" >
+                                      <option value="-1">Ano Letivo</option>
+                                      <option value="1">2019/20</option>
+                                      <option value="2">2018/19</option>
+                                      <option value="3">2017/18</option>
                               </select>
                           </div>
                       </div>
                       <div class="form-group row">
                           <div class="col-md-12">
-                              <select name="formacao" id="formacao" class="form-control">
-                                  <?php
-                                  $con=mysqli_connect("localhost","root","","pap2020formacao");
-                                  $sql=("SELECT * FROM formacoes");
-                                  $result=mysqli_query($con,$sql);
-                                  while($dados=mysqli_fetch_array($result)){
-                                      ?>
-                                      <option> <?php echo $dados['formacaoNome']; ?></option>
-                                  <?php } ?>
-                              </select>
+                              <input type="text" class="form-control" placeholder="Descrição" id="descricao" name="descricao">
                           </div>
                       </div>
                       <input type="submit" class="btn btn-success fa fa-plus preto" value="Adicionar">

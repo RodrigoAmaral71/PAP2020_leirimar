@@ -184,7 +184,8 @@ Coded by www.creative-tim.com
                     </thead>
                       <?php
                           $con=mysqli_connect("localhost","root","","pap2020formacao");
-                          $sql=("SELECT * FROM funcionarios INNER JOIN funcionarioEscolas ON funcionarioId=funcionarioEscolaFuncionarioId INNER JOIN escolas ON funcionarioEscolasEscolaId=escolaId");
+                          $sql=("SELECT * FROM funcionarios INNER JOIN funcionarioEscolas ON funcionarioId=funcionarioEscolaFuncionarioId INNER JOIN escolas ON escolaId=funcionarioEscolasEscolaId");
+                          // só mostra se tiver dados relacionados  nas outras tabelas
                           $result=mysqli_query($con,$sql);
                           while($dados=mysqli_fetch_array($result)){
                       ?>
@@ -199,7 +200,7 @@ Coded by www.creative-tim.com
                           <td><?php echo $dados['funcionarioEmail']; ?></td>
                           <td><?php echo $dados['funcionarioNIF']; ?></td>
                           <td><center><a class="btn-sm" href="historico.php"><i class="fa fa-refresh"></a></i>
-                           <a class="btn-sm btn-info" href="#"><i class="fas fa-pencil-alt"></a></i>
+                           <a class="btn-sm btn-info" href="editarFuncionario.php?id=<?php echo $dados['funcionarioId'];?>"><i class="fas fa-pencil-alt"></a></i>
                            <a onclick="confirma(<?php echo $dados['funcionarioId'];?>);" class="btn-sm btn-danger" id="delete" name="delete" href="#"><i class='fas fa-eraser'></a></i></center></td>
                           <?php } ?>
                         </tr>

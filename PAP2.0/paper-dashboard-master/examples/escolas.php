@@ -198,7 +198,7 @@ Coded by www.creative-tim.com
                       <td><?php echo $dados['escolaLocalidade']; ?></td>
                       <td><?php echo $dados['escolaCodigoPostal1']; ?> - <?php echo $dados['escolaCodigoPostal2']; ?></td>
                       <td><?php echo $dados['escolaCodigo']; ?></td>
-                      <td><center><a class="btn-sm btn-info" id="editar" name="editar" href="#"><i class="fas fa-pencil-alt"></a></i>
+                      <td><center><a class="btn-sm btn-info" id="editar" name="editar" href="editarEscola.php?id=<?php echo $dados['escolaId'];?>"><i class="fas fa-pencil-alt"></a></i>
                        <a onclick="confirma(<?php echo $dados['escolaId'];?>);" class="btn-sm btn-danger" id="delete" name="delete" href="#"><i class='fas fa-eraser'></i></a></center></td>
                     </tbody>
                     <?php } ?>

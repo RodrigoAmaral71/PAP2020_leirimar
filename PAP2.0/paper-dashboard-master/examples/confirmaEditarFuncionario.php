@@ -1,5 +1,6 @@
 <?php
 $nome= addslashes($_POST['nome']);
+$id=intval($_POST['id']);
 $email= addslashes($_POST['email']);
 $telefone= addslashes($_POST['telefone']);
 $morada= addslashes($_POST['morada']);
@@ -13,7 +14,7 @@ $grupoDisciplinar= addslashes($_POST['gd']);
 $tipo= addslashes($_POST['tipo']);
 
 $con=mysqli_connect('localhost', 'root','','pap2020formacao');
-$sql="INSERT INTO funcionarios VALUES (0, '".$nome."','".$email."','".$telefone."','".$morada."','".$codigoPostal1."','".$codigoPostal2."','".$localidade."','".$nif."','".$iban."','".$escalao."','".$grupoDisciplinar."','".$tipo."')";
+$sql="UPDATE funcionarios SET funcionarioNome='".$nome."', funcionarioEmail='".$email."', funcionarioTelefone='".$telefone."', funcionarioMorada='".$morada."', funcionarioCodigoPostal1='".$codigoPostal1."', funcionarioCodigoPostal2='".$codigoPostal2."', funcionarioLocalidade='".$localidade."', funcionarioNIF='".$nif."', funcionarioIBAN='".$iban."', funcionarioEscalao='".$escalao."', funcionarioGrupoDisciplinar='".$grupoDisciplinar."', funcionarioFuncionarioTipoId='".$tipo."' WHERE funcionarioId=".$id;
 mysqli_query($con,$sql);
 
 header('location: tiposFuncionários.php');

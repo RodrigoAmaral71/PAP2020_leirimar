@@ -192,7 +192,8 @@ Coded by www.creative-tim.com
                           <td><?php echo $dados['funcionarioGrupoDisciplinar']; ?></td>
                           <td><?php echo $dados['funcionarioTelefone']; ?></td>
                           <td><?php echo $dados['funcionarioEmail']; ?></td>
-                          <td><center><a class="btn-sm btn-info" id="editar" name="editar" href="#"><i class="fas fa-pencil-alt"></a></i>
+                          <td><center>
+                                  <a class="btn-sm btn-info" id="editar" name="editar" href="#"><i class="fas fa-pencil-alt"></a></i>
                                   <a onclick="confirma(<?php echo $dados['funcionarioId'];?>);" class="btn-sm btn-danger" id="delete" name="delete" href="#"><i class='fas fa-eraser'></i></a></center></td>
                           </tbody>
                       <?php } ?>

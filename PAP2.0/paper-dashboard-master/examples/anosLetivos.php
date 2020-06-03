@@ -38,8 +38,8 @@ Coded by www.creative-tim.com
 
     <script>
         function confirma(id) {
-            if(confirm('De certeza que quer eliminar o registo com o id:'+id +'?')){
-                window.location="apagarAnoLetivo.php?id="+id;
+            if(confirm('De certeza que quer eliminar o registo com o id:'+id +'?')) {
+                    window.location="apagarAnoLetivo.php?id="+id;
             }
         }
     </script>
@@ -186,6 +186,7 @@ Coded by www.creative-tim.com
 
                       <?php
                       $con=mysqli_connect("localhost","root","","pap2020formacao");
+                      $pode=true;
                       $sql="SELECT * FROM anolectivos";
                       $result=mysqli_query($con,$sql);
                       while($dados=mysqli_fetch_array($result)){;
@@ -195,9 +196,9 @@ Coded by www.creative-tim.com
                           <td><?php echo $dados['anoLectivoNome']; ?></td>
                           <td><?php echo $dados['anoLectivoEstado']; ?></td>
                       <td><center>
-                      <a class="btn-sm btn-info" id="editar" name="editar" href="editarAnoLetivo.php?id=<?php echo $dados['anoLectivoId'];?>"><i class="fas fa-pencil-alt"></i></a>
-                      <a onclick="confirma(<?php echo $dados['anoLectivoId'];?>);" class="btn-sm btn-danger" id="delete" name="delete" href="#"><i class='fas fa-eraser'></i></a>
-                      </center></td>
+                      <a class="btn-sm btn-info" id="editar" name="editar" href="editarAnoLetivo.php?id=<?php echo $dados['anoLectivoId'];?>"><i class="fas fa-pencil-alt"></i></a> <!-- EDITAR -->
+                       <a onclick="confirma(<?php echo $dados['anoLectivoId'];?>);" class="btn-sm btn-danger" id="delete" name="delete" href="#"><i class='fas fa-eraser'></i></a>  <!-- APAGAR -->
+                          </center></td>
                       </tbody>
                       <?php } ?>
                   </table>

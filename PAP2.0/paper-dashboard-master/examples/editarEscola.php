@@ -12,6 +12,7 @@ Coded by www.creative-tim.com
 
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 -->
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -84,13 +85,13 @@ Coded by www.creative-tim.com
               <p>Formadores</p>
             </a>
           </li>
-          <li class="active ">
+          <li>
             <a href="formandos.php">
               <i class="nc-icon nc-tile-56"></i>
               <p>Formandos</p>
             </a>
           </li>
-          <li>
+          <li class="active ">
             <a href="escolas.php">
               <i class="nc-icon nc-tile-56"></i>
               <p>Escolas</p>
@@ -168,40 +169,57 @@ Coded by www.creative-tim.com
           <div class="col-md-12">
             <div class="card ">
               <div class="card-header ">
-                <h5 class="card-title">Adicionar Novo Formando</h5>
+                <h5 class="card-title">Editar Escola</h5>
               </div>
                 <hr>
               <div class="card-body ">
-                  <form action="confirmaAdicionarFormando.php" method="post">
+                  <form name="form" action="confirmaEditarEscola.php" method="post">
                       <div class="form-group row">
+                          <?php
+                          $con=mysqli_connect("localhost","root","","pap2020formacao");
+                          $id=intval($_GET['id']);
+                          $sql=("SELECT * FROM escolas where escolaId=$id");
+                          $result=mysqli_query($con,$sql);
+                          $dados=mysqli_fetch_array($result);
+                          ?>
+                              <input name="id" id="id" type="hidden" value="<?php echo $dados['escolaId']?>">
                           <div class="col-md-12">
-                              <select name="nome" id="nome" class="form-control">
-                                  <?php
-                                  $con=mysqli_connect("localhost","root","","pap2020formacao");
-                                  $sql=("SELECT * FROM funcionarios");
-                                  $result=mysqli_query($con,$sql);
-                                  while($dados=mysqli_fetch_array($result)){
-                                      ?>
-                                      <option> <?php echo $dados['funcionarioNome']; ?></option>
-                                  <?php } ?>
-                              </select>
+                              Nome: <input type="text" class="form-control" id="nome" name="nome" value="<?php echo $dados['escolaNome']?>">
                           </div>
                       </div>
                       <div class="form-group row">
                           <div class="col-md-12">
-                              <select name="formacao" id="formacao" class="form-control">
-                                  <?php
-                                  $con=mysqli_connect("localhost","root","","pap2020formacao");
-                                  $sql=("SELECT * FROM formacoes");
-                                  $result=mysqli_query($con,$sql);
-                                  while($dados=mysqli_fetch_array($result)){
-                                      ?>
-                                      <option> <?php echo $dados['formacaoNome']; ?></option>
-                                  <?php } ?>
-                              </select>
+                              Morada: <input type="text" class="form-control" id="morada" name="morada" value="<?php echo $dados['escolaMorada']?>">
                           </div>
                       </div>
-                      <input type="submit" class="btn btn-success fa fa-plus preto" value="Adicionar">
+                      <div class="form-group row">
+                           <div class="col-md-12">
+                             Localidade: <input type="text" class="form-control" id="localidade" name="localidade" value="<?php echo $dados['escolaLocalidade']?>">
+                          </div>
+                      </div>
+                      <div class="form-group row">
+                          <div class="col-md-6">
+                              Codigo: <input type="text" class="form-control" id="codigo" name="codigo" value="<?php echo $dados['escolaCodigo']?>">
+                          </div>
+                          <div class="col-md-6">
+                              Telefone: <input type="text" class="form-control" id="telefone" name="telefone" value="<?php echo $dados['escolaTelefone']?>">
+                          </div>
+                      </div>
+                      <div class="form-group row">
+                          <div class="col-md-12">
+                              Email: <input type="text" class="form-control" id="email" name="email" value="<?php echo $dados['escolaEmail']?>">
+                          </div>
+                      </div>
+                      <div class="form-group row">
+
+                          <div class="col-md-2">
+                              Código Postal:<input type="text" class="form-control" id="cp1" name="cp1" value="<?php echo $dados['escolaCodigoPostal1']?>">
+                          </div>
+                          <div class="col-md-1">
+                               <input type="text" class="form-control" id="cp2" name="cp2" value="<?php echo $dados['escolaCodigoPostal2']?>">
+                          </div>
+                      </div>
+                      <input name="0" type="submit" class="btn btn-success fa fa-plus preto" value="Confirmar">
                   </form>
               </div>
             </div>

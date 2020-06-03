@@ -173,12 +173,12 @@ Coded by www.creative-tim.com
               </div>
                 <hr>
               <div class="card-body ">
-                  <form name="form" action="confirmaEditarAnoLetivo.php" method="post">
+                  <form name="form" action="confirmaEditarAnoLetivo.php?id=<?php echo $dados['anoLectivoId'];?>" method="post">
                       <div class="form-group row">
                           <?php
                           $con=mysqli_connect("localhost","root","","pap2020formacao");
                           $id=intval($_GET['id']);
-                          $sql=("SELECT * FROM anolectivos");
+                          $sql=("SELECT * FROM anolectivos where anoLectivoId=$id");
                           $result=mysqli_query($con,$sql);
                           $dados=mysqli_fetch_array($result);
                           ?>
