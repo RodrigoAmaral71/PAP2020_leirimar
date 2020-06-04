@@ -1,5 +1,5 @@
 <?php
-include_once ("include/config.inc.php");
+include_once("../include/config.inc.php");
 $con=mysqli_connect(HOST,USER,PWD,DBASE);
 $id=intval($_POST['id']);
 $sql="SELECT * FROM formacoes WHERE formacaoId=$id";

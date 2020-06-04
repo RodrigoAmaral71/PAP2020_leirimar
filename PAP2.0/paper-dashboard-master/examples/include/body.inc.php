@@ -40,70 +40,88 @@ function drawTop($menu=VOID){
         <!-- Control Center for Now Ui Dashboard: parallax effects, scripts for the example pages etc -->
         <script src="../assets/js/paper-dashboard.min.js?v=2.0.1" type="text/javascript"></script><!-- Paper Dashboard DEMO methods, don't include it in your project! -->
         <script src="../assets/demo/demo.js"></script>
+        <script>
+            function changeAnoLectivo(id) {
+                $.ajax({
+                    url:"AJAX/AJAXChangeAnoLectivo.php",
+                    type: "post",
+                    data:{
+                        id:id
+                    },
+                    success:function (result) {
+                        location.reload();
+                    }
+                })
+            }
+        </script>
+
+
     </head>
     <body>
     <div class="sidebar" data-color="white" data-active-color="danger">
       <div class="logo">
-        <a href="https://www.creative-tim.com" class="simple-text logo-mini">
+        <a  class="simple-text logo-mini">
           <div class="logo-image-small">
             <img src="../assets/img/logo-small.png">
           </div>
         </a>
-        <a href="https://www.creative-tim.com" class="simple-text logo-normal">
+        <a class="simple-text logo-normal">
           BACKOFFICE
         </a>
           <h6>
-              <select>
+              <select onchange="changeAnoLectivo(this.value)" id="anoLectivo" name="anoLectivo">
                   <?php
                   $con=mysqli_connect("localhost","root","","pap2020formacao");
                   $sql="SELECT * FROM anolectivos";
                   $result=mysqli_query($con,$sql);
                   while($dados=mysqli_fetch_array($result)){
                       ?>
-                      <option> <?php echo $dados['anoLectivoNome']; ?></option>
+                      <option value="<?php echo $dados['anoLectivoId'];?>"
+                      <?php if($dados['anoLectivoEstado']=='activo') echo " selected ";?>
+                      > <?php echo $dados['anoLectivoNome']; ?></option>
                   <?php } ?>
               </select>
           </h6>
       </div>
       <div class="sidebar-wrapper">
         <ul class="nav">
-          <li>
+            <li<?php if($menu==VOID) echo " class=\"active \"";?>>
             <a href="./dashboard.php">
               <i class="nc-icon nc-bank"></i>
               <p>Dashboard</p>
             </a>
           </li>
-          <li>
+            <li<?php if($menu==ADMIN_FORMADORES) echo " class=\"active \"";?>>
             <a href="formadores.php">
               <i class="nc-icon nc-tile-56"></i>
               <p>Formadores</p>
             </a>
           </li>
-          <li>
+            <li<?php if($menu==ADMIN_FORMANDOS) echo " class=\"active \"";?>>
             <a href="formandos.php">
               <i class="nc-icon nc-tile-56"></i>
               <p>Formandos</p>
             </a>
           </li>
-          <li>
+            <li<?php if($menu==ADMIN_ESCOLAS) echo " class=\"active \"";?>>
             <a href="escolas.php">
               <i class="nc-icon nc-tile-56"></i>
               <p>Escolas</p>
             </a>
           </li>
-          <li>
+            <li<?php if($menu==ADMIN_FORMACOES) echo " class=\"active \"";?>>
             <a href="formacoes.php">
               <i class="nc-icon nc-tile-56"></i>
               <p>Formações</p>
             </a>
           </li>
-          <li class="active ">
+          <li<?php if($menu==ADMIN_ALETIVOS) echo " class=\"active \"";?>>
             <a href="anosLetivos.php">
               <i class="nc-icon nc-tile-56"></i>
               <p>Anos Letivos</p>
             </a>
           </li>
-            <li>
+          <li<?php if($menu==ADMIN_FUNCIONARIOS) echo " class=\"active \"";?>>
                 <a href="tiposFuncionários.php">
                     <i class="nc-icon nc-tile-56"></i>
                     <p>Funcionários</p>

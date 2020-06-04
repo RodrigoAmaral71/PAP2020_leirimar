@@ -14,7 +14,7 @@ Coded by www.creative-tim.com
 -->
 <?php
 include_once("include/body.inc.php");
-drawTop();
+drawTop(ADMIN_FORMACOES);
 ?>
 
     <style>
@@ -47,6 +47,7 @@ drawTop();
                       $id=intval($_GET['id']);
                       $sql=("SELECT * FROM formacoes where formacaoId=$id");
                       $result=mysqli_query($con,$sql);
+                      $dados=mysqli_fetch_array($result);
                       ?>
                       <div class="form-group row">
                           <div class="col-md-12">

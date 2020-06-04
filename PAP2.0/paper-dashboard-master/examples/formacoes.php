@@ -14,14 +14,14 @@ Coded by www.creative-tim.com
 -->
 <?php
 include_once("include/body.inc.php");
-drawTop();
+drawTop(ADMIN_FORMACOES);
 ?>
 
     <script>
         function confirma(id) {
             // AJAX para ir buscar o nome da formacao
             $.ajax({
-                url:"AJAXGetNameFormacao.php",
+                url:"AJAX/AJAXGetNameFormacao.php",
                 type:"post",
                 data:{
                     id:id

@@ -14,7 +14,7 @@ Coded by www.creative-tim.com
 -->
 <?php
 include_once("include/body.inc.php");
-drawTop();
+drawTop(ADMIN_FORMACOES);
 ?>
     <style>
         .preto{
@@ -69,15 +69,17 @@ drawTop();
                           </div>
                           <div class="col-md-6">
                               <select class="form-control" id="estado" name="estado" required>
-                                  <option value="-1">Estado</option>
                                   <?php
-                                  $con=mysqli_connect("localhost","root","","pap2020formacao");
-                                  $sql=("SELECT * FROM formacoes");
+                                  $sql= "SHOW COLUMNS FROM formacoes WHERE Field = 'formacaoEstado'";
                                   $result=mysqli_query($con,$sql);
-                                  while($dados=mysqli_fetch_array($result)){
-                                      ?>
-                                      <option value="<?php echo $dados['formacaoEstado']; ?>"><?php echo $dados['formacaoEstado'] ?></option>
+                                  $dados=mysqli_fetch_array($result);
+                                  preg_match("/^enum\(\'(.*)\'\)$/", $dados['Type'], $matches);
+                                  $enum = explode("','", $matches[1]);
+                                  foreach ($enum as $item) {
+                                  ?>
+                                  <option value="<?php echo $item; ?>"><?php echo ucfirst($item) ?></option>
                                   <?php } ?>
+
                               </select>
                           </div>
                       </div>
@@ -87,21 +89,20 @@ drawTop();
                           </div>
                           <div class="col-md-6">
                               <select class="form-control" id="anoletivo" name="anoletivo" required>
-                                      <option value="-1">Ano Letivo</option>
+
                                   <?php
-                                      $con=mysqli_connect("localhost","root","","pap2020formacao");
-                                      $sql=("SELECT * FROM formacoes inner join anolectivos on formacaoAnoLectivoId=anoLectivoId group by formacaoAnoLectivoId");
+                                      $sql=("SELECT * FROM anolectivos order by anoLectivoEstado asc, anoLectivoNome desc");
                                       $result=mysqli_query($con,$sql);
                                       while($dados=mysqli_fetch_array($result)){
                                    ?>
-                                  <option value="<?php echo $dados['formacaoAnoLectivoId']; ?>"><?php echo $dados['anoLectivoNome'] ?></option>
+                                  <option value="<?php echo $dados['anoLectivoId']; ?>"><?php echo $dados['anoLectivoNome'] ?></option>
                                   <?php } ?>
                               </select>
                           </div>
                       </div>
                       <div class="form-group row">
                           <div class="col-md-12">
-                              <input type="text" class="form-control" placeholder="Descrição" id="descricao" name="descricao">
+                              <textarea  class="form-control" placeholder="Descrição" id="descricao" name="descricao"></textarea>
                           </div>
                       </div>
                       <input type="submit" class="btn btn-success fa fa-plus preto" value="Adicionar">
