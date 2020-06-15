@@ -16,19 +16,8 @@ Coded by www.creative-tim.com
 include_once("include/body.inc.php");
 drawTop(ADMIN_FORMANDOS);
 ?>
-    <script>
-        function confirma(id) {
-            if(confirm('De certeza que quer eliminar o registo com o id:'+id +'?')){
-                window.location="apagarFormando.php?id="+id;
-            }
-        }
-    </script>
 
-  <style>
-    .fa-history{
-      color:black;
-    }
-  </style>
+
 
   <div class="wrapper ">
 
@@ -53,10 +42,9 @@ drawTop(ADMIN_FORMANDOS);
                         <th>Formação Actual</th>
                         <th>Telefone</th>
                         <th>Email</th>
-                        <th><center><a class="btn-sm btn-success" href="adicionarFormando.php"><i class="fa fa-plus"></i></a></center></th>
+                        <th><center><a class="btn-sm btn-success" href="#"><i class="fa fa-plus"></i></a></center></th>
                     </thead>
                       <?php
-                      $con=mysqli_connect("localhost","root","","pap2020formacao");
                       $sql=("SELECT * FROM funcionarios INNER JOIN funcionarioescolas ON funcionarioId=funcionarioEscolaFuncionarioId INNER JOIN escolas ON funcionarioEscolasEscolaId=escolaId INNER JOIN formacaoinscritos ON funcionarioId=formacaoInscritoFuncionarioId INNER JOIN formacoes ON formacaoInscritoFormacaoId=formacaoId WHERE formacaoInscritoPapel='formando'");
                       $result=mysqli_query($con,$sql);
                       while($dados=mysqli_fetch_array($result)){

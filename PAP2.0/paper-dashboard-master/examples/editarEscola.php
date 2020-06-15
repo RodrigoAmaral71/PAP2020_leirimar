@@ -14,7 +14,7 @@ Coded by www.creative-tim.com
 -->
 <?php
 include_once("include/body.inc.php");
-drawTop();
+drawTop(ADMIN_ESCOLAS);
 ?>
     <style>
         .preto{
@@ -43,7 +43,6 @@ drawTop();
                   <form name="form" action="confirmaEditarEscola.php" method="post">
                       <div class="form-group row">
                           <?php
-                          $con=mysqli_connect("localhost","root","","pap2020formacao");
                           $id=intval($_GET['id']);
                           $sql=("SELECT * FROM escolas where escolaId=$id");
                           $result=mysqli_query($con,$sql);

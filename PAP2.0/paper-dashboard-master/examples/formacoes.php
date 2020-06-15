@@ -17,31 +17,6 @@ include_once("include/body.inc.php");
 drawTop(ADMIN_FORMACOES);
 ?>
 
-    <script>
-        function confirma(id) {
-            // AJAX para ir buscar o nome da formacao
-            $.ajax({
-                url:"AJAX/AJAXGetNameFormacao.php",
-                type:"post",
-                data:{
-                    id:id
-                },
-                success:function (result) {
-
-                    if(confirm('De certeza que quer eliminar a formação "'+ result +'"?')){
-                        window.location="apagarFormacao.php?id="+id;
-                    }
-
-
-                }
-
-            })
-
-
-
-
-        }
-    </script>
   <div class="wrapper ">
 
     <div class="main-panel">
@@ -71,15 +46,14 @@ drawTop(ADMIN_FORMACOES);
                       <th><center><a class="btn-sm btn-success" href="adicionarFormacao.php"><i class="fa fa-plus"></i></a></center></th>
                     </thead>
                       <?php
-                      $con=mysqli_connect("localhost","root","","pap2020formacao");
-                      $sql=("SELECT * FROM formacoes");
+                      $sql=("SELECT * FROM formacoes INNER JOIN anolectivos ON formacaoAnoLectivoId=anoLectivoId order by formacaoId asc");
                       $result=mysqli_query($con,$sql);
                       while($dados=mysqli_fetch_array($result)){
                       ?>
                     <tbody>
                       <td><?php echo $dados['formacaoId']; ?></td>
                       <td><?php echo $dados['formacaoNome']; ?></td>
-                      <td><?php echo $dados['formacaoAnoLectivoId']; ?></td>
+                      <td><?php echo $dados['anoLectivoNome']; ?></td>
                       <td><?php echo $dados['formacaoHoras']; ?></td>
                       <td>&nbsp</td>
                       <td><?php echo $dados['formacaoDataInicio']; ?></td>

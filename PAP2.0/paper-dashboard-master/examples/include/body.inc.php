@@ -12,7 +12,7 @@ function drawTop($menu=VOID){
     <link rel="icon" type="image/png" href="../assets/img/favicon.png">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <title>
-        Paper Dashboard 2 by Creative Tim
+        BACKOFFICE
     </title>
     <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
     <!--     Fonts and icons     -->
@@ -53,6 +53,112 @@ function drawTop($menu=VOID){
                     }
                 })
             }
+
+        <?php
+         if($menu==ADMIN_ALETIVOS){
+        ?>
+            function confirma(id) {
+                var resNum;
+                // AJAX para ir buscar o nome da formacao
+                $.ajax({
+                    url: "AJAX/AJAXGetNameAnoLetivo.php",
+                    type: "post",
+                    data: {
+                        id: id
+                    },
+                    success: function (result) {
+                        resNum = parseInt(result);
+                        if (resNum == 1)
+                            alert('Impossível eliminar este ano letivo porque tem registos relacionados');
+                        else if (confirm('De certeza que quer eliminar o ano letivo "' + result + '"?'))
+                            window.location = "apagarAnoLetivo.php?id=" + id;
+                    }
+
+                });
+            }
+        <?php
+            }
+
+                if($menu==ADMIN_ESCOLAS){
+                ?>
+                function confirma(id) {
+                    var resNum;
+                    // AJAX para ir buscar o nome da formacao
+                    $.ajax({
+                        url:"AJAX/AJAXGetNameEscola.php",
+                        type:"post",
+                        data:{
+                            id:id
+                        },
+                        success:function (result) {
+                            resNum=parseInt(result);
+                            if(resNum==1)
+                                alert('Impossível eliminar esta escola porque tem registos relacionados');
+
+                            else if(confirm('De certeza que quer eliminar a escola "'+ result +'"?'))
+                                window.location="apagarEscola.php?id="+id;
+                        }
+
+                    });
+                }
+                    <?php
+                    }
+
+                if($menu==ADMIN_FORMACOES){
+                                ?>
+                function confirma(id) {
+                    var resNum;
+                    // AJAX para ir buscar o nome da formacao
+                    $.ajax({
+                        url:"AJAX/AJAXGetNameFormacao.php",
+                        type:"post",
+                        data:{
+                            id:id
+                        },
+                        success:function (result) {
+                            resNum=parseInt(result);
+                            if(resNum==1)
+                                alert('Impossível eliminar esta formação porque tem registos relacionados');
+
+                            else if(confirm('De certeza que quer eliminar a formação "'+ result +'"?'))
+                                window.location="apagarFormacao.php?id="+id;
+                        }
+
+                    });
+                }
+            <style>
+            .fa-history{
+                color:black;
+            }
+            </style>
+            <?php
+            }
+
+            if($menu==ADMIN_FUNCIONARIOS){
+            ?>
+            function confirma(id) {
+                var resNum;
+                // AJAX para ir buscar o nome da formacao
+                $.ajax({
+                    url:"AJAX/AJAXGetNameFuncionario.php",
+                    type:"post",
+                    data:{
+                        id:id
+                    },
+                    success:function (result) {
+                        resNum=parseInt(result);
+                        if(resNum==1)
+                            alert('Impossível eliminar este funcionário porque tem registos relacionados');
+
+                        else if(confirm('De certeza que quer eliminar o funcionário "'+ result +'"?'))
+                            window.location="apagarFuncionario.php?id="+id;
+                    }
+
+                });
+            }
+            <?php
+            }
+            ?>
         </script>
 
 

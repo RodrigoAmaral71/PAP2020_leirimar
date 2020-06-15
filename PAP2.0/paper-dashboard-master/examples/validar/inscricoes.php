@@ -13,8 +13,8 @@ Coded by www.creative-tim.com
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 -->
 <?php
-include_once("include/body.inc.php");
-drawTop(ADMIN_FUNCIONARIOS);
+include_once("../include/body.inc.php");
+drawTop(VOID);
 ?>
     <style>
         .preto{
@@ -40,7 +40,7 @@ drawTop(ADMIN_FUNCIONARIOS);
               </div>
                 <hr>
               <div class="card-body ">
-                  <form action="confirmaAdicionarFuncionario.php" method="post">
+                  <form action="../confirmaAdicionarFuncionario.php" method="post">
                       <div class="form-group row">
                           <div class="col-md-12">
                               <input type="text" class="form-control" placeholder="Nome" id="nome" name="nome" required>
@@ -72,13 +72,10 @@ drawTop(ADMIN_FUNCIONARIOS);
                           <div class="col-md-5">
                               <select class="form-control" id="tipo" name="tipo" required>
                                   <option value="-1">Tipo de Funcionário</option>
-                                  <?php
-                                  $sql=("SELECT * FROM funcionariotipos");
-                                  $result=mysqli_query($con,$sql);
-                                  while($dados=mysqli_fetch_array($result)){
-                                      ?>
-                                      <option value="<?php echo $dados['funcionarioTipoId']; ?>"><?php echo $dados['funcionarioTipoNome'] ?></option>
-                                  <?php } ?>
+                                  <option value="1">professor</option>
+                                  <option value="2">funcionario</option>
+                                  <option value="3">secretaria</option>
+                                  <option value="4">administracao</option>
                               </select>
                           </div>
                       </div>
@@ -132,19 +129,19 @@ drawTop(ADMIN_FUNCIONARIOS);
 
 
   <!--   Core JS Files   -->
-  <script src="../assets/js/core/jquery.min.js"></script>
-  <script src="../assets/js/core/popper.min.js"></script>
-  <script src="../assets/js/core/bootstrap.min.js"></script>
-  <script src="../assets/js/plugins/perfect-scrollbar.jquery.min.js"></script>
+  <script src="../../assets/js/core/jquery.min.js"></script>
+  <script src="../../assets/js/core/popper.min.js"></script>
+  <script src="../../assets/js/core/bootstrap.min.js"></script>
+  <script src="../../assets/js/plugins/perfect-scrollbar.jquery.min.js"></script>
   <!--  Google Maps Plugin    -->
   <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script>
   <!-- Chart JS -->
-  <script src="../assets/js/plugins/chartjs.min.js"></script>
+  <script src="../../assets/js/plugins/chartjs.min.js"></script>
   <!--  Notifications Plugin    -->
-  <script src="../assets/js/plugins/bootstrap-notify.js"></script>
+  <script src="../../assets/js/plugins/bootstrap-notify.js"></script>
   <!-- Control Center for Now Ui Dashboard: parallax effects, scripts for the example pages etc -->
-  <script src="../assets/js/paper-dashboard.min.js?v=2.0.1" type="text/javascript"></script><!-- Paper Dashboard DEMO methods, don't include it in your project! -->
-  <script src="../assets/demo/demo.js"></script>
+  <script src="../../assets/js/paper-dashboard.min.js?v=2.0.1" type="text/javascript"></script><!-- Paper Dashboard DEMO methods, don't include it in your project! -->
+  <script src="../../assets/demo/demo.js"></script>
   <script>
     $(document).ready(function() {
       // Javascript method's body can be found in assets/assets-for-demo/js/demo.js

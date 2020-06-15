@@ -39,7 +39,6 @@ drawTop(VOID);
                     <div class="numbers">
                       <p class="card-category">Formadores</p>
                       <p class="card-title"><?php
-                          $con=mysqli_connect("localhost","root","","pap2020formacao");
                           $sql="SELECT count(*) as nFormadores FROM formacaoInscritos WHERE formacaoInscritoPapel='formador'";
                           $result=mysqli_query($con,$sql);
                           $dados=mysqli_fetch_array($result);
@@ -74,7 +73,6 @@ drawTop(VOID);
                       <p class="card-category">Formandos</p>
                       <p class="card-title">
                           <?php
-                          $con=mysqli_connect("localhost","root","","pap2020formacao");
                           $sql="SELECT count(*) as nFormandos FROM formacaoInscritos WHERE formacaoInscritoPapel='formando'";
                           $result=mysqli_query($con,$sql);
                           $dados=mysqli_fetch_array($result);
@@ -109,7 +107,6 @@ drawTop(VOID);
                       <p class="card-category">Escolas</p>
                       <p class="card-title">
                         <?php
-                        $con=mysqli_connect("localhost","root","","pap2020formacao");
                         $sql="SELECT count(*) as nEscolas FROM escolas";
                         $result=mysqli_query($con,$sql);
                         $dados=mysqli_fetch_array($result);
@@ -143,7 +140,6 @@ drawTop(VOID);
                     <div class="numbers">
                       <p class="card-category">Formações</p>
                       <p class="card-title"><?php
-                          $con=mysqli_connect("localhost","root","","pap2020formacao");
                           $sql="SELECT count(*) as nFormacoes FROM formacoes";
                           $result=mysqli_query($con,$sql);
                           $dados=mysqli_fetch_array($result);

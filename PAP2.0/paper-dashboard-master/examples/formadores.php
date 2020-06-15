@@ -14,7 +14,7 @@ Coded by www.creative-tim.com
 -->
 <?php
 include_once("include/body.inc.php");
-drawTop();
+drawTop(ADMIN_FORMADORES);
 ?>
     <script>
         function confirma(id) {
@@ -46,12 +46,11 @@ drawTop();
                         <th>Grupo</th>
                         <th>Telefone</th>
                         <th>Email</th>
-                        <th><center><a class="btn-sm btn-success" href="adicionarFormador.php"><i class="fa fa-plus"></i></a></center></th>
+                        <th><center><a class="btn-sm btn-success" href="#"><i class="fa fa-plus"></i></a></center></th>
                       </tr>
                     </thead>
                       <?php
-                      $con=mysqli_connect("localhost","root","","pap2020formacao");
-                      $sql=("SELECT * FROM funcionarios INNER JOIN funcionarioescolas ON funcionarioId=funcionarioEscolaFuncionarioId INNER JOIN escolas ON funcionarioEscolasEscolaId=escolaId where funcionarioFuncionarioTipoId!=2");
+                      $sql=("SELECT * FROM funcionarios INNER JOIN funcionarioescolas ON funcionarioId=funcionarioEscolaFuncionarioId INNER JOIN escolas ON funcionarioEscolasEscolaId=escolaId INNER JOIN formacaoinscritos ON funcionarioId=formacaoInscritoFuncionarioId where formacaoInscritoPapel='formador'");
                       $result=mysqli_query($con,$sql);
                       while($dados=mysqli_fetch_array($result)){
                           ?>

@@ -14,7 +14,7 @@ Coded by www.creative-tim.com
 -->
 <?php
 include_once("include/body.inc.php");
-drawTop();
+drawTop(ADMIN_ALETIVOS);
 ?>
     <style>
         .preto{
@@ -39,24 +39,17 @@ drawTop();
               </div>
                 <hr>
               <div class="card-body ">
-                  <form name="form" action="confirmaEditarAnoLetivo.php?id=<?php echo $dados['anoLectivoId'];?>" method="post">
+                  <?php
+                  $id=intval($_GET['id']);
+                  $sql=("SELECT * FROM anolectivos where anoLectivoId=$id");
+                  $result=mysqli_query($con,$sql);
+                  $dados=mysqli_fetch_array($result);
+                  ?>
+                  <form name="form" action="confirmaEditarAnoLetivo.php" method="post">
                       <div class="form-group row">
-                          <?php
-                          $con=mysqli_connect("localhost","root","","pap2020formacao");
-                          $id=intval($_GET['id']);
-                          $sql=("SELECT * FROM anolectivos where anoLectivoId=$id");
-                          $result=mysqli_query($con,$sql);
-                          $dados=mysqli_fetch_array($result);
-                          ?>
                               <input name="id" id="id" type="hidden" value="<?php echo $dados['anoLectivoId']?>">
-                          <div class="col-md-6">
+                          <div class="col-md-12">
                               <input type="text" class="form-control" id="nome" name="nome" value="<?php echo $dados['anoLectivoNome']?>">
-                          </div>
-                          <div class="col-md-6">
-                              <select class="form-control" id="estado" name="estado" required>
-                                    <option value="<?php $dados['anoLectivoEstado']?>1">Activo</option>
-                                    <option value="<?php $dados['anoLectivoEstado']?>2">Inactivo</option>
-                              </select>
                           </div>
                       </div>
                       <input name="0" type="submit" class="btn btn-success fa fa-plus preto" value="Confirmar">

@@ -14,15 +14,9 @@ Coded by www.creative-tim.com
 -->
 <?php
 include_once("include/body.inc.php");
-drawTop();
+drawTop(ADMIN_FUNCIONARIOS);
 ?>
-    <script>
-        function confirma(id) {
-            if(confirm('De certeza que quer eliminar o registo com o id:'+id +'?')){
-                window.location="apagarFuncionario.php?id="+id;
-            }
-        }
-    </script>
+
 
   <div class="wrapper ">
 
@@ -34,7 +28,7 @@ drawTop();
           <div class="col-md-12">
             <div class="card">
               <div class="card-header">
-                    <h4 class="card-title"> FORMADORES-FORMANDOS</h4>
+                    <h4 class="card-title">INSCRITOS</h4>
               </div>
               <div class="card-body">
                 <div class="table-responsive">
@@ -43,8 +37,7 @@ drawTop();
                     <tr>
                         <th>id</th>
                         <th>Nome</th>
-                        <th>Escola</th>
-                        <th>Grupo</th>
+                        <th>Grupo Disciplinar</th>
                         <th>Código Postal</th>
                         <th>Telefone</th>
                         <th>Email</th>
@@ -53,9 +46,7 @@ drawTop();
                     </tr>
                     </thead>
                       <?php
-                          $con=mysqli_connect("localhost","root","","pap2020formacao");
-                          $sql=("SELECT * FROM funcionarios INNER JOIN funcionarioEscolas ON funcionarioId=funcionarioEscolaFuncionarioId INNER JOIN escolas ON escolaId=funcionarioEscolasEscolaId");
-                          // só mostra se tiver dados relacionados  nas outras tabelas
+                          $sql=("SELECT * FROM funcionarios INNER JOIN funcionariotipos ON funcionarioFuncionarioTipoId=funcionarioTipoId");
                           $result=mysqli_query($con,$sql);
                           while($dados=mysqli_fetch_array($result)){
                       ?>
@@ -63,13 +54,12 @@ drawTop();
                         <tr>
                           <td><?php echo $dados['funcionarioId']; ?></td>
                           <td><?php echo $dados['funcionarioNome']; ?></td>
-                          <td><?php echo $dados['escolaNome']; ?></td>
-                          <td><?php echo $dados['funcionarioGrupoDisciplinar']; ?></td>
+                          <td><?php echo $dados['funcionarioTipoNome']; ?></td>
                           <td><?php echo $dados['funcionarioCodigoPostal1']; ?> - <?php echo $dados['funcionarioCodigoPostal2']; ?></td>
                           <td><?php echo $dados['funcionarioTelefone']; ?></td>
                           <td><?php echo $dados['funcionarioEmail']; ?></td>
                           <td><?php echo $dados['funcionarioNIF']; ?></td>
-                          <td><center><a class="btn-sm" href="historico.php"><i class="fa fa-refresh"></a></i>
+                          <td><center><a class="btn-sm" href="historico.php?id=<?php echo $dados['funcionarioId'];?>"><i class="fa fa-refresh"></a></i>
                            <a class="btn-sm btn-info" href="editarFuncionario.php?id=<?php echo $dados['funcionarioId'];?>"><i class="fas fa-pencil-alt"></a></i>
                            <a onclick="confirma(<?php echo $dados['funcionarioId'];?>);" class="btn-sm btn-danger" id="delete" name="delete" href="#"><i class='fas fa-eraser'></a></i></center></td>
                           <?php } ?>

@@ -14,16 +14,9 @@ Coded by www.creative-tim.com
 -->
 <?php
 include_once("include/body.inc.php");
-drawTop();
+drawTop(ADMIN_ESCOLAS);
 ?>
 
-    <script>
-        function confirma(id) {
-            if(confirm('De certeza que quer eliminar o registo com o id:'+id +'?')){
-                window.location="apagarEscola.php?id="+id;
-            }
-        }
-    </script>
 
   <div class="wrapper ">
 
@@ -52,7 +45,6 @@ drawTop();
                     </thead>
 
                     <?php
-                    $con=mysqli_connect("localhost","root","","pap2020formacao");
                     $sql="SELECT * FROM escolas";
                     $result=mysqli_query($con,$sql);
                     while($dados=mysqli_fetch_array($result)){;

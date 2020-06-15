@@ -89,7 +89,6 @@ drawTop(ADMIN_FORMACOES);
                           </div>
                           <div class="col-md-6">
                               <select class="form-control" id="anoletivo" name="anoletivo" required>
-
                                   <?php
                                       $sql=("SELECT * FROM anolectivos order by anoLectivoEstado asc, anoLectivoNome desc");
                                       $result=mysqli_query($con,$sql);

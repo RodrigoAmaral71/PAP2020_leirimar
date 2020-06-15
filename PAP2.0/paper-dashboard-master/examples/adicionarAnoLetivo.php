@@ -14,7 +14,7 @@ Coded by www.creative-tim.com
 -->
 <?php
 include_once("include/body.inc.php");
-drawTop();
+drawTop(ADMIN_ALETIVOS);
 ?>
     <style>
         .preto{
@@ -44,15 +44,8 @@ drawTop();
               <div class="card-body ">
                   <form action="confirmaAdicionarAnoLetivo.php" method="post">
                       <div class="form-group row">
-                          <div class="col-md-6">
+                          <div class="col-md-12">
                               <input type="text" class="form-control" placeholder="Nome" id="nome" name="nome" required>
-                          </div>
-                          <div class="col-md-6">
-                              <select class="form-control" id="estado" name="estado" required>
-                                  <option value="-1">Estado</option>
-                                  <option value="1">Ativo</option>
-                                  <option value="2">Inativo</option>
-                              </select>
                           </div>
                       </div>
                       <input type="submit" class="btn btn-success fa fa-plus preto" value="Adicionar">

@@ -43,7 +43,6 @@ drawTop(ADMIN_FORMACOES);
               <div class="card-body ">
                   <form action="confirmaEditarFormacao.php" method="post">
                       <?php
-                      $con=mysqli_connect("localhost","root","","pap2020formacao");
                       $id=intval($_GET['id']);
                       $sql=("SELECT * FROM formacoes where formacaoId=$id");
                       $result=mysqli_query($con,$sql);
@@ -91,7 +90,7 @@ drawTop(ADMIN_FORMACOES);
                       </div>
                       <div class="form-group row">
                           <div class="col-md-6">
-                              <input type="text" class="form-control" placeholder="Créditos" id="creditos" name="creditos"value="<?php echo $dados['formacaoCreditos'] ?>" >
+                              <input type="text" class="form-control" id="creditos" name="creditos" value="<?php echo $dados['formacaoCreditos'] ?>" >
                           </div>
                           <div class="col-md-6">
                               <select class="form-control" id="anoletivo" name="anoletivo" required>

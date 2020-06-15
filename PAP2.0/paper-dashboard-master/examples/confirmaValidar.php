@@ -10,7 +10,7 @@ $nif= addslashes($_POST['nif']);
 $iban= addslashes($_POST['iban']);
 $escalao= addslashes($_POST['escalao']);
 $grupoDisciplinar= addslashes($_POST['gd']);
-$tipo=addslashes($_POST['tipo']);
+$tipo= addslashes($_POST['tipo']);
 
 $con=mysqli_connect('localhost', 'root','','pap2020formacao');
 $sql="INSERT INTO funcionarios VALUES (0, '".$nome."','".$email."','".$telefone."','".$morada."','".$codigoPostal1."','".$codigoPostal2."','".$localidade."','".$nif."','".$iban."','".$escalao."','".$grupoDisciplinar."','".$tipo."')";

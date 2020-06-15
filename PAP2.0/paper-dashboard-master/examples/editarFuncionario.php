@@ -14,7 +14,7 @@ Coded by www.creative-tim.com
 -->
 <?php
 include_once("include/body.inc.php");
-drawTop();
+drawTop(ADMIN_FUNCIONARIOS);
 ?>
 
     <style>
@@ -46,7 +46,6 @@ drawTop();
               <div class="card-body ">
                   <form action="confirmaEditarFuncionario.php" method="post">
                       <?php
-                      $con=mysqli_connect("localhost","root","","pap2020formacao");
                       $id=intval($_GET['id']);
                       $sql=("SELECT * FROM funcionarios where funcionarioId=$id");
                       $result=mysqli_query($con,$sql);

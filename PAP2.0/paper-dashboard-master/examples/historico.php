@@ -14,7 +14,7 @@ Coded by www.creative-tim.com
 -->
 <?php
 include_once("include/body.inc.php");
-drawTop();
+drawTop(ADMIN_FUNCIONARIOS);
 ?>
 
   <div class="wrapper ">
@@ -36,25 +36,28 @@ drawTop();
                           <thead class=" text-primary">
                               <th>id</th>
                               <th>Nome</th>
-                              <th>Formação</th>
-                              <th>Grupo</th>
+                              <th>Grupo Disciplinar</th>
                               <th>Formação Actual</th>
                               <th>Telefone</th>
                               <th>Email</th>
                               <th>Créditos</th>
-                              <th>&nbsp;</th>
                           </thead>
                           <tbody>
+                          <?php
+                          $id=intval($_GET['id']);
+                          $sql=("SELECT * FROM funcionarios INNER JOIN funcionarioEscolas ON funcionarioId=funcionarioEscolaFuncionarioId where funcionarioId=$id");
+                          $result=mysqli_query($con,$sql);
+                          while($dados=mysqli_fetch_array($result)){
+                          ?>
                           <tr>
-                              <td>1</td>
-                              <td>Manuel</td>
-                              <td>E. Sec. Pinhal do Rei</td>
-                              <td>550-Informática</td>
-                              <td>Programação Web</td>
-                              <td>912345678</td>
-                              <td>manuel@gmail.com</td>
-                              <td>XXXX</td>
-                              <td><center><a class="btn-sm btn-info" href="#"><i class="fas fa-pencil-alt"></a></i> <a class="btn-sm btn-danger" href="#"><i class='fas fa-eraser'></a></i></center></td>
+                              <td><?php echo $dados['funcionarioId']; ?></td>
+                              <td><?php echo $dados['funcionarioNome']; ?></td>
+                              <td><?php echo $dados['funcionarioGrupoDisciplinar']; ?></td>
+                              <td><?php echo $dados['funcionarioCodigoPostal1']; ?> - <?php echo $dados['funcionarioCodigoPostal2']; ?></td>
+                              <td><?php echo $dados['funcionarioTelefone']; ?></td>
+                              <td><?php echo $dados['funcionarioEmail']; ?></td>
+                              <td><?php echo $dados['funcionarioNIF']; ?></td>
+                              <?php } ?>
                           </tr>
                           </tbody>
                       </table>
@@ -74,25 +77,30 @@ drawTop();
                               <thead class=" text-primary">
                                   <th>id</th>
                                   <th>Formação</th>
-                                  <th>Formador</th>
                                   <th>Créditos Ganhos</th>
-                                  <th>&nbsp;</th>
                                   <th>Horas</th>
                                   <th>Data de Início</th>
                                   <th>Data de Fim</th>
 
                               </thead>
                               <tbody>
+                              <?php
+                              $id=intval($_GET['id']);
+                              $sql=("SELECT * FROM funcionarios INNER JOIN formacaoinscritos ON funcionarioId=formacaoInscritoFuncionarioId INNER JOIN formacoes ON formacaoInscritoFormacaoId where funcionarioId=$id and formacaoInscritoPapel='formando'");
+                              $result=mysqli_query($con,$sql);
+                              while($dados=mysqli_fetch_array($result)){
+                              ?>
                               <tr>
-                                  <td>1</td>
-                                  <td>Programação Web</td>
-                                  <td>Manuel</td>
-                                  <td>XXXX</td>
-                                  <th>&nbsp;</th>
-                                  <td>50</td>
-                                  <td>1/6/2020</td>
-                                  <td>26/6/2020</td>
-                                  <td><center><a class="btn-sm btn-light" href="#"><i class="fa fa-print"></i></a> <a class="btn-sm btn-info" href="#"><i class="fas fa-pencil-alt"></a></i> <a class="btn-sm btn-danger" href="#"><i class='fas fa-eraser'></a></i></center></td>
+                                  <td><?php echo $dados['formacaoId']; ?></td>
+                                  <td><?php echo $dados['formacaoNome']; ?></td>
+                                  <td><?php echo $dados['formacaoCreditos']; ?></td>
+                                  <td><?php echo $dados['formacaoHoras']; ?></td>
+                                  <td><?php echo $dados['formacaoDataInicio']; ?></td>
+                                  <td><?php echo $dados['formacaoDataFim']; ?></td>
+                                  <td><center>
+                                          <a class="btn-sm btn-info" href="editarFuncionario.php?id=<?php echo $dados['funcionarioId'];?>"><i class="fas fa-pencil-alt"></a></i>
+                                          <a onclick="confirma(<?php echo $dados['funcionarioId'];?>);" class="btn-sm btn-danger" id="delete" name="delete" href="#"><i class='fas fa-eraser'></a></i></center></td>
+                                  <?php } ?>
                               </tr>
                               </tbody>
                           </table>
