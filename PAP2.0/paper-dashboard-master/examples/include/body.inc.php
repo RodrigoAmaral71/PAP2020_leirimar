@@ -287,7 +287,7 @@ function drawTop($menu=VOID){
                         <a class="nav-link btn-rotate" href="inscricoes.php">
                             <i class="fa fa-plus"></i>
                             <p>
-                                <span class="d-lg-none d-md-block">Account</span>
+                                <span class="d-lg-none d-md-block">Inscrição</span>
                             </p>
                         </a>
                     </li>
