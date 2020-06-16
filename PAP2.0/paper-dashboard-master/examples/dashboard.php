@@ -212,19 +212,26 @@ drawTop(VOID);
                                   <th>id</th>
                                   <th>Nome</th>
                                   <th>Formação</th>
-                                  <th>Escola</th>
-                                  <th>Grupo Disciplinar</th>
                                   <th>&nbsp</th>
                               </tr>
                               </thead>
                               <tbody>
                               <tr>
-                                  <td>1</td>
-                                  <td>Manuel</td>
-                                  <td>Programação Web</td>
-                                  <td>Escola Secundária Pinhal do Rei</td>
-                                  <td>550-Informática</td>
-                                  <td><center><a class="btn-sm btn-success" href="dashboard.html"><i class="fa fa-check"></i></a> <a class="btn-sm btn-danger" href="#"><i class="fa fa-remove"></i></a></center></td>
+                                  <?php
+                                  $sql=("SELECT * FROM funcionarios INNER JOIN formacaoinscritos ON funcionarioId=formacaoInscritoFuncionarioId INNER JOIN formacoes ON formacaoInscritoFormacaoId=formacaoId WHERE formacaoInscritoEstado='pendente'");
+                                  $result=mysqli_query($con,$sql);
+                                  while($dados=mysqli_fetch_array($result)){
+                                  ?>
+                              <tbody>
+                              <tr>
+                                  <td><?php echo $dados['funcionarioId']; ?></td>
+                                  <td><?php echo $dados['funcionarioNome']; ?></td>
+                                  <td><?php echo $dados['formacaoNome']; ?></td>
+                                  <td><center><a class="btn-sm btn-success" href="confirmaInscricao.php?id=<?php echo $dados['funcionarioId'] ?>"><i class="fa fa-check"></i></a>
+                                          <a onclick="confirma(<?php echo $dados['funcionarioId'];?>);" class="btn-sm btn-danger" href="#"><i class="fa fa-remove"></i></a></center></td>
+                                  <?PHP
+                                  }
+                                  ?>
                               </tr>
                               </tbody>
                           </table>

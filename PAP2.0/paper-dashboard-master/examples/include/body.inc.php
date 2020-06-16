@@ -41,6 +41,23 @@ function drawTop($menu=VOID){
         <script src="../assets/js/paper-dashboard.min.js?v=2.0.1" type="text/javascript"></script><!-- Paper Dashboard DEMO methods, don't include it in your project! -->
         <script src="../assets/demo/demo.js"></script>
         <script>
+            function confirma(id) {
+                var resNum;
+                // AJAX para ir buscar o nome da formacao
+                $.ajax({
+                    url:"AJAX/AJAXGetNameFuncionario.php",
+                    type:"post",
+                    data:{
+                        id:id
+                    },
+                    success:function (result) {
+                        resNum=parseInt(result);
+                        if(confirm('De certeza que quer negar a inscrição de "'+ result +'"?'))
+                            window.location="negarInscricao.php?id="+id;
+                    }
+
+                });
+            }
             function changeAnoLectivo(id) {
                 $.ajax({
                     url:"AJAX/AJAXChangeAnoLectivo.php",
@@ -156,6 +173,7 @@ function drawTop($menu=VOID){
 
                 });
             }
+
             <?php
             }
             ?>
@@ -266,8 +284,8 @@ function drawTop($menu=VOID){
                 </form>
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a class="nav-link btn-rotate" href="javascript:;">
-                            <i class="nc-icon nc-settings-gear-65"></i>
+                        <a class="nav-link btn-rotate" href="inscricoes.php">
+                            <i class="fa fa-plus"></i>
                             <p>
                                 <span class="d-lg-none d-md-block">Account</span>
                             </p>
