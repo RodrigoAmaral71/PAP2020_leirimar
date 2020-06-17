@@ -143,11 +143,6 @@ function drawTop($menu=VOID){
 
                     });
                 }
-            <style>
-            .fa-history{
-                color:black;
-            }
-            </style>
             <?php
             }
 

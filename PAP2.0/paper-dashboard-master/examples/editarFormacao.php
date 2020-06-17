@@ -76,8 +76,13 @@ drawTop(ADMIN_FORMACOES);
                               <input type="text" class="form-control" placeholder="Local" id="local" name="local" value="<?php echo $dados['formacaoLocal'] ?>">
                           </div>
                           <div class="col-md-6">
-                              <select class="form-control" id="estado" name="estado" required>
-                                  <option value="-1">Estado</option>
+                              <select class="form-control" id="estado" name="estado" >
+                                  <?php
+                                  $sql=("SELECT * FROM formacoes where formacaoId=$id");
+                                  $result=mysqli_query($con,$sql);
+                                  $dados=mysqli_fetch_array($result);
+                                  ?>
+                                  <option value="<?php echo $dados['formacaoEstado']; ?>" selected><?php echo $dados['formacaoEstado'] ?></option>
                                   <?php
                                   $sql=("SELECT * FROM formacoes");
                                   $result=mysqli_query($con,$sql);
@@ -90,17 +95,27 @@ drawTop(ADMIN_FORMACOES);
                       </div>
                       <div class="form-group row">
                           <div class="col-md-6">
-                              <input type="text" class="form-control" id="creditos" name="creditos" value="<?php echo $dados['formacaoCreditos'] ?>" >
+                              <?php
+                              $sql=("SELECT * FROM formacoes where formacaoId=$id");
+                              $result=mysqli_query($con,$sql);
+                              $dados=mysqli_fetch_array($result);
+                              ?>
+                              <input type="text" class="form-control" id="creditos" name="creditos" value="<?php echo $dados['formacaoCreditos']?>">
                           </div>
                           <div class="col-md-6">
-                              <select class="form-control" id="anoletivo" name="anoletivo" required>
-                                  <option value="-1">Ano Letivo</option>
+                              <select class="form-control" id="anoletivo" name="anoletivo" >
                                   <?php
-                                  $sql=("SELECT * FROM formacoes inner join anolectivos on formacaoAnoLectivoId=anoLectivoId group by formacaoAnoLectivoId");
+                                  $sql=("SELECT * FROM anolectivos where anoLectivoId=$id");
+                                  $result=mysqli_query($con,$sql);
+                                  $dados=mysqli_fetch_array($result);
+                                  ?>
+                                  <option value="<?php echo $dados['anoLectivoId']; ?>" selected><?php echo $dados['anoLectivoNome'] ?></option>
+                                  <?php
+                                  $sql=("SELECT * FROM anolectivos");
                                   $result=mysqli_query($con,$sql);
                                   while($dados=mysqli_fetch_array($result)){
                                       ?>
-                                      <option value="<?php echo $dados['formacaoAnoLectivoId']; ?>"><?php echo $dados['anoLectivoNome'] ?></option>
+                                      <option value="<?php echo $dados['anoLectivoId']; ?>"><?php echo $dados['anoLectivoNome'] ?></option>
                                   <?php } ?>
                               </select>
                           </div>
@@ -110,7 +125,7 @@ drawTop(ADMIN_FORMACOES);
                               <input type="text" class="form-control" placeholder="Descrição" id="descricao" name="descricao">
                           </div>
                       </div>
-                      <input type="submit" class="btn btn-success fa fa-plus preto" value="Adicionar">
+                      <input type="submit" class="btn btn-success fa fa-plus preto" value="Confirmar">
                   </form>
               </div>
             </div>
