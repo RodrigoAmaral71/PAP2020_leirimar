@@ -37,23 +37,19 @@ drawTop(ADMIN_FORMANDOS);
                     <thead class=" text-primary">
                         <th>id</th>
                         <th>Nome</th>
-                        <th>Escola</th>
-                        <th>Grupo</th>
                         <th>Formação Actual</th>
                         <th>Telefone</th>
                         <th>Email</th>
-                        <th><center><a class="btn-sm btn-success" href="#"><i class="fa fa-plus"></i></a></center></th>
+                        <th><center><a class="btn-sm btn-success" href="inscricoes.php"><i class="fa fa-plus"></i></a></center></th>
                     </thead>
                       <?php
-                      $sql=("SELECT * FROM funcionarios INNER JOIN funcionarioescolas ON funcionarioId=funcionarioEscolaFuncionarioId INNER JOIN escolas ON funcionarioEscolasEscolaId=escolaId INNER JOIN formacaoinscritos ON funcionarioId=formacaoInscritoFuncionarioId INNER JOIN formacoes ON formacaoInscritoFormacaoId=formacaoId WHERE formacaoInscritoPapel='formando'");
+                      $sql=("SELECT * FROM funcionarios INNER JOIN formacaoinscritos ON funcionarioId=formacaoInscritoFuncionarioId INNER JOIN formacoes ON formacaoInscritoFormacaoId=formacaoId WHERE formacaoInscritoPapel='formando'");
                       $result=mysqli_query($con,$sql);
                       while($dados=mysqli_fetch_array($result)){
                       ?>
                     <tbody>
                         <td><?php echo $dados['funcionarioId']; ?></td>
                         <td><?php echo $dados['funcionarioNome']; ?></td>
-                        <td><?php echo $dados['escolaNome']; ?></td>
-                        <td> &nbsp <?php echo $dados['funcionarioGrupoDisciplinar']; ?></td>
                         <td> &nbsp <?php echo $dados['formacaoNome']; ?></td>
                         <td><?php echo $dados['funcionarioTelefone']; ?></td>
                         <td><?php echo $dados['funcionarioEmail']; ?></td>

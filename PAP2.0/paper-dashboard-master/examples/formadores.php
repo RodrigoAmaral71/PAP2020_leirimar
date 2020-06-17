@@ -42,28 +42,26 @@ drawTop(ADMIN_FORMADORES);
                       <tr>
                         <th>id</th>
                         <th>Nome</th>
-                        <th>Escola</th>
-                        <th>Grupo</th>
+                        <th>Formação</th>
                         <th>Telefone</th>
                         <th>Email</th>
-                        <th><center><a class="btn-sm btn-success" href="#"><i class="fa fa-plus"></i></a></center></th>
+                        <th><center><a class="btn-sm btn-success" href="adicionarFormador.php"><i class="fa fa-plus"></i></a></center></th>
                       </tr>
                     </thead>
                       <?php
-                      $sql=("SELECT * FROM funcionarios INNER JOIN funcionarioescolas ON funcionarioId=funcionarioEscolaFuncionarioId INNER JOIN escolas ON funcionarioEscolasEscolaId=escolaId INNER JOIN formacaoinscritos ON funcionarioId=formacaoInscritoFuncionarioId where formacaoInscritoPapel='formador'");
+                      $sql=("SELECT * FROM funcionarios INNER JOIN formacaoinscritos ON funcionarioId=formacaoInscritoFuncionarioId INNER JOIN formacoes ON formacaoInscritoFormacaoId=formacaoId WHERE formacaoInscritoPapel='formador'");
                       $result=mysqli_query($con,$sql);
                       while($dados=mysqli_fetch_array($result)){
                           ?>
                           <tbody>
                           <td><?php echo $dados['funcionarioId']; ?></td>
                           <td><?php echo $dados['funcionarioNome']; ?></td>
-                          <td><?php echo $dados['escolaNome']; ?></td>
-                          <td><?php echo $dados['funcionarioGrupoDisciplinar']; ?></td>
+                          <td><?php echo $dados['formacaoNome']; ?></td>
                           <td><?php echo $dados['funcionarioTelefone']; ?></td>
                           <td><?php echo $dados['funcionarioEmail']; ?></td>
                           <td><center>
                                   <a class="btn-sm btn-info" id="editar" name="editar" href="#"><i class="fas fa-pencil-alt"></a></i>
-                                  <a onclick="confirma(<?php echo $dados['funcionarioId'];?>);" class="btn-sm btn-danger" id="delete" name="delete" href="#"><i class='fas fa-eraser'></i></a></center></td>
+                                  <a onclick="confirma(<?php echo $dados['funcionarioId'];?>,<?php echo $dados['formacaoId'];?>);" class="btn-sm btn-danger" id="delete" name="delete" href="#"><i class='fas fa-eraser'></i></a></center></td>
                           </tbody>
                       <?php } ?>
                   </table>

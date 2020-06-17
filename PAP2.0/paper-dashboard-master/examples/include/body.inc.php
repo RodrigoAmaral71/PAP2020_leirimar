@@ -41,14 +41,15 @@ function drawTop($menu=VOID){
         <script src="../assets/js/paper-dashboard.min.js?v=2.0.1" type="text/javascript"></script><!-- Paper Dashboard DEMO methods, don't include it in your project! -->
         <script src="../assets/demo/demo.js"></script>
         <script>
-            function confirma(id) {
+            function confirma(id,formacao) {
                 var resNum;
                 // AJAX para ir buscar o nome da formacao
                 $.ajax({
                     url:"AJAX/AJAXGetNameFuncionario.php",
                     type:"post",
                     data:{
-                        id:id
+                        id:id,
+                        formacao:formacao
                     },
                     success:function (result) {
                         resNum=parseInt(result);
@@ -171,7 +172,31 @@ function drawTop($menu=VOID){
 
             <?php
             }
+
+            if($menu==ADMIN_FORMADORES){
             ?>
+            function confirma(id) {
+                var resNum;
+                // AJAX para ir buscar o nome da formacao
+                $.ajax({
+                    url: "AJAX/AJAXGetNameFuncionario.php",
+                    type: "post",
+                    data: {
+                        id: id
+                    },
+                    success: function (result) {
+                        resNum = parseInt(result);
+                        if (resNum == 1)
+                            alert('Impossível eliminar este formador porque tem registos relacionados');
+                        else if (confirm('De certeza que quer eliminar o formador "' + result + '"?'))
+                            window.location = "apagarFormador.php?id=" + id;
+                    }
+
+                });
+            }
+            <?php
+            }
+?>
         </script>
 
 

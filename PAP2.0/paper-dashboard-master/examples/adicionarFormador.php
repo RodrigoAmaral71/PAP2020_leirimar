@@ -14,7 +14,7 @@ Coded by www.creative-tim.com
 -->
 <?php
 include_once("include/body.inc.php");
-drawTop(ADMIN_FORMANDOS);
+drawTop(ADMIN_FORMADORES);
 ?>
 
 
@@ -35,7 +35,7 @@ drawTop(ADMIN_FORMANDOS);
               </div>
                 <hr>
               <div class="card-body ">
-                  <form action="confirmaValidar.php" method="post">
+                  <form action="confirmaAdicionarFormador.php" method="post">
                       <div class="form-group row">
                           <div class="col-md-12">
                           <select class="form-control" name="funcionario">

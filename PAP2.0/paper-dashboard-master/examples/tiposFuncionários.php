@@ -46,7 +46,7 @@ drawTop(ADMIN_FUNCIONARIOS);
                     </tr>
                     </thead>
                       <?php
-                          $sql=("SELECT * FROM funcionarios INNER JOIN funcionariotipos ON funcionarioFuncionarioTipoId=funcionarioTipoId");
+                          $sql=("SELECT * FROM funcionarios INNER JOIN funcionariotipos ON funcionarioFuncionarioTipoId=funcionarioTipoId ORDER BY funcionarioId ASC");
                           $result=mysqli_query($con,$sql);
                           while($dados=mysqli_fetch_array($result)){
                       ?>
@@ -59,7 +59,7 @@ drawTop(ADMIN_FUNCIONARIOS);
                           <td><?php echo $dados['funcionarioTelefone']; ?></td>
                           <td><?php echo $dados['funcionarioEmail']; ?></td>
                           <td><?php echo $dados['funcionarioNIF']; ?></td>
-                          <td><center><a class="btn-sm" href="historico.php?id=<?php echo $dados['funcionarioId'];?>"><i class="fa fa-refresh"></a></i>
+                          <td><center><a class="btn-sm" href="historico.php?id=<?php echo $dados['funcionarioId'];?>"><i class="fa fa-history"></a></i>
                            <a class="btn-sm btn-info" href="editarFuncionario.php?id=<?php echo $dados['funcionarioId'];?>"><i class="fas fa-pencil-alt"></a></i>
                            <a onclick="confirma(<?php echo $dados['funcionarioId'];?>);" class="btn-sm btn-danger" id="delete" name="delete" href="#"><i class='fas fa-eraser'></a></i></center></td>
                           <?php } ?>
