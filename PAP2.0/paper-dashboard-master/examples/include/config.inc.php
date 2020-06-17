@@ -10,7 +10,8 @@
     define("ADMIN_ESCOLAS",3);
     define("ADMIN_FORMACOES",4);
     define("ADMIN_ALETIVOS",5);
-    define("ADMIN_FUNCIONARIOS",6);
+    define("ADMIN_TIPOS",6);
+    define("ADMIN_PESSOAS",7);
 
 
 ?>

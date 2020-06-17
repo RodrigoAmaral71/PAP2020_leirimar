@@ -41,7 +41,7 @@ function drawTop($menu=VOID){
         <script src="../assets/js/paper-dashboard.min.js?v=2.0.1" type="text/javascript"></script><!-- Paper Dashboard DEMO methods, don't include it in your project! -->
         <script src="../assets/demo/demo.js"></script>
         <script>
-            function confirma(id,formacao) {
+            function confirmaInscrito(id,formacao) {
                 var resNum;
                 // AJAX para ir buscar o nome da formacao
                 $.ajax({
@@ -49,12 +49,58 @@ function drawTop($menu=VOID){
                     type:"post",
                     data:{
                         id:id,
-                        formacao:formacao
+                        formacao:formacao,
+                        delete:false
                     },
                     success:function (result) {
-                        resNum=parseInt(result);
-                        if(confirm('De certeza que quer negar a inscrição de "'+ result +'"?'))
-                            window.location="negarInscricao.php?id="+id;
+                       if(confirm(result))
+                           {
+                               $.ajax({
+                                   url: "AJAX/AJAXConfirmaInscricao.php",
+                                   type: "post",
+                                   data: {
+                                       fuid: id,
+                                       fid: formacao
+                                   },
+                                   success: function (result) {
+
+                                       alert('Inscrição efetuada com sucesso');
+                                       location.reload();
+                                   }
+                               })
+                           }
+                    }
+
+                });
+            }
+            function cancelaInscrito(id,formacao) {
+                var resNum;
+                // AJAX para ir buscar o nome da formacao
+                $.ajax({
+                    url:"AJAX/AJAXGetNameFuncionario.php",
+                    type:"post",
+                    data:{
+                        id:id,
+                        formacao:formacao,
+                        delete:true
+                    },
+                    success:function (result) {
+                       if(confirm(result))
+                           {
+                               $.ajax({
+                                   url: "AJAX/AJAXEliminaInscricao.php",
+                                   type: "post",
+                                   data: {
+                                       fuid: id,
+                                       fid: formacao
+                                   },
+                                   success: function (result) {
+
+                                       alert('Inscrição eliminada com sucesso');
+                                       location.reload();
+                                   }
+                               })
+                           }
                     }
 
                 });
@@ -147,7 +193,7 @@ function drawTop($menu=VOID){
             <?php
             }
 
-            if($menu==ADMIN_FUNCIONARIOS){
+            if($menu==ADMIN_PESSOAS){
             ?>
             function confirma(id) {
                 var resNum;
@@ -235,6 +281,15 @@ function drawTop($menu=VOID){
               <p>Dashboard</p>
             </a>
           </li>
+            <li>
+                <hr>
+            </li>
+            <li<?php if($menu==ADMIN_FORMACOES) echo " class=\"active \"";?>>
+                <a href="formacoes.php">
+                    <i class="nc-icon nc-tile-56"></i>
+                    <p>Formações</p>
+                </a>
+            </li>
             <li<?php if($menu==ADMIN_FORMADORES) echo " class=\"active \"";?>>
             <a href="formadores.php">
               <i class="nc-icon nc-tile-56"></i>
@@ -247,28 +302,32 @@ function drawTop($menu=VOID){
               <p>Formandos</p>
             </a>
           </li>
+
             <li<?php if($menu==ADMIN_ESCOLAS) echo " class=\"active \"";?>>
             <a href="escolas.php">
               <i class="nc-icon nc-tile-56"></i>
               <p>Escolas</p>
             </a>
           </li>
-            <li<?php if($menu==ADMIN_FORMACOES) echo " class=\"active \"";?>>
-            <a href="formacoes.php">
-              <i class="nc-icon nc-tile-56"></i>
-              <p>Formações</p>
-            </a>
-          </li>
+            <li>
+                <hr>
+            </li>
           <li<?php if($menu==ADMIN_ALETIVOS) echo " class=\"active \"";?>>
             <a href="anosLetivos.php">
               <i class="nc-icon nc-tile-56"></i>
               <p>Anos Letivos</p>
             </a>
           </li>
-          <li<?php if($menu==ADMIN_FUNCIONARIOS) echo " class=\"active \"";?>>
-                <a href="tiposFuncionários.php">
+          <li<?php if($menu==ADMIN_TIPOS) echo " class=\"active \"";?>>
+                <a href="tiposPerfis.php">
                     <i class="nc-icon nc-tile-56"></i>
-                    <p>Funcionários</p>
+                    <p>Perfis</p>
+                </a>
+            </li>
+            <li<?php if($menu==ADMIN_PESSOAS) echo " class=\"active \"";?>>
+                <a href="pessoas.php">
+                    <i class="nc-icon nc-tile-56"></i>
+                    <p>Pessoas</p>
                 </a>
             </li>
         </ul>

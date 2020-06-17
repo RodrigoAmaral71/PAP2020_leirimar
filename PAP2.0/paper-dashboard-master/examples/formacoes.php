@@ -35,7 +35,6 @@ drawTop(ADMIN_FORMACOES);
                     <thead class=" text-primary">
                       <th>id</th>
                       <th>Nome</th>
-                      <th>Ano Letivo</th>
                       <th>Horas</th>
                       <th>&nbsp</th>
                       <th>Data de Início</th>
@@ -46,14 +45,28 @@ drawTop(ADMIN_FORMACOES);
                       <th><center><a class="btn-sm btn-success" href="adicionarFormacao.php"><i class="fa fa-plus"></i></a></center></th>
                     </thead>
                       <?php
-                      $sql=("SELECT * FROM formacoes INNER JOIN anolectivos ON formacaoAnoLectivoId=anoLectivoId order by formacaoId asc");
+                     $sql="select t1.*, count(t2.formacaoInscritoFuncionarioId) as nInscritos 
+                            from
+                            (
+                            SELECT *  FROM formacoes INNER JOIN anolectivos ON formacaoAnoLectivoId=anoLectivoId where anoLectivoEstado='activo'
+                            )
+                            as t1
+                            left join 
+                            (
+                            SELECT formacaoInscritoFormacaoId,formacaoInscritoFuncionarioId
+                            FROM formacaoinscritos  where formacaoInscritoPapel='formando' and formacaoInscritoEstado='inscrito' 
+                            )
+                            as t2
+                            on t1.formacaoId=t2.formacaoInscritoFormacaoId
+                            group by t1.formacaoId 
+                            order by t1.formacaoId asc  ";
+
                       $result=mysqli_query($con,$sql);
                       while($dados=mysqli_fetch_array($result)){
                       ?>
                     <tbody>
                       <td><?php echo $dados['formacaoId']; ?></td>
                       <td><?php echo $dados['formacaoNome']; ?></td>
-                      <td><?php echo $dados['anoLectivoNome']; ?></td>
                       <td><?php echo $dados['formacaoHoras']; ?></td>
                       <td>&nbsp</td>
                       <td><?php echo $dados['formacaoDataInicio']; ?></td>
@@ -61,7 +74,20 @@ drawTop(ADMIN_FORMACOES);
                       <th>&nbsp</th>
                       <td><?php echo $dados['formacaoCreditos']; ?></td>
                       <td><?php echo $dados['formacaoEstado']; ?></td>
-                      <td><center><a id="edit" name="edit" class="btn-sm btn-info" href="editarFormacao.php?id=<?php echo $dados['formacaoId'] ?>"><i class="fas fa-pencil-alt"></a></i>
+                      <td><center>
+                              <?php
+                              if($dados['nInscritos']>0) {
+                                  ?>
+                                  <a id="users" class="btn-sm btn-warning"
+                                     href="verInscritos.php?id=<?php echo $dados['formacaoId'] ?>" title="<?php echo $dados['nInscritos'] ?> inscritos"><i class="fas fa-user-alt"></i></a>
+                                  <?php
+                              }else {
+                                  ?>
+                                  <a id="users" class="btn-sm btn-secondary"><i class="fas fa-user-alt"></i></a>
+                                  <?php
+                              }
+                              ?>
+                              <a id="edit" name="edit" class="btn-sm btn-info" href="editarFormacao.php?id=<?php echo $dados['formacaoId'] ?>"><i class="fas fa-pencil-alt"></a></i>
                        <a onclick="confirma(<?php echo $dados['formacaoId'];?>);" id="delete" name="delete" class="btn-sm btn-danger" href="#"><i class='fas fa-eraser'></a></i></center></td>
                     </tbody>
                       <?php } ?>

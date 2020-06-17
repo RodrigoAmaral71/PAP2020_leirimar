@@ -14,7 +14,7 @@ Coded by www.creative-tim.com
 -->
 <?php
 include_once("include/body.inc.php");
-drawTop(ADMIN_FUNCIONARIOS);
+drawTop(ADMIN_TIPOS);
 ?>
 
 
@@ -28,7 +28,7 @@ drawTop(ADMIN_FUNCIONARIOS);
           <div class="col-md-12">
             <div class="card">
               <div class="card-header">
-                    <h4 class="card-title">INSCRITOS</h4>
+                    <h4 class="card-title">INSCRITOS ******************************* falta completar</h4>
               </div>
               <div class="card-body">
                 <div class="table-responsive">
@@ -37,31 +37,22 @@ drawTop(ADMIN_FUNCIONARIOS);
                     <tr>
                         <th>id</th>
                         <th>Nome</th>
-                        <th>Grupo Disciplinar</th>
-                        <th>Código Postal</th>
-                        <th>Telefone</th>
-                        <th>Email</th>
-                        <th>NIF</th>
+
                         <th><center><a class="btn-sm btn-success" href="adicionarFuncionario.php"><i class="fa fa-plus"></i></a></center></th>
                     </tr>
                     </thead>
                       <?php
-                          $sql=("SELECT * FROM funcionarios INNER JOIN funcionariotipos ON funcionarioFuncionarioTipoId=funcionarioTipoId ORDER BY funcionarioId ASC");
+                          $sql=("SELECT * from funcionariotipos ");
                           $result=mysqli_query($con,$sql);
                           while($dados=mysqli_fetch_array($result)){
                       ?>
                       <tbody>
                         <tr>
-                          <td><?php echo $dados['funcionarioId']; ?></td>
-                          <td><?php echo $dados['funcionarioNome']; ?></td>
+                          <td><?php echo $dados['funcionarioTipoId']; ?></td>
                           <td><?php echo $dados['funcionarioTipoNome']; ?></td>
-                          <td><?php echo $dados['funcionarioCodigoPostal1']; ?> - <?php echo $dados['funcionarioCodigoPostal2']; ?></td>
-                          <td><?php echo $dados['funcionarioTelefone']; ?></td>
-                          <td><?php echo $dados['funcionarioEmail']; ?></td>
-                          <td><?php echo $dados['funcionarioNIF']; ?></td>
-                          <td><center><a class="btn-sm" href="historico.php?id=<?php echo $dados['funcionarioId'];?>"><i class="fa fa-history"></a></i>
-                           <a class="btn-sm btn-info" href="editarFuncionario.php?id=<?php echo $dados['funcionarioId'];?>"><i class="fas fa-pencil-alt"></a></i>
-                           <a onclick="confirma(<?php echo $dados['funcionarioId'];?>);" class="btn-sm btn-danger" id="delete" name="delete" href="#"><i class='fas fa-eraser'></a></i></center></td>
+                            <td>
+                           <a class="btn-sm btn-info" href="editarFuncionario.php?id=<?php echo $dados['funcionarioTipoId'];?>"><i class="fas fa-pencil-alt"></a></i>
+                           <a onclick="confirma(<?php echo $dados['funcionarioTipoId'];?>);" class="btn-sm btn-danger" id="delete" name="delete" href="#"><i class='fas fa-eraser'></a></i></center></td>
                           <?php } ?>
                         </tr>
                     </tbody>

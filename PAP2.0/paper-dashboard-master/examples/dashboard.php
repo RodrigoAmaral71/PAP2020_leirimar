@@ -227,8 +227,8 @@ drawTop(VOID);
                                   <td><?php echo $dados['funcionarioId']; ?></td>
                                   <td><?php echo $dados['funcionarioNome']; ?></td>
                                   <td><?php echo $dados['formacaoNome']; ?></td>
-                                  <td><center><a class="btn-sm btn-success" href="confirmaInscricao.php?fid=<?php echo $dados['funcionarioId']?>&fuid=<?php echo $dados['formacaoId']?>"><i class="fa fa-check"></i></a>
-                                          <a onclick="confirma(<?php echo $dados['funcionarioId'];?>,<?php echo $dados['formacaoId'];?>);" class="btn-sm btn-danger" href="#"><i class="fa fa-remove"></i></a></center></td>
+                                  <td><center><a onclick="confirmaInscrito(<?php echo $dados['funcionarioId'];?>,<?php echo $dados['formacaoId'];?>);" class="btn-sm btn-success"><i class="fa fa-check"></i></a>
+                                          <a onclick="cancelaInscrito(<?php echo $dados['funcionarioId'];?>,<?php echo $dados['formacaoId'];?>);" class="btn-sm btn-danger" href="#"><i class="fa fa-remove"></i></a></center></td>
                                   <?PHP
                                   }
                                   ?>
