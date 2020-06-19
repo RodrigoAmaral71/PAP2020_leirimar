@@ -41,7 +41,7 @@ drawTop(ADMIN_ESCOLAS);
                       <th>Localidade</th>
                       <th>Código Postal</th>
                       <th>Código</th>
-                      <th><center><a class="btn-sm btn-success" href="adicionarEscola.php"><i class="fa fa-plus"></i></a></center></th>
+                      <th><center><a title="Adicionar" class="btn-sm btn-success" href="adicionarEscola.php"><i class="fa fa-plus"></i></a></center></th>
                     </thead>
 
                     <?php
@@ -57,8 +57,8 @@ drawTop(ADMIN_ESCOLAS);
                       <td><?php echo $dados['escolaLocalidade']; ?></td>
                       <td><?php echo $dados['escolaCodigoPostal1']; ?> - <?php echo $dados['escolaCodigoPostal2']; ?></td>
                       <td><?php echo $dados['escolaCodigo']; ?></td>
-                      <td><center><a class="btn-sm btn-info" id="editar" name="editar" href="editarEscola.php?id=<?php echo $dados['escolaId'];?>"><i class="fas fa-pencil-alt"></a></i>
-                       <a onclick="confirma(<?php echo $dados['escolaId'];?>);" class="btn-sm btn-danger" id="delete" name="delete" href="#"><i class='fas fa-eraser'></i></a></center></td>
+                      <td><center><a title="Editar" class="btn-sm btn-info" id="editar" name="editar" href="editarEscola.php?id=<?php echo $dados['escolaId'];?>"><i class="fas fa-pencil-alt"></a></i>
+                       <a title="Eliminar" onclick="confirma(<?php echo $dados['escolaId'];?>);" class="btn-sm btn-danger" id="delete" name="delete" href="#"><i class='fas fa-eraser'></i></a></center></td>
                     </tbody>
                     <?php } ?>
                   </table>

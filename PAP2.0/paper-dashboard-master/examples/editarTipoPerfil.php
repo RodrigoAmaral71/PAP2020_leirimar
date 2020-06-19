@@ -14,54 +14,54 @@ Coded by www.creative-tim.com
 -->
 <?php
 include_once("include/body.inc.php");
-drawTop(ADMIN_TIPOS);
+drawTop(ADMIN_PESSOAS);
 ?>
-
-
+    <style>
+        .preto{
+            color: black;
+            font-family: Arial;
+        }
+    </style>
   <div class="wrapper ">
 
     <div class="main-panel">
 
       <!-- End Navbar -->
+      <!-- FORMADORES -->
       <div class="content">
+
+        <!-- Gráfico -->
         <div class="row">
           <div class="col-md-12">
-            <div class="card">
-              <div class="card-header">
-                    <h4 class="card-title">Tipos de Perfil</h4>
+            <div class="card ">
+              <div class="card-header ">
+                <h5 class="card-title">Editar Tipos de Perfil</h5>
               </div>
-              <div class="card-body">
-                <div class="table-responsive">
-                  <table class="table">
-                    <thead class=" text-primary">
-                    <tr>
-                        <th>id</th>
-                        <th>Nome</th>
-
-                        <th><center><a class="btn-sm btn-success" href="adicionarTipoPerfil.php"><i class="fa fa-plus"></i></a></center></th>
-                    </tr>
-                    </thead>
-                      <?php
-                          $sql=("SELECT * from funcionariotipos ");
-                          $result=mysqli_query($con,$sql);
-                          while($dados=mysqli_fetch_array($result)){
-                      ?>
-                      <tbody>
-                        <tr>
-                          <td><?php echo $dados['funcionarioTipoId']; ?></td>
-                          <td><?php echo $dados['funcionarioTipoNome']; ?></td>
-                            <td><center><a class="btn-sm btn-info" href="editarTipoPerfil.php?id=<?php echo $dados['funcionarioTipoId'];?>"><i class="fas fa-pencil-alt"></a></i>
-                           <a title="Eliminar" onclick="confirma(<?php echo $dados['funcionarioTipoId'];?>);" class="btn-sm btn-danger" id="delete" name="delete" href="#"><i class='fas fa-eraser'></a></i></center></td>
-                          <?php } ?>
-                        </tr>
-                    </tbody>
-                  </table>
-                </div>
+                <hr>
+              <div class="card-body ">
+                  <?php
+                  $id=intval($_GET['id']);
+                  $sql=("SELECT * FROM funcionariotipos where funcionarioTipoId=$id");
+                  $result=mysqli_query($con,$sql);
+                  $dados=mysqli_fetch_array($result);
+                  echo mysqli_error($con);
+                  ?>
+                  <form name="form" action="confirmaEditarPerfil.php" method="post">
+                      <div class="form-group row">
+                              <input name="id" id="id" type="hidden" value="<?php echo $dados['funcionarioTipoId']?>">
+                          <div class="col-md-12">
+                              <input type="text" class="form-control" id="nome" name="nome" value="<?php echo $dados['funcionarioTipoNome']?>">
+                          </div>
+                      </div>
+                      <input name="0" type="submit" class="btn btn-success fa fa-plus preto" value="Confirmar">
+                  </form>
               </div>
             </div>
           </div>
         </div>
       </div>
+
+      <!-- footer -->
       <footer class="footer footer-black  footer-white ">
         <div class="container-fluid">
           <div class="row">

@@ -48,6 +48,9 @@ drawTop(ADMIN_FORMACOES);
                       $result=mysqli_query($con,$sql);
                       $dados=mysqli_fetch_array($result);
                       ?>
+                      <div>
+                          <input type="hidden" id="id" name="id" value="<?php echo $dados['formacaoId'] ?>">
+                      </div>
                       <div class="form-group row">
                           <div class="col-md-12">
                               <input type="text" class="form-control" placeholder="Nome" id="nome" name="nome" value="<?php echo $dados['formacaoNome'] ?>">
@@ -76,48 +79,34 @@ drawTop(ADMIN_FORMACOES);
                               <input type="text" class="form-control" placeholder="Local" id="local" name="local" value="<?php echo $dados['formacaoLocal'] ?>">
                           </div>
                           <div class="col-md-6">
-                              <select class="form-control" id="estado" name="estado" >
-                                  <?php
-                                  $sql=("SELECT * FROM formacoes where formacaoId=$id");
-                                  $result=mysqli_query($con,$sql);
-                                  $dados=mysqli_fetch_array($result);
-                                  ?>
-                                  <option value="<?php echo $dados['formacaoEstado']; ?>" selected><?php echo $dados['formacaoEstado'] ?></option>
-                                  <?php
-                                  $sql=("SELECT * FROM formacoes");
-                                  $result=mysqli_query($con,$sql);
-                                  while($dados=mysqli_fetch_array($result)){
-                                      ?>
-                                      <option value="<?php echo $dados['formacaoEstado']; ?>"><?php echo $dados['formacaoEstado'] ?></option>
-                                  <?php } ?>
-                              </select>
+                              <input type="text" class="form-control" id="creditos" name="creditos" value="<?php echo $dados['formacaoCreditos']?>">
                           </div>
                       </div>
                       <div class="form-group row">
                           <div class="col-md-6">
-                              <?php
-                              $sql=("SELECT * FROM formacoes where formacaoId=$id");
-                              $result=mysqli_query($con,$sql);
-                              $dados=mysqli_fetch_array($result);
-                              ?>
-                              <input type="text" class="form-control" id="creditos" name="creditos" value="<?php echo $dados['formacaoCreditos']?>">
-                          </div>
-                          <div class="col-md-6">
-                              <select class="form-control" id="anoletivo" name="anoletivo" >
+                              <select class="form-control" id="estado" name="estado">
                                   <?php
-                                  $sql=("SELECT * FROM anolectivos where anoLectivoId=$id");
+                                  $sql= "SHOW COLUMNS FROM formacoes WHERE Field = 'formacaoEstado'";
                                   $result=mysqli_query($con,$sql);
                                   $dados=mysqli_fetch_array($result);
-                                  ?>
-                                  <option value="<?php echo $dados['anoLectivoId']; ?>" selected><?php echo $dados['anoLectivoNome'] ?></option>
-                                  <?php
-                                  $sql=("SELECT * FROM anolectivos");
-                                  $result=mysqli_query($con,$sql);
-                                  while($dados=mysqli_fetch_array($result)){
+                                  preg_match("/^enum\(\'(.*)\'\)$/", $dados['Type'], $matches);
+                                  $enum = explode("','", $matches[1]);
+                                  foreach ($enum as $item) {
                                       ?>
-                                      <option value="<?php echo $dados['anoLectivoId']; ?>"><?php echo $dados['anoLectivoNome'] ?></option>
+                                      <option value="<?php echo $item; ?>"><?php echo ucfirst($item) ?></option>
                                   <?php } ?>
                               </select>
+                          </div>
+                          <div class="col-md-6">
+                                  <select class="form-control" id="anoletivo" name="anoletivo" required>
+                                      <?php
+                                      $sql=("SELECT * FROM anolectivos order by anoLectivoEstado asc, anoLectivoNome desc");
+                                      $result=mysqli_query($con,$sql);
+                                      while($dados=mysqli_fetch_array($result)){
+                                          ?>
+                                          <option value="<?php echo $dados['anoLectivoId']; ?>"><?php echo $dados['anoLectivoNome'] ?></option>
+                                      <?php } ?>
+                                  </select>
                           </div>
                       </div>
                       <div class="form-group row">

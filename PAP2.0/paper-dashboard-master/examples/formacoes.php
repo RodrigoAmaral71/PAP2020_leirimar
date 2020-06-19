@@ -35,6 +35,7 @@ drawTop(ADMIN_FORMACOES);
                     <thead class=" text-primary">
                       <th>id</th>
                       <th>Nome</th>
+                      <th>Formador</th>
                       <th>Horas</th>
                       <th>&nbsp</th>
                       <th>Data de Início</th>
@@ -42,13 +43,13 @@ drawTop(ADMIN_FORMACOES);
                       <th>&nbsp</th>
                       <th>Créditos</th>
                       <th>Estado</th>
-                      <th><center><a class="btn-sm btn-success" href="adicionarFormacao.php"><i class="fa fa-plus"></i></a></center></th>
+                      <th><center><a title="Adicionar" class="btn-sm btn-success" href="adicionarFormacao.php"><i class="fa fa-plus"></i></a></center></th>
                     </thead>
                       <?php
-                     $sql="select t1.*, count(t2.formacaoInscritoFuncionarioId) as nInscritos 
+                     $sql="select t1.*, count(t2.formacaoInscritoFuncionarioId) as nInscritos
                             from
                             (
-                            SELECT *  FROM formacoes INNER JOIN anolectivos ON formacaoAnoLectivoId=anoLectivoId where anoLectivoEstado='activo'
+                            SELECT *  FROM formacoes left JOIN anolectivos ON formacaoAnoLectivoId=anoLectivoId where anoLectivoEstado='activo'
                             )
                             as t1
                             left join 
@@ -67,6 +68,7 @@ drawTop(ADMIN_FORMACOES);
                     <tbody>
                       <td><?php echo $dados['formacaoId']; ?></td>
                       <td><?php echo $dados['formacaoNome']; ?></td>
+                      <td><?php// echo $dados['funcionarioNome']; ?></td>
                       <td><?php echo $dados['formacaoHoras']; ?></td>
                       <td>&nbsp</td>
                       <td><?php echo $dados['formacaoDataInicio']; ?></td>
@@ -83,12 +85,12 @@ drawTop(ADMIN_FORMACOES);
                                   <?php
                               }else {
                                   ?>
-                                  <a id="users" class="btn-sm btn-secondary"><i class="fas fa-user-alt"></i></a>
+                                  <a title="<?php echo $dados['nInscritos'] ?> inscritos" id="users" class="btn-sm btn-secondary"><i class="fas fa-user-alt"></i></a>
                                   <?php
                               }
                               ?>
-                              <a id="edit" name="edit" class="btn-sm btn-info" href="editarFormacao.php?id=<?php echo $dados['formacaoId'] ?>"><i class="fas fa-pencil-alt"></a></i>
-                       <a onclick="confirma(<?php echo $dados['formacaoId'];?>);" id="delete" name="delete" class="btn-sm btn-danger" href="#"><i class='fas fa-eraser'></a></i></center></td>
+                              <a title="Editar" id="edit" name="edit" class="btn-sm btn-info" href="editarFormacao.php?id=<?php echo $dados['formacaoId'] ?>"><i class="fas fa-pencil-alt"></a></i>
+                       <a title="Eliminar" onclick="confirma(<?php echo $dados['formacaoId'];?>);" id="delete" name="delete" class="btn-sm btn-danger" href="#"><i class='fas fa-eraser'></a></i></center></td>
                     </tbody>
                       <?php } ?>
                   </table>

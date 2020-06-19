@@ -16,12 +16,6 @@ Coded by www.creative-tim.com
 include_once("include/body.inc.php");
 drawTop(ADMIN_ESCOLAS);
 ?>
-    <style>
-        .preto{
-            color: black;
-            font-family: Arial;
-        }
-    </style>
 
   <div class="wrapper ">
 

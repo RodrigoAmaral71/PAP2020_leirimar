@@ -40,10 +40,10 @@ drawTop(ADMIN_FORMANDOS);
                         <th>Formação Actual</th>
                         <th>Telefone</th>
                         <th>Email</th>
-                        <th><center><a class="btn-sm btn-success" href="inscricoes.php"><i class="fa fa-plus"></i></a></center></th>
+                        <th><center><a title="Adicionar" class="btn-sm btn-success" href="inscricoes.php"><i class="fa fa-plus"></i></a></center></th>
                     </thead>
                       <?php
-                      $sql=("SELECT * FROM funcionarios INNER JOIN formacaoinscritos ON funcionarioId=formacaoInscritoFuncionarioId INNER JOIN formacoes ON formacaoInscritoFormacaoId=formacaoId WHERE formacaoInscritoPapel='formando'");
+                      $sql=("SELECT * FROM funcionarios INNER JOIN formacaoinscritos ON funcionarioId=formacaoInscritoFuncionarioId INNER JOIN formacoes ON formacaoInscritoFormacaoId=formacaoId WHERE formacaoInscritoPapel='formando' order by funcionarioId asc");
                       $result=mysqli_query($con,$sql);
                       while($dados=mysqli_fetch_array($result)){
                       ?>
@@ -53,8 +53,10 @@ drawTop(ADMIN_FORMANDOS);
                         <td> &nbsp <?php echo $dados['formacaoNome']; ?></td>
                         <td><?php echo $dados['funcionarioTelefone']; ?></td>
                         <td><?php echo $dados['funcionarioEmail']; ?></td>
-                        <td><center><a class="btn-sm btn-info" id="editar" name="editar" href="#"><i class="fas fa-pencil-alt"></a></i>
-                         <a onclick="confirma(<?php echo $dados['funcionarioId'];?>);" class="btn-sm btn-danger" id="delete" name="delete" href="#"><i class='fas fa-eraser'></i></a></center></td>
+                        <td><center>
+                                <a class="btn-sm btn-outline-warning" href="historicoFormandos.php?id=<?php echo $dados['funcionarioId'];?>"><i class="fa fa-history"></i></a>
+                                <a title="Editar" class="btn-sm btn-info" id="editar" name="editar" href="#"><i class="fas fa-pencil-alt"></a></i>
+                         <a title="Eliminar" onclick="confirma(<?php echo $dados['funcionarioId'];?>);" class="btn-sm btn-danger" id="delete" name="delete" href="#"><i class='fas fa-eraser'></i></a></center></td>
                     </tbody>
                     <?php } ?>
                   </table>

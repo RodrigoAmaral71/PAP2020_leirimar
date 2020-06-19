@@ -45,7 +45,7 @@ drawTop(ADMIN_FORMADORES);
                         <th>Formação</th>
                         <th>Telefone</th>
                         <th>Email</th>
-                        <th><center><a class="btn-sm btn-success" href="adicionarFormador.php"><i class="fa fa-plus"></i></a></center></th>
+                        <th><center><a title="Adicionar" class="btn-sm btn-success" href="adicionarFormador.php"><i class="fa fa-plus"></i></a></center></th>
                       </tr>
                     </thead>
                       <?php
@@ -60,8 +60,9 @@ drawTop(ADMIN_FORMADORES);
                           <td><?php echo $dados['funcionarioTelefone']; ?></td>
                           <td><?php echo $dados['funcionarioEmail']; ?></td>
                           <td><center>
-                                  <a class="btn-sm btn-info" id="editar" name="editar" href="#"><i class="fas fa-pencil-alt"></a></i>
-                                  <a onclick="confirma(<?php echo $dados['funcionarioId'];?>,<?php echo $dados['formacaoId'];?>);" class="btn-sm btn-danger" id="delete" name="delete" href="#"><i class='fas fa-eraser'></i></a></center></td>
+                                  <a class="btn-sm btn-outline-warning" href="historicoFormadores.php?id=<?php echo $dados['funcionarioId'];?>"><i class="fa fa-history"></i></a>
+                                  <a title="Editar" class="btn-sm btn-info" id="editar" name="editar" href="#"><i class="fas fa-pencil-alt"></a></i>
+                                  <a title="Eliminar" onclick="confirma(<?php echo $dados['funcionarioId'];?>,<?php echo $dados['formacaoId'];?>);" class="btn-sm btn-danger" id="delete" name="delete" href="#"><i class='fas fa-eraser'></i></a></center></td>
                           </tbody>
                       <?php } ?>
                   </table>

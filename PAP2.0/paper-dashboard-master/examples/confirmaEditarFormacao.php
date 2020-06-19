@@ -1,6 +1,6 @@
 <?php
-$nome=addslashes($_POST['nome']);
 $id=intval($_POST['id']);
+$nome=addslashes($_POST['nome']);
 $descricao=addslashes($_POST['descricao']);
 $dataInicio=addslashes($_POST['dataInicio']);
 $dataFim=addslashes($_POST['dataFim']);
@@ -14,6 +14,6 @@ $ano=addslashes($_POST['anoletivo']);
 $con=mysqli_connect("localhost", "root", "", "pap2020formacao");
 $sql="UPDATE formacoes SET formacaoNome='".$nome."', formacaoDescricao='".$descricao."', formacaoDataInicio='".$dataInicio."', formacaoDataFim='".$dataFim."', formacaoHoras='".$horas."', formacaoCreditos='".$creditos."', formacaoLocal='".$local."', formacaoEstado='".$estado."', formacaoPublicoAlvo='".$publico."', formacaoAnoLectivoId='".$ano."' where formacaoId=".$id;
 mysqli_query($con,$sql);
-
-header('location: formacoes.php');
+echo mysqli_error($con);
+//header('location: formacoes.php');
 ?>

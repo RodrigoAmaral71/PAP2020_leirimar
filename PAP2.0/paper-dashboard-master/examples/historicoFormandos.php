@@ -14,7 +14,7 @@ Coded by www.creative-tim.com
 -->
 <?php
 include_once("include/body.inc.php");
-drawTop(ADMIN_PESSOAS);
+drawTop(ADMIN_FORMANDOS);
 ?>
 
   <div class="wrapper ">
@@ -67,7 +67,7 @@ drawTop(ADMIN_PESSOAS);
             </div>
               <div class="card ">
                   <div class="card-header ">
-                      <h5 class="card-title">Histórico</h5>
+                      <h5 class="card-title">Histórico de Formando</h5>
                   </div>
                   <div class="card-body ">
                       <div class="table-responsive">
@@ -75,7 +75,6 @@ drawTop(ADMIN_PESSOAS);
                               <thead class=" text-primary">
                                   <th>id</th>
                                   <th>Formação</th>
-                                  <th>Papel</th>
                                   <th>Créditos Ganhos</th>
                                   <th>Horas</th>
                                   <th>Data de Início</th>
@@ -85,14 +84,13 @@ drawTop(ADMIN_PESSOAS);
                               <tbody>
                               <?php
                               $id=intval($_GET['id']);
-                              $sql=("SELECT * FROM funcionarios INNER JOIN formacaoinscritos ON funcionarioId=formacaoInscritoFuncionarioId INNER JOIN formacoes ON formacaoInscritoFormacaoId where funcionarioId='".$id."' group by formacaoId");
+                              $sql=("SELECT * FROM funcionarios INNER JOIN formacaoinscritos ON funcionarioId=formacaoInscritoFuncionarioId INNER JOIN formacoes ON formacaoInscritoFormacaoId where funcionarioId='".$id."' and formacaoInscritoPapel='formando' group by formacaoId");
                               $result=mysqli_query($con,$sql);
                               while($dados=mysqli_fetch_array($result)){
                               ?>
                               <tr>
                                   <td><?php echo $dados['formacaoId']; ?></td>
                                   <td><?php echo $dados['formacaoNome']; ?></td>
-                                  <td><?php echo $dados['formacaoInscritoPapel']; ?></td>
                                   <td><?php echo $dados['formacaoCreditos']; ?></td>
                                   <td><?php echo $dados['formacaoHoras']; ?></td>
                                   <td><?php echo $dados['formacaoDataInicio']; ?></td>

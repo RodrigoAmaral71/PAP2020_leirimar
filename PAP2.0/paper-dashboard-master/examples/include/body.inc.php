@@ -199,7 +199,7 @@ function drawTop($menu=VOID){
                 var resNum;
                 // AJAX para ir buscar o nome da formacao
                 $.ajax({
-                    url:"AJAX/AJAXGetNameFuncionario.php",
+                    url:"AJAX/AJAXGetNamePessoa.php",
                     type:"post",
                     data:{
                         id:id
@@ -207,10 +207,10 @@ function drawTop($menu=VOID){
                     success:function (result) {
                         resNum=parseInt(result);
                         if(resNum==1)
-                            alert('Impossível eliminar este funcionário porque tem registos relacionados');
+                            alert('Impossível eliminar esta pessoa porque tem registos relacionados');
 
-                        else if(confirm('De certeza que quer eliminar o funcionário "'+ result +'"?'))
-                            window.location="apagarFuncionario.php?id="+id;
+                        else if(confirm('De certeza que quer eliminar "'+ result +'" da Base de Dados?'))
+                            window.location="apagarPessoa.php?id="+id;
                     }
 
                 });
@@ -231,11 +231,34 @@ function drawTop($menu=VOID){
                         id: id
                     },
                     success: function (result) {
-                        resNum = parseInt(result);
                         if (resNum == 1)
                             alert('Impossível eliminar este formador porque tem registos relacionados');
                         else if (confirm('De certeza que quer eliminar o formador "' + result + '"?'))
                             window.location = "apagarFormador.php?id=" + id;
+                    }
+
+                });
+            }
+            <?php
+            }
+
+            if($menu==ADMIN_TIPOS){
+            ?>
+            function confirma(id) {
+                var resNum;
+                // AJAX para ir buscar o nome da formacao
+                $.ajax({
+                    url: "AJAX/AJAXGetNameTipoPerfil.php",
+                    type: "post",
+                    data: {
+                        id: id
+                    },
+                    success: function (result) {
+                        resNum = parseInt(result);
+                        if (resNum == 1)
+                            alert('Impossível eliminar este tipo de perfil porque tem registos relacionados');
+                        else if (confirm('De certeza que quer eliminar "' + result + '" dos tipos de perfil?'))
+                            window.location = "apagarTipoPerfil.php?id=" + id;
                     }
 
                 });
@@ -262,7 +285,7 @@ function drawTop($menu=VOID){
               <select onchange="changeAnoLectivo(this.value)" id="anoLectivo" name="anoLectivo">
                   <?php
                   $con=mysqli_connect("localhost","root","","pap2020formacao");
-                  $sql="SELECT * FROM anolectivos";
+                  $sql="SELECT * FROM anolectivos order by anoLectivoNome desc";
                   $result=mysqli_query($con,$sql);
                   while($dados=mysqli_fetch_array($result)){
                       ?>

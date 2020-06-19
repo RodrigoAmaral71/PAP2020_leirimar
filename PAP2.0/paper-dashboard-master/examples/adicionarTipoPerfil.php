@@ -14,10 +14,17 @@ Coded by www.creative-tim.com
 -->
 <?php
 include_once("include/body.inc.php");
-drawTop(ADMIN_FORMADORES);
+drawTop(ADMIN_ALETIVOS);
 ?>
+    <style>
+        .preto{
+            color: black;
+            font-family: Arial;
+        }
+    </style>
+</head>
 
-
+<body class="">
   <div class="wrapper ">
 
       <div class="main-panel">
@@ -31,44 +38,17 @@ drawTop(ADMIN_FORMADORES);
           <div class="col-md-12">
             <div class="card ">
               <div class="card-header ">
-                <h5 class="card-title">Adicionar Formador</h5>
+                <h5 class="card-title">Adicionar Novo Tipo de Perfil</h5>
               </div>
                 <hr>
               <div class="card-body ">
-                  <form action="confirmaAdicionarFormador.php" method="post">
+                  <form action="confirmaAdicionarTipoPerfil.php" method="post">
                       <div class="form-group row">
                           <div class="col-md-12">
-                          <select class="form-control" name="funcionario">
-                              <option value="-1">Nome</option>
-                              <?php
-                                $sql="SELECT * FROM funcionarios";
-                                $result=mysqli_query($con,$sql);
-                                while($dados=mysqli_fetch_array($result)){
-                              ?>
-                              <option value="<?php echo $dados['funcionarioId'] ?>"><?php echo $dados['funcionarioNome'] ?></option>
-                              <?php
-                              }
-                              ?>
-                          </select>
+                              <input type="text" class="form-control" placeholder="Nome" id="nome" name="nome" required>
                           </div>
                       </div>
-                      <div class="form-group row">
-                          <div class="col-md-12">
-                              <select class="form-control" name="formacao">
-                                  <option value="-1">Formação</option>
-                                  <?php
-                                  $sql="SELECT * FROM formacoes";
-                                  $result=mysqli_query($con,$sql);
-                                  while($dados=mysqli_fetch_array($result)){
-                                      ?>
-                                      <option value="<?php echo $dados['formacaoId'] ?>"><?php echo $dados['formacaoNome'] ?></option>
-                                  <?php
-                                  }
-                                  ?>
-                              </select>
-                          </div>
-                      </div>
-                      <input type="submit" class="btn btn-success fa fa-plus" value="Inscrever">
+                      <input type="submit" class="btn btn-success fa fa-plus preto" value="Adicionar">
                   </form>
               </div>
             </div>

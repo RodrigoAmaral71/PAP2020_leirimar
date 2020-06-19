@@ -14,7 +14,7 @@ Coded by www.creative-tim.com
 -->
 <?php
 include_once("include/body.inc.php");
-drawTop(ADMIN_FUNCIONARIOS);
+drawTop(ADMIN_PESSOAS);
 ?>
 
     <style>
@@ -40,11 +40,11 @@ drawTop(ADMIN_FUNCIONARIOS);
           <div class="col-md-12">
             <div class="card ">
               <div class="card-header ">
-                <h5 class="card-title">Editar Funcionário</h5>
+                <h5 class="card-title">Editar Pessoa</h5>
               </div>
                 <hr>
               <div class="card-body ">
-                  <form action="confirmaEditarFuncionario.php" method="post">
+                  <form action="confirmaEditarPessoa.php" method="post">
                       <?php
                       $id=intval($_GET['id']);
                       $sql=("SELECT * FROM funcionarios where funcionarioId=$id");
@@ -77,31 +77,37 @@ drawTop(ADMIN_FUNCIONARIOS);
                           <div class="col-md-5">
                               <input type="email" class="form-control" placeholder="Email" id="email" name="email" value="<?php echo $dados['funcionarioEmail'] ?>">
                           </div>
-                          <div class="col-md-2">
+                          <div class="col-md-3">
                               <input type="text" class="form-control" placeholder="Telefone" id="telefone" name="telefone" value="<?php echo $dados['funcionarioTelefone'] ?>" >
                           </div>
-                          <div class="col-md-5">
-                              <select class="form-control bordas" id="tipo" name="tipo" required>
-                                  <option value="-1">Tipo de Funcionário</option>
-                                  <option value="1">professor</option>
-                                  <option value="2">funcionario</option>
-                                  <option value="3">secretaria</option>
-                                  <option value="4">administracao</option>
-                              </select>
+                          <div class="col-md-4">
+                              <input type="text" class="form-control" placeholder="NIF" id="nif" name="nif" value="<?php echo $dados['funcionarioNIF'] ?>">
                           </div>
                       </div>
                       <div class="form-group row">
-                          <div class="col-md-3">
-                              <input type="text" class="form-control" placeholder="NIF" id="nif" name="nif" value="<?php echo $dados['funcionarioNIF'] ?>">
-                          </div>
-                          <div class="col-md-3">
+
+                          <div class="col-md-2">
                               <input type="text" class="form-control" placeholder="IBAN" id="iban" name="iban" value="<?php echo $dados['funcionarioIBAN'] ?>">
                           </div>
-                          <div class="col-md-3">
+                          <div class="col-md-2">
                               <input type="text" class="form-control" placeholder="Escalão" id="escalao" name="escalao" value="<?php echo $dados['funcionarioEscalao'] ?>">
                           </div>
                           <div class="col-md-3">
-                              <input type="text" class="form-control" placeholder="Grupo Disciplinar" id="gd" name="gd" value="<?php echo $dados['funcionarioGrupoDisciplinar'] ?>">
+                              <input type="text" class="form-control" placeholder="Grupo Disciplinar" id="gDisciplinar" name="gDisciplinar" value="<?php echo $dados['funcionarioGrupoDisciplinar'] ?>">
+                          </div>
+                          <div class="col-md-5">
+                              <select class="form-control" name="tipo" id="tipo">
+                                  <option value="-1">Tipo de Perfil</option>
+                                  <?php
+                                  $sql="SELECT * FROM funcionariotipos";
+                                  $result=mysqli_query($con,$sql);
+                                  while($dados=mysqli_fetch_array($result)){
+                                      ?>
+                                      <option value="<?php echo $dados['funcionarioTipoId'] ?>"><?php echo $dados['funcionarioTipoNome']?></option>
+                                      <?php
+                                  }
+                                  ?>
+                              </select>
                           </div>
                       </div>
                       <input type="submit" class="btn btn-success fa fa-plus preto" value="Concluído">

@@ -70,10 +70,10 @@ drawTop(VOID);
                   </div>
                   <div class="col-7 col-md-8">
                     <div class="numbers">
-                      <p class="card-category">Formandos</p>
+                      <p class="card-category">Formandos Inscritos</p>
                       <p class="card-title">
                           <?php
-                          $sql="SELECT count(*) as nFormandos FROM formacaoInscritos WHERE formacaoInscritoPapel='formando'";
+                          $sql="SELECT count(*) as nFormandos FROM formacaoInscritos WHERE formacaoInscritoPapel='formando' AND formacaoInscritoEstado='inscrito'";
                           $result=mysqli_query($con,$sql);
                           $dados=mysqli_fetch_array($result);
                           echo $dados['nFormandos'];
@@ -138,9 +138,9 @@ drawTop(VOID);
                   </div>
                   <div class="col-7 col-md-8">
                     <div class="numbers">
-                      <p class="card-category">Formações</p>
+                      <p class="card-category">Formações Ativas</p>
                       <p class="card-title"><?php
-                          $sql="SELECT count(*) as nFormacoes FROM formacoes";
+                          $sql="SELECT count(*) as nFormacoes FROM formacoes where formacaoEstado='iniciada'";
                           $result=mysqli_query($con,$sql);
                           $dados=mysqli_fetch_array($result);
                           echo $dados['nFormacoes'];
@@ -227,8 +227,8 @@ drawTop(VOID);
                                   <td><?php echo $dados['funcionarioId']; ?></td>
                                   <td><?php echo $dados['funcionarioNome']; ?></td>
                                   <td><?php echo $dados['formacaoNome']; ?></td>
-                                  <td><center><a onclick="confirmaInscrito(<?php echo $dados['funcionarioId'];?>,<?php echo $dados['formacaoId'];?>);" class="btn-sm btn-success"><i class="fa fa-check"></i></a>
-                                          <a onclick="cancelaInscrito(<?php echo $dados['funcionarioId'];?>,<?php echo $dados['formacaoId'];?>);" class="btn-sm btn-danger" href="#"><i class="fa fa-remove"></i></a></center></td>
+                                  <td><center><a title="Editar" onclick="confirmaInscrito(<?php echo $dados['funcionarioId'];?>,<?php echo $dados['formacaoId'];?>);" class="btn-sm btn-success" href="#"><i class="fa fa-check"></i></a>
+                                          <a title="Eliminar" onclick="cancelaInscrito(<?php echo $dados['funcionarioId'];?>,<?php echo $dados['formacaoId'];?>);" class="btn-sm btn-danger" href="#"><i class="fa fa-remove"></i></a></center></td>
                                   <?PHP
                                   }
                                   ?>

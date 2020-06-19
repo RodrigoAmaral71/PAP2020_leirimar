@@ -14,13 +14,18 @@ Coded by www.creative-tim.com
 -->
 <?php
 include_once("include/body.inc.php");
-drawTop(ADMIN_FORMADORES);
+drawTop(ADMIN_PESSOAS);
 ?>
-
+    <style>
+        .preto{
+            color: black;
+            font-family: Arial;
+        }
+    </style>
 
   <div class="wrapper ">
 
-      <div class="main-panel">
+    <div class="main-panel">
 
       <!-- End Navbar -->
       <!-- FORMADORES -->
@@ -31,44 +36,69 @@ drawTop(ADMIN_FORMADORES);
           <div class="col-md-12">
             <div class="card ">
               <div class="card-header ">
-                <h5 class="card-title">Adicionar Formador</h5>
+                <h5 class="card-title">Adicionar Nova Pessoa</h5>
               </div>
                 <hr>
               <div class="card-body ">
-                  <form action="confirmaAdicionarFormador.php" method="post">
+                  <form action="confirmaAdicionarPessoa.php" method="post">
                       <div class="form-group row">
                           <div class="col-md-12">
-                          <select class="form-control" name="funcionario">
-                              <option value="-1">Nome</option>
-                              <?php
-                                $sql="SELECT * FROM funcionarios";
-                                $result=mysqli_query($con,$sql);
-                                while($dados=mysqli_fetch_array($result)){
-                              ?>
-                              <option value="<?php echo $dados['funcionarioId'] ?>"><?php echo $dados['funcionarioNome'] ?></option>
-                              <?php
-                              }
-                              ?>
-                          </select>
+                              <input type="text" class="form-control" placeholder="Nome" id="nome" name="nome" required>
                           </div>
                       </div>
                       <div class="form-group row">
                           <div class="col-md-12">
-                              <select class="form-control" name="formacao">
-                                  <option value="-1">Formação</option>
+                              <input type="text" class="form-control" placeholder="Morada" id="morada" name="morada" required>
+                          </div>
+                      </div>
+                      <div class="form-group row">
+                          <div class="col-md-1">
+                              <input type="text" class="form-control" placeholder="Código" id="cp1" name="cp1" required>
+                          </div>
+                          <div class="col-md-1">
+                              <input type="text" class="form-control" placeholder="Postal" id="cp2" name="cp2" required>
+                          </div>
+                          <div class="col-md-10">
+                              <input type="text" class="form-control" placeholder="Localidade" id="localidade" name="localidade" required>
+                          </div>
+                      </div>
+                      <div class="form-group row">
+                          <div class="col-md-6">
+                              <input type="email" class="form-control" placeholder="Email" id="email" name="email" required>
+                          </div>
+                          <div class="col-md-3">
+                              <input type="text" class="form-control" placeholder="Telefone" id="telefone" name="telefone" required>
+                          </div>
+                          <div class="col-md-3">
+                              <input type="text" class="form-control" placeholder="NIF" id="nif" name="nif" required>
+                          </div>
+                      </div>
+                      <div class="form-group row">
+                          <div class="col-md-3">
+                              <input type="text" class="form-control" placeholder="IBAN" id="iban" name="iban">
+                          </div>
+                          <div class="col-md-3">
+                              <input type="text" class="form-control" placeholder="Escalao" id="escalao" name="escalao">
+                          </div>
+                          <div class="col-md-3">
+                              <input type="text" class="form-control" placeholder="Grupo Disciplinar" id="gDisciplinar" name="gDisciplinar">
+                          </div>
+                          <div class="col-md-3">
+                              <select class="form-control" name="tipo" id="tipo">
+                                  <option value="-1">Tipo de Perfil</option>
                                   <?php
-                                  $sql="SELECT * FROM formacoes";
+                                  $sql="SELECT * FROM funcionariotipos";
                                   $result=mysqli_query($con,$sql);
                                   while($dados=mysqli_fetch_array($result)){
                                       ?>
-                                      <option value="<?php echo $dados['formacaoId'] ?>"><?php echo $dados['formacaoNome'] ?></option>
-                                  <?php
+                                      <option value="<?php echo $dados['funcionarioTipoId'] ?>"><?php echo $dados['funcionarioTipoNome']?></option>
+                                      <?php
                                   }
                                   ?>
                               </select>
                           </div>
                       </div>
-                      <input type="submit" class="btn btn-success fa fa-plus" value="Inscrever">
+                      <input type="submit" class="btn btn-success fa fa-plus preto" value="Adicionar">
                   </form>
               </div>
             </div>

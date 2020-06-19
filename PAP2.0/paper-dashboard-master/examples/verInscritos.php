@@ -14,7 +14,7 @@ Coded by www.creative-tim.com
 -->
 <?php
 include_once("include/body.inc.php");
-drawTop(ADMIN_PESSOAS);
+drawTop(ADMIN_FORMACOES);
 ?>
 
 
@@ -28,7 +28,7 @@ drawTop(ADMIN_PESSOAS);
           <div class="col-md-12">
             <div class="card">
               <div class="card-header">
-                    <h4 class="card-title">Lista de pessoas</h4>
+                    <h4 class="card-title">Lista de Inscritos</h4>
               </div>
               <div class="card-body">
                 <div class="table-responsive">
@@ -37,16 +37,16 @@ drawTop(ADMIN_PESSOAS);
                         <tr>
                             <th>id</th>
                             <th>Nome</th>
-                            <th>Grupo Disciplinar</th>
                             <th>Código Postal</th>
                             <th>Telefone</th>
                             <th>Email</th>
                             <th>NIF</th>
-                            <th><center><a class="btn-sm btn-success" href="adicionarPessoas.php"><i class="fa fa-plus"></i></a></center></th>
+                            <th><center><a class="btn-sm btn-success" href="adicionarPessoa.php"><i class="fa fa-plus"></i></a></center></th>
                         </tr>
                         </thead>
                         <?php
-                        $sql=("SELECT * FROM funcionarios INNER JOIN funcionariotipos ON funcionarioFuncionarioTipoId=funcionarioTipoId ORDER BY funcionarioId ASC");
+                        $id=$_GET['id'];
+                        $sql=("SELECT * FROM funcionarios INNER JOIN funcionariotipos ON funcionarioFuncionarioTipoId=funcionarioTipoId INNER JOIN formacaoinscritos ON funcionarioId=formacaoInscritoFuncionarioId INNER JOIN formacoes ON formacaoId=formacaoInscritoFormacaoId WHERE formacaoInscritoFormacaoId='".$id."' ORDER BY funcionarioId ASC");
                         $result=mysqli_query($con,$sql);
                         while($dados=mysqli_fetch_array($result)){
                         ?>
@@ -54,7 +54,6 @@ drawTop(ADMIN_PESSOAS);
                         <tr>
                             <td><?php echo $dados['funcionarioId']; ?></td>
                             <td><?php echo $dados['funcionarioNome']; ?></td>
-                            <td><?php echo $dados['funcionarioTipoNome']; ?></td>
                             <td><?php echo $dados['funcionarioCodigoPostal1']; ?> - <?php echo $dados['funcionarioCodigoPostal2']; ?></td>
                             <td><?php echo $dados['funcionarioTelefone']; ?></td>
                             <td><?php echo $dados['funcionarioEmail']; ?></td>

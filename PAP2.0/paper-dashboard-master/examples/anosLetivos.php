@@ -40,7 +40,7 @@ Coded by www.creative-tim.com
                         <th>id</th>
                         <th>Ano</th>
                         <th>Estado</th>
-                        <th><center><a class="btn-sm btn-success" href="adicionarAnoLetivo.php"><i class="fa fa-plus"></i></a></center></th>
+                        <th><center><a title="Adicionar" class="btn-sm btn-success" href="adicionarAnoLetivo.php"><i class="fa fa-plus"></i></a></center></th>
                       </tr>
                     </thead>
 
@@ -54,8 +54,8 @@ Coded by www.creative-tim.com
                           <td><?php echo $dados['anoLectivoNome']; ?></td>
                           <td><?php echo $dados['anoLectivoEstado']; ?></td>
                       <td><center>
-                      <a class="btn-sm btn-info" id="editar" name="editar" href="editarAnoLetivo.php?id=<?php echo $dados['anoLectivoId'];?>"><i class="fas fa-pencil-alt"></i></a> <!-- EDITAR -->
-                       <a onclick="confirma(<?php echo $dados['anoLectivoId'];?>);" class="btn-sm btn-danger" id="delete" name="delete" href="#"><i class='fas fa-eraser'></i></a>  <!-- APAGAR -->
+                      <a title="Editar" class="btn-sm btn-info" id="editar" name="editar" href="editarAnoLetivo.php?id=<?php echo $dados['anoLectivoId'];?>"><i class="fas fa-pencil-alt"></i></a> <!-- EDITAR -->
+                       <a title="Eliminar" onclick="confirma(<?php echo $dados['anoLectivoId'];?>);" class="btn-sm btn-danger" id="delete" name="delete" href="#"><i class='fas fa-eraser'></i></a>  <!-- APAGAR -->
                           </center></td>
                       </tbody>
                       <?php } ?>
