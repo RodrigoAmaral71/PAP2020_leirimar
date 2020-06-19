@@ -14,7 +14,8 @@ Coded by www.creative-tim.com
 -->
 <?php
 include_once("include/body.inc.php");
-drawTop(ADMIN_PESSOAS);
+$erro=isset($_GET['err']);
+drawTop(ADMIN_PESSOAS,$erro);
 ?>
 
 

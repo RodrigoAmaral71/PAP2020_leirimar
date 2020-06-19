@@ -46,21 +46,24 @@ drawTop(ADMIN_FORMACOES);
                       <th><center><a title="Adicionar" class="btn-sm btn-success" href="adicionarFormacao.php"><i class="fa fa-plus"></i></a></center></th>
                     </thead>
                       <?php
-                     $sql="select t1.*, count(t2.formacaoInscritoFuncionarioId) as nInscritos
-                            from
-                            (
-                            SELECT *  FROM formacoes left JOIN anolectivos ON formacaoAnoLectivoId=anoLectivoId where anoLectivoEstado='activo'
-                            )
-                            as t1
-                            left join 
-                            (
-                            SELECT formacaoInscritoFormacaoId,formacaoInscritoFuncionarioId
-                            FROM formacaoinscritos  where formacaoInscritoPapel='formando' and formacaoInscritoEstado='inscrito' 
-                            )
-                            as t2
-                            on t1.formacaoId=t2.formacaoInscritoFormacaoId
-                            group by t1.formacaoId 
-                            order by t1.formacaoId asc  ";
+                     $sql="select t1.*, count(t2.formacaoInscritoFuncionarioId) as nInscritos 
+                        from 
+                        ( 
+                        select *
+                        from
+                        (SELECT formacoes.* 
+                        FROM formacoes inner JOIN anolectivos ON formacaoAnoLectivoId=anoLectivoId 
+                        where anoLectivoEstado='activo') as t01
+                        left join 
+                        (select formacaoInscritoFormacaoId, funcionarioNome 
+                        from formacaoinscritos inner join funcionarios on funcionarioId=formacaoInscritoFuncionarioId
+                        where formacaoInscritoPapel='formador' ) as t02
+                        on formacaoId = formacaoInscritoFormacaoId
+                        )as t1 
+                        left join 
+                        ( SELECT formacaoInscritoFormacaoId,formacaoInscritoFuncionarioId 
+                        FROM formacaoinscritos where formacaoInscritoPapel='formando' and formacaoInscritoEstado='inscrito' ) as t2 on t1.formacaoId=t2.formacaoInscritoFormacaoId 
+                        group by t1.formacaoId order by t1.formacaoId asc ";
 
                       $result=mysqli_query($con,$sql);
                       while($dados=mysqli_fetch_array($result)){
@@ -68,7 +71,8 @@ drawTop(ADMIN_FORMACOES);
                     <tbody>
                       <td><?php echo $dados['formacaoId']; ?></td>
                       <td><?php echo $dados['formacaoNome']; ?></td>
-                      <td><?php// echo $dados['funcionarioNome']; ?></td>
+                      <td><?php
+                          echo $dados['funcionarioNome']==""?"a designar":$dados['funcionarioNome']; ?></td>
                       <td><?php echo $dados['formacaoHoras']; ?></td>
                       <td>&nbsp</td>
                       <td><?php echo $dados['formacaoDataInicio']; ?></td>
@@ -80,8 +84,8 @@ drawTop(ADMIN_FORMACOES);
                               <?php
                               if($dados['nInscritos']>0) {
                                   ?>
-                                  <a id="users" class="btn-sm btn-warning"
-                                     href="verInscritos.php?id=<?php echo $dados['formacaoId'] ?>" title="<?php echo $dados['nInscritos'] ?> inscritos"><i class="fas fa-user-alt"></i></a>
+
+                                  <a style="padding: 5px 6px" id="users" class="btn-sm btn-warning" href="verInscritos.php?id=<?php echo $dados['formacaoId'] ?>" title="<?php echo $dados['nInscritos'] ?> inscritos"><span class=" badge badge-secondary "><?php echo $dados['nInscritos']?></span>    <i class="fas fa-user-alt"></i></a>
                                   <?php
                               }else {
                                   ?>

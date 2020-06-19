@@ -97,13 +97,21 @@ drawTop(ADMIN_PESSOAS);
                           </div>
                           <div class="col-md-5">
                               <select class="form-control" name="tipo" id="tipo">
-                                  <option value="-1">Tipo de Perfil</option>
+                                  <option value="-1">Tipo sde Perfil</option>
                                   <?php
                                   $sql="SELECT * FROM funcionariotipos";
-                                  $result=mysqli_query($con,$sql);
-                                  while($dados=mysqli_fetch_array($result)){
+                                  $resultTipos=mysqli_query($con,$sql);
+                                  while($dadosTipos=mysqli_fetch_array($resultTipos)){
                                       ?>
-                                      <option value="<?php echo $dados['funcionarioTipoId'] ?>"><?php echo $dados['funcionarioTipoNome']?></option>
+                                      <option value="<?php echo $dadosTipos['funcionarioTipoId'] ?>"
+                                      <?php
+                                        if($dados['funcionarioFuncionarioTipoId']==$dadosTipos['funcionarioTipoId'])
+                                            echo " selected ";
+                                      ?>
+                                      >
+
+
+                                          <?php echo $dadosTipos['funcionarioTipoNome']?></option>
                                       <?php
                                   }
                                   ?>
