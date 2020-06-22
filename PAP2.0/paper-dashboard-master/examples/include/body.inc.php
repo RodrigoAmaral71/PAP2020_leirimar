@@ -1,7 +1,7 @@
 <?php
 include_once ("config.inc.php");
 $con=mysqli_connect(HOST,USER,PWD,DBASE) or die ('Não foi possível conectar');
-function drawTop($menu=VOID){
+function drawTop($menu=VOID,$erro=false){
 ?>
     <!DOCTYPE html>
     <html lang="en">
@@ -263,14 +263,24 @@ function drawTop($menu=VOID){
 
                 });
             }
+
             <?php
             }
+
 ?>
+            function erro(err){
+                if(err) {
+                    $('#modalTitulo').html('Erro de Base de dados');
+                    $('#modalMensagem').html('Email já existente na Base de dados');
+                    $('#mensagem').modal('show');
+                }
+
+            }
         </script>
 
 
     </head>
-    <body>
+    <body onload="erro(<?php echo $erro?>)">
     <div class="sidebar" data-color="white" data-active-color="danger">
       <div class="logo">
         <a  class="simple-text logo-mini">
@@ -407,7 +417,24 @@ function drawBottom(){
     <!--Start second row of columns-->
 
     <!-- /container -->
-
+    <div class="modal fade" tabindex="-1" role="dialog" id="mensagem">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalTitulo"></h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body" >
+                    <p id="modalMensagem"></p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary">Ok</button>
+                </div>
+            </div>
+        </div>
+    </div>
     </body>
 </html>
 <?php

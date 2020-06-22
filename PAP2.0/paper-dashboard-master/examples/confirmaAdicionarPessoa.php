@@ -15,7 +15,8 @@ $tipo= addslashes($_POST['tipo']);
 $con=mysqli_connect('localhost', 'root','','pap2020formacao');
 $sql="INSERT INTO funcionarios VALUES (0, '".$nome."','".$email."','".$telefone."','".$morada."','".$codigoPostal1."','".$codigoPostal2."','".$localidade."','".$nif."','".$iban."','".$escalao."','".$gDisciplinar."','".$tipo."')";
 mysqli_query($con,$sql);
-
-echo mysqli_error($con);
-//header('location: pessoas.php');
+if(mysqli_errno($con)==1062)
+    header('location: pessoas.php?err=1');
+else
+    header('location: pessoas.php');
 ?>
