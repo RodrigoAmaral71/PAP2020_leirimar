@@ -82,17 +82,16 @@ drawTop(ADMIN_FORMADORES);
                               </thead>
                               <tbody>
                               <?php
-                              $id=intval($_GET['id']);
-                              $sql=("SELECT * FROM funcionarios INNER JOIN formacaoinscritos ON funcionarioId=formacaoInscritoFuncionarioId INNER JOIN formacoes ON formacaoInscritoFormacaoId where funcionarioId='".$id."' and formacaoInscritoPapel='formador' group by formacaoId");
-                              $result=mysqli_query($con,$sql);
-                              while($dados=mysqli_fetch_array($result)){
+                              $sql2=("SELECT * FROM funcionarios INNER JOIN formacaoinscritos ON funcionarioId=formacaoInscritoFuncionarioId INNER JOIN formacoes ON formacaoInscritoFormacaoId where funcionarioId='".$id."' and formacaoInscritoPapel='formador' group by formacaoId");
+                              $result2=mysqli_query($con,$sql2);
+                              while($dados2=mysqli_fetch_array($result2)){
                               ?>
                               <tr>
-                                  <td><?php echo $dados['formacaoId']; ?></td>
-                                  <td><?php echo $dados['formacaoNome']; ?></td>
-                                  <td><?php echo $dados['formacaoHoras']; ?></td>
-                                  <td><?php echo $dados['formacaoDataInicio']; ?></td>
-                                  <td><?php echo $dados['formacaoDataFim']; ?></td>
+                                  <td><?php echo $dados2['formacaoId']; ?></td>
+                                  <td><?php echo $dados2['formacaoNome']; ?></td>
+                                  <td><?php echo $dados2['formacaoHoras']; ?></td>
+                                  <td><?php echo $dados2['formacaoDataInicio']; ?></td>
+                                  <td><?php echo $dados2['formacaoDataFim']; ?></td>
                                   <?php } ?>
                               </tr>
                               </tbody>
