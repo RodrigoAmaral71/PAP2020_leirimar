@@ -2,29 +2,29 @@
 include_once ("config.inc.php");
 $con=mysqli_connect(HOST,USER,PWD,DBASE) or die ('Não foi possível conectar');
 function drawTop($menu=VOID,$erro=false){
-?>
+    ?>
     <!DOCTYPE html>
     <html lang="en">
 
     <head>
-    <meta charset="utf-8" />
-    <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png">
-    <link rel="icon" type="image/png" href="../assets/img/favicon.png">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-    <title>
-        BACKOFFICE
-    </title>
-    <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
-    <!--     Fonts and icons     -->
-    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700,200" rel="stylesheet" />
-    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
-    <!-- CSS Files -->
-    <link href="../assets/css/bootstrap.min.css" rel="stylesheet" />
-    <link href="../assets/css/paper-dashboard.css?v=2.0.1" rel="stylesheet" />
-    <!-- CSS Just for demo purpose, don't include it in your project -->
-    <link href="../assets/demo/demo.css" rel="stylesheet" />
+        <meta charset="utf-8" />
+        <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png">
+        <link rel="icon" type="image/png" href="../assets/img/favicon.png">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+        <title>
+            BACKOFFICE
+        </title>
+        <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
+        <!--     Fonts and icons     -->
+        <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700,200" rel="stylesheet" />
+        <link href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
+        <!-- CSS Files -->
+        <link href="../assets/css/bootstrap.min.css" rel="stylesheet" />
+        <link href="../assets/css/paper-dashboard.css?v=2.0.1" rel="stylesheet" />
+        <!-- CSS Just for demo purpose, don't include it in your project -->
+        <link href="../assets/demo/demo.css" rel="stylesheet" />
 
-    <script src='https://kit.fontawesome.com/a076d05399.js'></script>
+        <script src='https://kit.fontawesome.com/a076d05399.js'></script>
 
         <!--   Core JS Files   -->
         <script src="../assets/js/core/jquery.min.js"></script>
@@ -53,22 +53,22 @@ function drawTop($menu=VOID,$erro=false){
                         delete:false
                     },
                     success:function (result) {
-                       if(confirm(result))
-                           {
-                               $.ajax({
-                                   url: "AJAX/AJAXConfirmaInscricao.php",
-                                   type: "post",
-                                   data: {
-                                       fuid: id,
-                                       fid: formacao
-                                   },
-                                   success: function (result) {
+                        if(confirm(result))
+                        {
+                            $.ajax({
+                                url: "AJAX/AJAXConfirmaInscricao.php",
+                                type: "post",
+                                data: {
+                                    fuid: id,
+                                    fid: formacao
+                                },
+                                success: function (result) {
 
-                                       alert('Inscrição efetuada com sucesso');
-                                       location.reload();
-                                   }
-                               })
-                           }
+                                    alert('Inscrição efetuada com sucesso');
+                                    location.reload();
+                                }
+                            })
+                        }
                     }
 
                 });
@@ -85,22 +85,22 @@ function drawTop($menu=VOID,$erro=false){
                         delete:true
                     },
                     success:function (result) {
-                       if(confirm(result))
-                           {
-                               $.ajax({
-                                   url: "AJAX/AJAXEliminaInscricao.php",
-                                   type: "post",
-                                   data: {
-                                       fuid: id,
-                                       fid: formacao
-                                   },
-                                   success: function (result) {
+                        if(confirm(result))
+                        {
+                            $.ajax({
+                                url: "AJAX/AJAXEliminaInscricao.php",
+                                type: "post",
+                                data: {
+                                    fuid: id,
+                                    fid: formacao
+                                },
+                                success: function (result) {
 
-                                       alert('Inscrição eliminada com sucesso');
-                                       location.reload();
-                                   }
-                               })
-                           }
+                                    alert('Inscrição eliminada com sucesso');
+                                    location.reload();
+                                }
+                            })
+                        }
                     }
 
                 });
@@ -118,9 +118,9 @@ function drawTop($menu=VOID,$erro=false){
                 })
             }
 
-        <?php
-         if($menu==ADMIN_ALETIVOS){
-        ?>
+            <?php
+            if($menu==ADMIN_ALETIVOS){
+            ?>
             function confirma(id) {
                 var resNum;
                 // AJAX para ir buscar o nome da formacao
@@ -132,64 +132,71 @@ function drawTop($menu=VOID,$erro=false){
                     },
                     success: function (result) {
                         resNum = parseInt(result);
-                        if (resNum == 1)
-                            alert('Impossível eliminar este ano letivo porque tem registos relacionados');
+                        if (resNum == 1){
+                            $('#modalTitulo').html('Erro de Base de dados');
+                            $('#modalMensagem').html('Impossível eliminar este ano letivo porque tem registos relacionados');
+                            $('#mensagem').modal('show');
+                        }
                         else if (confirm('De certeza que quer eliminar o ano letivo "' + result + '"?'))
                             window.location = "apagarAnoLetivo.php?id=" + id;
                     }
 
                 });
             }
-        <?php
+            <?php
             }
 
-                if($menu==ADMIN_ESCOLAS){
-                ?>
-                function confirma(id) {
-                    var resNum;
-                    // AJAX para ir buscar o nome da formacao
-                    $.ajax({
-                        url:"AJAX/AJAXGetNameEscola.php",
-                        type:"post",
-                        data:{
-                            id:id
-                        },
-                        success:function (result) {
-                            resNum=parseInt(result);
-                            if(resNum==1)
-                                alert('Impossível eliminar esta escola porque tem registos relacionados');
-
-                            else if(confirm('De certeza que quer eliminar a escola "'+ result +'"?'))
-                                window.location="apagarEscola.php?id="+id;
+            if($menu==ADMIN_ESCOLAS){
+            ?>
+            function confirma(id) {
+                var resNum;
+                // AJAX para ir buscar o nome da formacao
+                $.ajax({
+                    url:"AJAX/AJAXGetNameEscola.php",
+                    type:"post",
+                    data:{
+                        id:id
+                    },
+                    success:function (result) {
+                        resNum=parseInt(result);
+                        if(resNum==1){
+                            $('#modalTitulo').html('Erro de Base de dados');
+                            $('#modalMensagem').html('Impossível eliminar esta escola porque tem registos relacionados');
+                            $('#mensagem').modal('show');
                         }
-
-                    });
-                }
-                    <?php
+                        else if(confirm('De certeza que quer eliminar a escola "'+ result +'"?'))
+                            window.location="apagarEscola.php?id="+id;
                     }
 
-                if($menu==ADMIN_FORMACOES){
-                                ?>
-                function confirma(id) {
-                    var resNum;
-                    // AJAX para ir buscar o nome da formacao
-                    $.ajax({
-                        url:"AJAX/AJAXGetNameFormacao.php",
-                        type:"post",
-                        data:{
-                            id:id
-                        },
-                        success:function (result) {
-                            resNum=parseInt(result);
-                            if(resNum==1)
-                                alert('Impossível eliminar esta formação porque tem registos relacionados');
+                });
+            }
+            <?php
+            }
 
-                            else if(confirm('De certeza que quer eliminar a formação "'+ result +'"?'))
-                                window.location="apagarFormacao.php?id="+id;
+            if($menu==ADMIN_FORMACOES){
+            ?>
+            function confirma(id) {
+                var resNum;
+                // AJAX para ir buscar o nome da formacao
+                $.ajax({
+                    url:"AJAX/AJAXGetNameFormacao.php",
+                    type:"post",
+                    data:{
+                        id:id
+                    },
+                    success:function (result) {
+                        resNum=parseInt(result);
+                        if(resNum==1){
+                            $('#modalTitulo').html('Erro de Base de dados');
+                            $('#modalMensagem').html('Impossível eliminar esta formação porque tem registos relacionados');
+                            $('#mensagem').modal('show');
                         }
+                        else if(confirm('De certeza que quer eliminar a formação "'+ result +'"?'))
+                            window.location="apagarFormacao.php?id="+id;
+                    }
 
-                    });
-                }
+                });
+            }
             <?php
             }
 
@@ -206,9 +213,11 @@ function drawTop($menu=VOID,$erro=false){
                     },
                     success:function (result) {
                         resNum=parseInt(result);
-                        if(resNum==1)
-                            alert('Impossível eliminar esta pessoa porque tem registos relacionados');
-
+                        if(resNum==1){
+                            $('#modalTitulo').html('Erro de Base de dados');
+                            $('#modalMensagem').html('Impossível eliminar esta pessoa porque tem registos relacionados');
+                            $('#mensagem').modal('show');
+                        }
                         else if(confirm('De certeza que quer eliminar "'+ result +'" da Base de Dados?'))
                             window.location="apagarPessoa.php?id="+id;
                     }
@@ -232,7 +241,11 @@ function drawTop($menu=VOID,$erro=false){
                     },
                     success: function (result) {
                         if (resNum == 1)
-                            alert('Impossível eliminar este formador porque tem registos relacionados');
+                        {
+                            $('#modalTitulo').html('Erro de Base de dados');
+                            $('#modalMensagem').html('Impossível eliminar este formador porque tem registos relacionados');
+                            $('#mensagem').modal('show');
+                        }
                         else if (confirm('De certeza que quer eliminar o formador "' + result + '"?'))
                             window.location = "apagarFormador.php?id=" + id;
                     }
@@ -255,8 +268,11 @@ function drawTop($menu=VOID,$erro=false){
                     },
                     success: function (result) {
                         resNum = parseInt(result);
-                        if (resNum == 1)
-                            alert('Impossível eliminar este tipo de perfil porque tem registos relacionados');
+                        if (resNum == 1){
+                            $('#modalTitulo').html('Erro de Base de dados');
+                            $('#modalMensagem').html('Impossível eliminar este tipo de perfil porque tem registos relacionados');
+                            $('#mensagem').modal('show');
+                        }
                         else if (confirm('De certeza que quer eliminar "' + result + '" dos tipos de perfil?'))
                             window.location = "apagarTipoPerfil.php?id=" + id;
                     }
@@ -267,7 +283,7 @@ function drawTop($menu=VOID,$erro=false){
             <?php
             }
 
-?>
+            ?>
             function erro(err){
                 if(err) {
                     $('#modalTitulo').html('Erro de Base de dados');
@@ -282,91 +298,91 @@ function drawTop($menu=VOID,$erro=false){
     </head>
     <body onload="erro(<?php echo $erro?>)">
     <div class="sidebar" data-color="white" data-active-color="danger">
-      <div class="logo">
-        <a  class="simple-text logo-mini">
-          <div class="logo-image-small">
-            <img src="../assets/img/logo-small.png">
-          </div>
-        </a>
-        <a class="simple-text logo-normal">
-          BACKOFFICE
-        </a>
-          <h6>
-              <select onchange="changeAnoLectivo(this.value)" id="anoLectivo" name="anoLectivo">
-                  <?php
-                  $con=mysqli_connect("localhost","root","","pap2020formacao");
-                  $sql="SELECT * FROM anolectivos order by anoLectivoNome desc";
-                  $result=mysqli_query($con,$sql);
-                  while($dados=mysqli_fetch_array($result)){
-                      ?>
-                      <option value="<?php echo $dados['anoLectivoId'];?>"
-                      <?php if($dados['anoLectivoEstado']=='activo') echo " selected ";?>
-                      > <?php echo $dados['anoLectivoNome']; ?></option>
-                  <?php } ?>
-              </select>
-          </h6>
-      </div>
-      <div class="sidebar-wrapper">
-        <ul class="nav">
-            <li<?php if($menu==VOID) echo " class=\"active \"";?>>
-            <a href="./dashboard.php">
-              <i class="nc-icon nc-bank"></i>
-              <p>Dashboard</p>
+        <div class="logo">
+            <a  class="simple-text logo-mini">
+                <div class="logo-image-small">
+                    <img src="../assets/img/logo-small.png">
+                </div>
             </a>
-          </li>
-            <li>
-                <hr>
-            </li>
-            <li<?php if($menu==ADMIN_FORMACOES) echo " class=\"active \"";?>>
-                <a href="formacoes.php">
-                    <i class="nc-icon nc-tile-56"></i>
-                    <p>Formações</p>
-                </a>
-            </li>
-            <li<?php if($menu==ADMIN_FORMADORES) echo " class=\"active \"";?>>
-            <a href="formadores.php">
-              <i class="nc-icon nc-tile-56"></i>
-              <p>Formadores</p>
+            <a class="simple-text logo-normal">
+                BACKOFFICE
             </a>
-          </li>
-            <li<?php if($menu==ADMIN_FORMANDOS) echo " class=\"active \"";?>>
-            <a href="formandos.php">
-              <i class="nc-icon nc-tile-56"></i>
-              <p>Formandos</p>
-            </a>
-          </li>
+            <h6>
+                <select onchange="changeAnoLectivo(this.value)" id="anoLectivo" name="anoLectivo">
+                    <?php
+                    $con=mysqli_connect("localhost","root","","pap2020formacao");
+                    $sql="SELECT * FROM anolectivos order by anoLectivoNome desc";
+                    $result=mysqli_query($con,$sql);
+                    while($dados=mysqli_fetch_array($result)){
+                        ?>
+                        <option value="<?php echo $dados['anoLectivoId'];?>"
+                            <?php if($dados['anoLectivoEstado']=='activo') echo " selected ";?>
+                        > <?php echo $dados['anoLectivoNome']; ?></option>
+                    <?php } ?>
+                </select>
+            </h6>
+        </div>
+        <div class="sidebar-wrapper">
+            <ul class="nav">
+                <li<?php if($menu==VOID) echo " class=\"active \"";?>>
+                    <a href="./dashboard.php">
+                        <i class="nc-icon nc-bank"></i>
+                        <p>Dashboard</p>
+                    </a>
+                </li>
+                <li>
+                    <hr>
+                </li>
+                <li<?php if($menu==ADMIN_FORMACOES) echo " class=\"active \"";?>>
+                    <a href="formacoes.php">
+                        <i class="nc-icon nc-tile-56"></i>
+                        <p>Formações</p>
+                    </a>
+                </li>
+                <li<?php if($menu==ADMIN_FORMADORES) echo " class=\"active \"";?>>
+                    <a href="formadores.php">
+                        <i class="nc-icon nc-tile-56"></i>
+                        <p>Formadores</p>
+                    </a>
+                </li>
+                <li<?php if($menu==ADMIN_FORMANDOS) echo " class=\"active \"";?>>
+                    <a href="formandos.php">
+                        <i class="nc-icon nc-tile-56"></i>
+                        <p>Formandos</p>
+                    </a>
+                </li>
 
-            <li<?php if($menu==ADMIN_ESCOLAS) echo " class=\"active \"";?>>
-            <a href="escolas.php">
-              <i class="nc-icon nc-tile-56"></i>
-              <p>Escolas</p>
-            </a>
-          </li>
-            <li>
-                <hr>
-            </li>
-          <li<?php if($menu==ADMIN_ALETIVOS) echo " class=\"active \"";?>>
-            <a href="anosLetivos.php">
-              <i class="nc-icon nc-tile-56"></i>
-              <p>Anos Letivos</p>
-            </a>
-          </li>
-          <li<?php if($menu==ADMIN_TIPOS) echo " class=\"active \"";?>>
-                <a href="tiposPerfis.php">
-                    <i class="nc-icon nc-tile-56"></i>
-                    <p>Perfis</p>
-                </a>
-            </li>
-            <li<?php if($menu==ADMIN_PESSOAS) echo " class=\"active \"";?>>
-                <a href="pessoas.php">
-                    <i class="nc-icon nc-tile-56"></i>
-                    <p>Pessoas</p>
-                </a>
-            </li>
-        </ul>
-      </div>
+                <li<?php if($menu==ADMIN_ESCOLAS) echo " class=\"active \"";?>>
+                    <a href="escolas.php">
+                        <i class="nc-icon nc-tile-56"></i>
+                        <p>Escolas</p>
+                    </a>
+                </li>
+                <li>
+                    <hr>
+                </li>
+                <li<?php if($menu==ADMIN_ALETIVOS) echo " class=\"active \"";?>>
+                    <a href="anosLetivos.php">
+                        <i class="nc-icon nc-tile-56"></i>
+                        <p>Anos Letivos</p>
+                    </a>
+                </li>
+                <li<?php if($menu==ADMIN_TIPOS) echo " class=\"active \"";?>>
+                    <a href="tiposPerfis.php">
+                        <i class="nc-icon nc-tile-56"></i>
+                        <p>Perfis</p>
+                    </a>
+                </li>
+                <li<?php if($menu==ADMIN_PESSOAS) echo " class=\"active \"";?>>
+                    <a href="pessoas.php">
+                        <i class="nc-icon nc-tile-56"></i>
+                        <p>Pessoas</p>
+                    </a>
+                </li>
+            </ul>
+        </div>
     </div>
-      <!-- Navbar -->
+    <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-absolute fixed-top navbar-transparent">
         <div class="container-fluid">
             <div class="navbar-wrapper">
@@ -407,11 +423,11 @@ function drawTop($menu=VOID,$erro=false){
             </div>
         </div>
     </nav>
-<?php
+    <?php
 }
 
 function drawBottom(){
-?>
+    ?>
 
 
     <!--Start second row of columns-->
@@ -430,13 +446,13 @@ function drawBottom(){
                     <p id="modalMensagem"></p>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-primary">Ok</button>
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">Ok</button>
                 </div>
             </div>
         </div>
     </div>
     </body>
-</html>
-<?php
+    </html>
+    <?php
 }
 ?>

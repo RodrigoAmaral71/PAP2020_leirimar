@@ -56,7 +56,7 @@ drawTop(ADMIN_FORMANDOS);
                         <td><center>
                                 <a class="btn-sm btn-outline-warning" href="historicoFormandos.php?id=<?php echo $dados['funcionarioId'];?>"><i class="fa fa-history"></i></a>
                                 <a title="Editar" class="btn-sm btn-info" id="editar" name="editar" href="#"><i class="fas fa-pencil-alt"></a></i>
-                         <a title="Eliminar" onclick="confirma(<?php echo $dados['funcionarioId'];?>);" class="btn-sm btn-danger" id="delete" name="delete" href="#"><i class='fas fa-eraser'></i></a></center></td>
+                         <a title="Eliminar" onclick="confirma(<?php echo $dados['funcionarioId'];?>,<?php echo $dados['formacaoId'];?>);" class="btn-sm btn-danger" id="delete" name="delete" href="#"><i class='fas fa-eraser'></i></a></center></td>
                     </tbody>
                     <?php } ?>
                   </table>

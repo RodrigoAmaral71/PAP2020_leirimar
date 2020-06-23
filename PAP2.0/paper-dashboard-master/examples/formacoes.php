@@ -55,7 +55,7 @@ drawTop(ADMIN_FORMACOES);
                         FROM formacoes inner JOIN anolectivos ON formacaoAnoLectivoId=anoLectivoId 
                         where anoLectivoEstado='activo') as t01
                         left join 
-                        (select formacaoInscritoFormacaoId, funcionarioNome 
+                        (select formacaoInscritoFormacaoId, funcionarioNome
                         from formacaoinscritos inner join funcionarios on funcionarioId=formacaoInscritoFuncionarioId
                         where formacaoInscritoPapel='formador' ) as t02
                         on formacaoId = formacaoInscritoFormacaoId
