@@ -42,6 +42,7 @@ function drawTop($menu=VOID,$erro=false){
         <script src="../assets/demo/demo.js"></script>
         <script>
             function confirmaInscrito(id,formacao) {
+                alert();
                 var resNum;
                 // AJAX para ir buscar o nome da formacao
                 $.ajax({
@@ -50,7 +51,7 @@ function drawTop($menu=VOID,$erro=false){
                     data:{
                         id:id,
                         formacao:formacao,
-                        delete:false
+                        delete:0
                     },
                     success:function (result) {
                         if(confirm(result))
@@ -82,7 +83,7 @@ function drawTop($menu=VOID,$erro=false){
                     data:{
                         id:id,
                         formacao:formacao,
-                        delete:true
+                        delete:1
                     },
                     success:function (result) {
                         if(confirm(result))

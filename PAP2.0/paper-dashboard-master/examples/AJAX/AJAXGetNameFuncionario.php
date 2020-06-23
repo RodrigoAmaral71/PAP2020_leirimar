@@ -3,7 +3,8 @@ include_once("../include/config.inc.php");
 $con=mysqli_connect(HOST,USER,PWD,DBASE);
 $id=intval($_POST['id']);
 $formacao=intval($_POST['formacao']);
-if($_POST['delete']==true)
+
+if($_POST['delete']==1)
     $acao="eliminação";
 else
     $acao="inscrição";
