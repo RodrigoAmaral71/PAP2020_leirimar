@@ -62,7 +62,7 @@ drawTop(ADMIN_PESSOAS,$erro);
                             <td><?php echo $dados['funcionarioNIF']; ?></td>
                             <td><center><a class="btn-sm btn-outline-warning" href="historico.php?id=<?php echo $dados['funcionarioId'];?>"><i class="fa fa-history"></i></a>
                                     <a class="btn-sm btn-info" href="editarPessoa.php?id=<?php echo $dados['funcionarioId'];?>"><i class="fas fa-pencil-alt"></i></a>
-                                    <a title="Eliminar" onclick="confirma(<?php echo $dados['funcionarioId'];?>);" class="btn-sm btn-danger" id="delete" name="delete" href="#"><i class='fas fa-eraser'></i></a></center></td>
+                                    <a title="Eliminar" onclick="confirma(<?php echo $dados['funcionarioId']?>);" class="btn-sm btn-danger" id="delete" name="delete" href="#"><i class='fas fa-eraser'></i></a></center></td>
                             <?php } ?>
                         </tr>
                         </tbody>

@@ -46,7 +46,7 @@ drawTop(ADMIN_FORMACOES);
                         </thead>
                         <?php
                         $id=$_GET['id'];
-                        echo $sql=("SELECT * FROM funcionarios INNER JOIN funcionariotipos ON funcionarioFuncionarioTipoId=funcionarioTipoId INNER JOIN formacaoinscritos ON funcionarioId=formacaoInscritoFuncionarioId INNER JOIN formacoes ON formacaoId=formacaoInscritoFormacaoId WHERE formacaoId='".$id."' ORDER BY funcionarioId ASC");
+                        echo $sql=("SELECT * FROM funcionarios INNER JOIN funcionariotipos ON funcionarioFuncionarioTipoId=funcionarioTipoId INNER JOIN formacaoinscritos ON funcionarioId=formacaoInscritoFuncionarioId INNER JOIN formacoes ON formacaoId=formacaoInscritoFormacaoId WHERE formacaoId='".$id."' AND formacaoInscritoPapel='formando' ORDER BY funcionarioId ASC");
                         $result=mysqli_query($con,$sql);
                         while($dados=mysqli_fetch_array($result)){
                         ?>

@@ -49,7 +49,7 @@ drawTop(ADMIN_FORMADORES);
                       </tr>
                     </thead>
                       <?php
-                      $sql=("SELECT * FROM funcionarios INNER JOIN formacaoinscritos ON funcionarioId=formacaoInscritoFuncionarioId INNER JOIN formacoes ON formacaoInscritoFormacaoId=formacaoId WHERE formacaoInscritoPapel='formador'");
+                      $sql=("SELECT * FROM funcionarios INNER JOIN formacaoinscritos ON funcionarioId=formacaoInscritoFuncionarioId INNER JOIN formacoes ON formacaoInscritoFormacaoId=formacaoId INNER JOIN anoLectivos ON formacaoAnoLectivoId=AnoLectivoId WHERE formacaoInscritoPapel='formador' AND anoLectivoEstado='activo'");
                       $result=mysqli_query($con,$sql);
                       while($dados=mysqli_fetch_array($result)){
                           ?>
@@ -61,8 +61,7 @@ drawTop(ADMIN_FORMADORES);
                           <td><?php echo $dados['funcionarioEmail']; ?></td>
                           <td><center>
                                   <a class="btn-sm btn-outline-warning" href="historicoFormadores.php?id=<?php echo $dados['funcionarioId'];?>"><i class="fa fa-history"></i></a>
-                                  <a title="Editar" class="btn-sm btn-info" id="editar" name="editar" href="#"><i class="fas fa-pencil-alt"></a></i>
-                                  <a title="Eliminar" onclick="confirma(<?php echo $dados['funcionarioId'];?>,<?php echo $dados['formacaoId'];?>);" class="btn-sm btn-danger" id="delete" name="delete" href="#"><i class='fas fa-eraser'></i></a></center></td>
+                                  <a title="Editar" class="btn-sm btn-info" id="editar" name="editar" href="#"><i class="fas fa-pencil-alt"></a></i></center>td>
                           </tbody>
                       <?php } ?>
                   </table>

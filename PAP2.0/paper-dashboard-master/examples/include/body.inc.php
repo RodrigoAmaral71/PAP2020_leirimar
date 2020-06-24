@@ -133,11 +133,8 @@ function drawTop($menu=VOID,$erro=false){
                     },
                     success: function (result) {
                         resNum = parseInt(result);
-                        if (resNum == 1){
-                            $('#modalTitulo').html('Erro de Base de dados');
-                            $('#modalMensagem').html('Impossível eliminar este ano letivo porque tem registos relacionados');
-                            $('#mensagem').modal('show');
-                        }
+                        if (resNum == 1)
+                            alert('Impossível eliminar este ano letivo porque tem registos relacionados');
                         else if (confirm('De certeza que quer eliminar o ano letivo "' + result + '"?'))
                             window.location = "apagarAnoLetivo.php?id=" + id;
                     }
@@ -160,11 +157,9 @@ function drawTop($menu=VOID,$erro=false){
                     },
                     success:function (result) {
                         resNum=parseInt(result);
-                        if(resNum==1){
-                            $('#modalTitulo').html('Erro de Base de dados');
-                            $('#modalMensagem').html('Impossível eliminar esta escola porque tem registos relacionados');
-                            $('#mensagem').modal('show');
-                        }
+                        if(resNum==1)
+                            alert('Impossível eliminar esta escola porque tem registos relacionados');
+
                         else if(confirm('De certeza que quer eliminar a escola "'+ result +'"?'))
                             window.location="apagarEscola.php?id="+id;
                     }
@@ -187,11 +182,9 @@ function drawTop($menu=VOID,$erro=false){
                     },
                     success:function (result) {
                         resNum=parseInt(result);
-                        if(resNum==1){
-                            $('#modalTitulo').html('Erro de Base de dados');
-                            $('#modalMensagem').html('Impossível eliminar esta formação porque tem registos relacionados');
-                            $('#mensagem').modal('show');
-                        }
+                        if(resNum==1)
+                            alert('Impossível eliminar esta formação porque tem registos relacionados');
+
                         else if(confirm('De certeza que quer eliminar a formação "'+ result +'"?'))
                             window.location="apagarFormacao.php?id="+id;
                     }
@@ -214,11 +207,9 @@ function drawTop($menu=VOID,$erro=false){
                     },
                     success:function (result) {
                         resNum=parseInt(result);
-                        if(resNum==1){
-                            $('#modalTitulo').html('Erro de Base de dados');
-                            $('#modalMensagem').html('Impossível eliminar esta pessoa porque tem registos relacionados');
-                            $('#mensagem').modal('show');
-                        }
+                        if(resNum==1)
+                            alert('Impossível eliminar esta pessoa porque tem registos relacionados');
+
                         else if(confirm('De certeza que quer eliminar "'+ result +'" da Base de Dados?'))
                             window.location="apagarPessoa.php?id="+id;
                     }
@@ -242,11 +233,7 @@ function drawTop($menu=VOID,$erro=false){
                     },
                     success: function (result) {
                         if (resNum == 1)
-                        {
-                            $('#modalTitulo').html('Erro de Base de dados');
-                            $('#modalMensagem').html('Impossível eliminar este formador porque tem registos relacionados');
-                            $('#mensagem').modal('show');
-                        }
+                            alert('Impossível eliminar este formador porque tem registos relacionados');
                         else if (confirm('De certeza que quer eliminar o formador "' + result + '"?'))
                             window.location = "apagarFormador.php?id=" + id;
                     }
@@ -269,11 +256,8 @@ function drawTop($menu=VOID,$erro=false){
                     },
                     success: function (result) {
                         resNum = parseInt(result);
-                        if (resNum == 1){
-                            $('#modalTitulo').html('Erro de Base de dados');
-                            $('#modalMensagem').html('Impossível eliminar este tipo de perfil porque tem registos relacionados');
-                            $('#mensagem').modal('show');
-                        }
+                        if (resNum == 1)
+                            alert('Impossível eliminar este tipo de perfil porque tem registos relacionados');
                         else if (confirm('De certeza que quer eliminar "' + result + '" dos tipos de perfil?'))
                             window.location = "apagarTipoPerfil.php?id=" + id;
                     }
@@ -287,9 +271,7 @@ function drawTop($menu=VOID,$erro=false){
             ?>
             function erro(err){
                 if(err) {
-                    $('#modalTitulo').html('Erro de Base de dados');
-                    $('#modalMensagem').html('Email já existente na Base de dados');
-                    $('#mensagem').modal('show');
+                    alert('Email já existente na Base de dados');
                 }
 
             }
