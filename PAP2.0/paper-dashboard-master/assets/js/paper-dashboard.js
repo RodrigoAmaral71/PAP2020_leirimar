@@ -99,7 +99,7 @@ $(document).on('click', '.navbar-toggle', function() {
       $toggle.addClass('toggled');
     }, 580);
 
-    div = '<div id="bodyClick"></div>';
+    div = '<div.php id="bodyClick"></div.php>';
     $(div).appendTo('body').click(function() {
       $('html').removeClass('nav-open');
       paperDashboard.misc.navbar_menu_visible = 0;

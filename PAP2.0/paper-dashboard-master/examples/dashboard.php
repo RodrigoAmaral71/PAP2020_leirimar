@@ -45,15 +45,9 @@ drawTop(VOID);
                           echo $dados['nFormadores'];
                           ?>
                       </p>
+                        <p><br></p>
                     </div>
                   </div>
-                </div>
-              </div>
-              <div class="card-footer ">
-                <hr>
-                <div class="stats">
-                  <a href="dashboard.php"><i class="fa fa-refresh"></i></a>
-                  Update
                 </div>
               </div>
             </div>
@@ -79,15 +73,9 @@ drawTop(VOID);
                           echo $dados['nFormandos'];
                           ?>
                       </p>
+                        <p><br></p>
                     </div>
                   </div>
-                </div>
-              </div>
-              <div class="card-footer ">
-                <hr>
-                <div class="stats">
-                  <a href="dashboard.php"><i class="fa fa-refresh"></i></a>
-                  Update
                 </div>
               </div>
             </div>
@@ -113,15 +101,9 @@ drawTop(VOID);
                         echo $dados['nEscolas'];
                         ?>
                       </p>
+                        <p><br></p>
                     </div>
                   </div>
-                </div>
-              </div>
-              <div class="card-footer ">
-                <hr>
-                <div class="stats">
-                  <a href="dashboard.php"><i class="fa fa-refresh"></i></a>
-                  Update
                 </div>
               </div>
             </div>
@@ -146,15 +128,9 @@ drawTop(VOID);
                           echo $dados['nFormacoes'];
                           ?>
                       </p>
+                        <p><br></p>
                     </div>
                   </div>
-                </div>
-              </div>
-              <div class="card-footer ">
-                <hr>
-                <div class="stats">
-                  <a href="dashboard.php"><i class="fa fa-refresh"></i></a>
-                  Update
                 </div>
               </div>
             </div>
@@ -227,7 +203,7 @@ drawTop(VOID);
                                   <td><?php echo $dados['funcionarioId']; ?></td>
                                   <td><?php echo $dados['funcionarioNome']; ?></td>
                                   <td><?php echo $dados['formacaoNome']; ?></td>
-                                  <td><center><a title="Editar" onclick="confirmaInscrito(<?php echo $dados['funcionarioId'];?>,<?php echo $dados['formacaoId'];?>);" class="btn-sm btn-success" href="#"><i class="fa fa-check"></i></a>
+                                  <td><center><a title="Confirmar" onclick="confirmaInscrito(<?php echo $dados['funcionarioId'];?>,<?php echo $dados['formacaoId'];?>);" class="btn-sm btn-success" href="#"><i class="fa fa-check"></i></a>
                                           <a title="Eliminar" onclick="cancelaInscrito(<?php echo $dados['funcionarioId'];?>,<?php echo $dados['formacaoId'];?>);" class="btn-sm btn-danger" href="#"><i class="fa fa-remove"></i></a></center></td>
                                   <?PHP
                                   }

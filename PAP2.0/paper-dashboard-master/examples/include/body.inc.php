@@ -42,7 +42,6 @@ function drawTop($menu=VOID,$erro=false){
         <script src="../assets/demo/demo.js"></script>
         <script>
             function confirmaInscrito(id,formacao) {
-                alert();
                 var resNum;
                 // AJAX para ir buscar o nome da formacao
                 $.ajax({
@@ -366,7 +365,7 @@ function drawTop($menu=VOID,$erro=false){
         </div>
     </div>
     <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-absolute fixed-top navbar-transparent">
+    <!-- <nav class="navbar navbar-expand-lg navbar-absolute fixed-top navbar-transparent">
         <div class="container-fluid">
             <div class="navbar-wrapper">
                 <div class="navbar-toggle">
@@ -393,19 +392,9 @@ function drawTop($menu=VOID,$erro=false){
                         </div>
                     </div>
                 </form>
-                <ul class="navbar-nav">
-                    <li class="nav-item">
-                        <a class="nav-link btn-rotate" href="inscricoes.php">
-                            <i class="fa fa-plus"></i>
-                            <p>
-                                <span class="d-lg-none d-md-block">Inscrição</span>
-                            </p>
-                        </a>
-                    </li>
-                </ul>
             </div>
         </div>
-    </nav>
+    </nav> -->
     <?php
 }
 

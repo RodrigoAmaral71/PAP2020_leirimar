@@ -28,7 +28,7 @@ drawTop(ADMIN_FORMANDOS);
           <div class="col-md-12">
             <div class="card ">
               <div class="card-header ">
-                <h5 class="card-title">Informação Pessoal</h5>
+                  <h5 class="card-title">Informação Pessoal</h5>
               </div>
               <div class="card-body ">
                   <div class="table-responsive">
@@ -72,6 +72,12 @@ drawTop(ADMIN_FORMANDOS);
                   <div class="card-body ">
                       <div class="table-responsive">
                           <table class="table">
+                              <?php
+                              $id=intval($_GET['id']);
+                              $sql=("SELECT * FROM funcionarios INNER JOIN formacaoinscritos ON funcionarioId=formacaoInscritoFuncionarioId INNER JOIN formacoes ON formacaoInscritoFormacaoId where funcionarioId='".$id."' and formacaoInscritoPapel='formando' group by formacaoId");
+                              $result=mysqli_query($con,$sql);
+                              $dados=mysqli_fetch_array($result);
+                              ?>
                               <thead class=" text-primary">
                                   <th>id</th>
                                   <th>Formação</th>
@@ -79,13 +85,10 @@ drawTop(ADMIN_FORMANDOS);
                                   <th>Horas</th>
                                   <th>Data de Início</th>
                                   <th>Data de Fim</th>
-
+                                  <th><button class="btn-sm fa fa-print"><a href=".\PDF\la-maison-master\la-maison-master\index.php"></a></button></th>
                               </thead>
                               <tbody>
-                              <?php
-                              $id=intval($_GET['id']);
-                              $sql=("SELECT * FROM funcionarios INNER JOIN formacaoinscritos ON funcionarioId=formacaoInscritoFuncionarioId INNER JOIN formacoes ON formacaoInscritoFormacaoId where funcionarioId='".$id."' and formacaoInscritoPapel='formando' group by formacaoId");
-                              $result=mysqli_query($con,$sql);
+                             <?php
                               while($dados=mysqli_fetch_array($result)){
                               ?>
                               <tr>
@@ -95,6 +98,7 @@ drawTop(ADMIN_FORMANDOS);
                                   <td><?php echo $dados['formacaoHoras']; ?></td>
                                   <td><?php echo $dados['formacaoDataInicio']; ?></td>
                                   <td><?php echo $dados['formacaoDataFim']; ?></td>
+                                  <td>&nbsp</td>
                                   <?php } ?>
                               </tr>
                               </tbody>

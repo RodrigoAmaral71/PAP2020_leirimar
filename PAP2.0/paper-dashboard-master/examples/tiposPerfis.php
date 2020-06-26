@@ -37,7 +37,6 @@ drawTop(ADMIN_TIPOS);
                     <tr>
                         <th>id</th>
                         <th>Nome</th>
-
                         <th><center><a class="btn-sm btn-success" href="adicionarTipoPerfil.php"><i class="fa fa-plus"></i></a></center></th>
                     </tr>
                     </thead>

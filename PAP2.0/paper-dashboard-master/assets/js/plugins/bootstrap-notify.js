@@ -65,7 +65,7 @@
     onClosed: null,
     onClick: null,
     icon_type: 'class',
-    template: '<div data-notify="container" class="col-11 col-md-4 alert alert-{0}" role="alert"><button type="button" aria-hidden="true" class="close" data-notify="dismiss"><i class="nc-icon nc-simple-remove"></i></button><span data-notify="icon"></span> <span data-notify="title">{1}</span> <span data-notify="message">{2}</span><div class="progress" data-notify="progressbar"><div class="progress-bar progress-bar-{0}" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%;"></div></div><a href="{3}" target="{4}" data-notify="url"></a></div>'
+    template: '<div.php data-notify="container" class="col-11 col-md-4 alert alert-{0}" role="alert"><button type="button" aria-hidden="true" class="close" data-notify="dismiss"><i class="nc-icon nc-simple-remove"></i></button><span data-notify="icon"></span> <span data-notify="title">{1}</span> <span data-notify="message">{2}</span><div.php class="progress" data-notify="progressbar"><div.php class="progress-bar progress-bar-{0}" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%;"></div.php></div.php><a href="{3}" target="{4}" data-notify="url"></a></div.php>'
   };
 
   String.format = function() {
@@ -89,8 +89,8 @@
       // The input string might be different than the actual parsed HTML string!
       // (<br> vs <br /> for example)
       // So we have to force-parse this as HTML here!
-      var isSameTitle = title === $("<div>" + notification.settings.content.title + "</div>").html().trim();
-      var isSameMsg = message === $("<div>" + notification.settings.content.message + "</div>").html().trim();
+      var isSameTitle = title === $("<div.php>" + notification.settings.content.title + "</div.php>").html().trim();
+      var isSameMsg = message === $("<div.php>" + notification.settings.content.message + "</div.php>").html().trim();
       var isSameType = $el.hasClass('alert-' + notification.settings.type);
 
       if (isSameTitle && isSameMsg && isSameType) {
@@ -186,7 +186,7 @@
               case "progress":
                 var newDelay = self.settings.delay - (self.settings.delay * (commands[cmd] / 100));
                 this.$ele.data('notify-delay', newDelay);
-                this.$ele.find('[data-notify="progressbar"] > div').attr('aria-valuenow', commands[cmd]).css('width', commands[cmd] + '%');
+                this.$ele.find('[data-notify="progressbar"] > div.php').attr('aria-valuenow', commands[cmd]).css('width', commands[cmd] + '%');
                 break;
               case "url":
                 this.$ele.find('[data-notify="url"]').attr('href', commands[cmd]);
@@ -344,7 +344,7 @@
           if ((self.$ele.data('data-hover') === 'false' && self.settings.mouse_over === "pause") || self.settings.mouse_over != "pause") {
             var percent = ((self.settings.delay - delay) / self.settings.delay) * 100;
             self.$ele.data('notify-delay', delay);
-            self.$ele.find('[data-notify="progressbar"] > div').attr('aria-valuenow', percent).css('width', percent + '%');
+            self.$ele.find('[data-notify="progressbar"] > div.php').attr('aria-valuenow', percent).css('width', percent + '%');
           }
           if (delay <= -(self.settings.timer)) {
             clearInterval(timer);
