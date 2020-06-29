@@ -85,7 +85,7 @@ drawTop(ADMIN_FORMANDOS);
                                   <th>Horas</th>
                                   <th>Data de Início</th>
                                   <th>Data de Fim</th>
-                                  <th><button class="btn-sm fa fa-print"><a href=".\PDF\la-maison-master\la-maison-master\index.php"></a></button></th>
+                                  <th><button class="btn-sm fa fa-print"><a href=".\PDF\la-maison-master\la-maison-master\"></a></button></th>
                               </thead>
                               <tbody>
                              <?php
