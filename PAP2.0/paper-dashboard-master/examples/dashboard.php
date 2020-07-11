@@ -37,9 +37,9 @@ drawTop(VOID);
                   </div>
                   <div class="col-7 col-md-8">
                     <div class="numbers">
-                      <p class="card-category">Formadores</p>
+                      <p class="dashboard">Formadores</p>
                       <p class="card-title"><?php
-                          $sql="SELECT count(*) as nFormadores FROM formacaoInscritos WHERE formacaoInscritoPapel='formador'";
+                          $sql="SELECT count(*) as nFormadores FROM formacaoInscritos inner join formacoes on formacaoId=formacaoInscritoFormacaoId inner join anoLectivos on formacaoAnoLectivoId=anoLectivoId WHERE anoLectivoEstado='activo' and   formacaoInscritoPapel='formador'";
                           $result=mysqli_query($con,$sql);
                           $dados=mysqli_fetch_array($result);
                           echo $dados['nFormadores'];
@@ -64,10 +64,10 @@ drawTop(VOID);
                   </div>
                   <div class="col-7 col-md-8">
                     <div class="numbers">
-                      <p class="card-category">Formandos Inscritos</p>
+                      <p class="dashboard">Formandos Inscritos</p>
                       <p class="card-title">
                           <?php
-                          $sql="SELECT count(*) as nFormandos FROM formacaoInscritos WHERE formacaoInscritoPapel='formando' AND formacaoInscritoEstado='inscrito'";
+                          $sql="SELECT count(*) as nFormandos FROM formacaoInscritos inner join formacoes on formacaoId=formacaoInscritoFormacaoId inner join anoLectivos on formacaoAnoLectivoId=anoLectivoId  WHERE anoLectivoEstado='activo' and  formacaoInscritoPapel='formando' AND formacaoInscritoEstado='inscrito'";
                           $result=mysqli_query($con,$sql);
                           $dados=mysqli_fetch_array($result);
                           echo $dados['nFormandos'];
@@ -92,7 +92,7 @@ drawTop(VOID);
                   </div>
                   <div class="col-7 col-md-8">
                     <div class="numbers">
-                      <p class="card-category">Escolas</p>
+                        <p class="dashboard">Escolas</p>
                       <p class="card-title">
                         <?php
                         $sql="SELECT count(*) as nEscolas FROM escolas";
@@ -120,9 +120,9 @@ drawTop(VOID);
                   </div>
                   <div class="col-7 col-md-8">
                     <div class="numbers">
-                      <p class="card-category">Formações Ativas</p>
+                      <p class="dashboard">Formações Ativas</p>
                       <p class="card-title"><?php
-                          $sql="SELECT count(*) as nFormacoes FROM formacoes where formacaoEstado='iniciada'";
+                          $sql="SELECT count(*) as nFormacoes FROM formacoes inner join anoLectivos on formacaoAnoLectivoId=anoLectivoId where anoLectivoEstado='activo' and formacaoEstado='iniciada'";
                           $result=mysqli_query($con,$sql);
                           $dados=mysqli_fetch_array($result);
                           echo $dados['nFormacoes'];
@@ -141,40 +141,6 @@ drawTop(VOID);
 
 
         <!-- Gráfico -->
-        <div class="row">
-          <div class="col-md-6">
-            <div class="card ">
-              <div class="card-header ">
-                <h5 class="card-title">Gráfico</h5>
-              </div>
-              <div class="card-body ">
-                <canvas id=chartHours width="400" height="100"></canvas>
-              </div>
-              <div class="card-footer ">
-                <hr>
-                <div class="stats">
-                    <a href="dashboard.php"><i class="fa fa-refresh"></i></a> Update
-                </div>
-              </div>
-            </div>
-          </div>
-            <div class="col-md-6">
-                <div class="card ">
-                    <div class="card-header ">
-                        <h5 class="card-title">Gráfico</h5>
-                    </div>
-                    <div class="card-body ">
-                        <canvas id=chartHours width="400" height="100"></canvas>
-                    </div>
-                    <div class="card-footer ">
-                        <hr>
-                        <div class="stats">
-                            <a href="dashboard.php"><i class="fa fa-refresh"></i></a> Update
-                        </div>
-                    </div>
-                </div>
-            </div>
-      </div>
           <div class="row">
               <div class="col-md-12">
                   <div class="card ">

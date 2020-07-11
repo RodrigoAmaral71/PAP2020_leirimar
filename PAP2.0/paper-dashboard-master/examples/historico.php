@@ -85,7 +85,7 @@ drawTop(ADMIN_PESSOAS);
                               <tbody>
                               <?php
                               $id=intval($_GET['id']);
-                              $sql=("SELECT * FROM funcionarios INNER JOIN formacaoinscritos ON funcionarioId=formacaoInscritoFuncionarioId INNER JOIN formacoes ON formacaoInscritoFormacaoId where funcionarioId='".$id."' group by formacaoId");
+                              $sql=("SELECT * FROM funcionarios INNER JOIN formacaoinscritos ON funcionarioId=formacaoInscritoFuncionarioId INNER JOIN formacoes ON formacaoInscritoFormacaoId=formacaoId where funcionarioId='".$id."' group by formacaoId");
                               $result=mysqli_query($con,$sql);
                               while($dados=mysqli_fetch_array($result)){
                               ?>

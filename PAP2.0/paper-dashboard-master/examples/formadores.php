@@ -60,8 +60,7 @@ drawTop(ADMIN_FORMADORES);
                           <td><?php echo $dados['funcionarioTelefone']; ?></td>
                           <td><?php echo $dados['funcionarioEmail']; ?></td>
                           <td><center>
-                                  <a class="btn-sm btn-outline-warning" href="historicoFormadores.php?id=<?php echo $dados['funcionarioId'];?>"><i class="fa fa-history"></i></a>
-                                  <a title="Editar" class="btn-sm btn-info" id="editar" name="editar" href="#"><i class="fas fa-pencil-alt"></a></i></center><td>
+                                  <a class="btn-sm btn-outline-warning" href="historicoFormadores.php?id=<?php echo $dados['funcionarioId'];?>"><i class="fa fa-history"></i></a></center><td>
                           </tbody>
                       <?php } ?>
                   </table>

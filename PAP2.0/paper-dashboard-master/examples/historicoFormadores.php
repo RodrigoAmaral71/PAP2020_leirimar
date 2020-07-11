@@ -82,7 +82,7 @@ drawTop(ADMIN_FORMADORES);
                               </thead>
                               <tbody>
                               <?php
-                              $sql2=("SELECT * FROM funcionarios INNER JOIN formacaoinscritos ON funcionarioId=formacaoInscritoFuncionarioId INNER JOIN formacoes ON formacaoInscritoFormacaoId where funcionarioId='".$id."' and formacaoInscritoPapel='formador' group by formacaoId");
+                              $sql2=("SELECT * FROM funcionarios INNER JOIN formacaoinscritos ON funcionarioId=formacaoInscritoFuncionarioId INNER JOIN formacoes ON formacaoInscritoFormacaoId=formacaoId where funcionarioId='".$id."' and formacaoInscritoPapel='formador' group by formacaoId");
                               $result2=mysqli_query($con,$sql2);
                               while($dados2=mysqli_fetch_array($result2)){
                               ?>

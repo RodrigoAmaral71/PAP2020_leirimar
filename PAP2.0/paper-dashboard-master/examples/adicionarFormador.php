@@ -57,7 +57,13 @@ drawTop(ADMIN_FORMADORES);
                               <select class="form-control" name="formacao">
                                   <option value="-1">Formação</option>
                                   <?php
-                                  $sql="SELECT * FROM formacoes";
+                                  $sql="SELECT * FROM formacoes inner join anoLectivos on formacaoAnoLectivoId=anoLectivoId
+                                        where anoLectivoEstado='activo' and formacaoId not in 
+                                        (select formacaoId
+                                            from formacoes
+                                            inner join formacaoInscritos
+                                            on formacaoId=formacaoInscritoFormacaoId
+                                            where formacaoInscritoPapel='formador')";
                                   $result=mysqli_query($con,$sql);
                                   while($dados=mysqli_fetch_array($result)){
                                       ?>

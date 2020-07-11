@@ -41,12 +41,12 @@ drawTop(ADMIN_FORMACOES);
                             <th>Telefone</th>
                             <th>Email</th>
                             <th>NIF</th>
-                            <th><center><a class="btn-sm btn-success" href="adicionarPessoa.php"><i class="fa fa-plus"></i></a></center></th>
+                            <th>&nbsp;</th>
                         </tr>
                         </thead>
                         <?php
                         $id=$_GET['id'];
-                        $sql=("SELECT * FROM funcionarios INNER JOIN funcionariotipos ON funcionarioFuncionarioTipoId=funcionarioTipoId INNER JOIN formacaoinscritos ON funcionarioId=formacaoInscritoFuncionarioId INNER JOIN formacoes ON formacaoId=formacaoInscritoFormacaoId WHERE formacaoId='".$id."' AND formacaoInscritoPapel='formando' ORDER BY funcionarioId ASC");
+                        $sql=("SELECT * FROM funcionarios INNER JOIN funcionariotipos ON funcionarioFuncionarioTipoId=funcionarioTipoId INNER JOIN formacaoinscritos ON funcionarioId=formacaoInscritoFuncionarioId INNER JOIN formacoes ON formacaoId=formacaoInscritoFormacaoId WHERE formacaoinscritoEstado='inscrito' and formacaoId='".$id."' AND formacaoInscritoPapel='formando' ORDER BY funcionarioId ASC");
                         $result=mysqli_query($con,$sql);
                         while($dados=mysqli_fetch_array($result)){
                         ?>
