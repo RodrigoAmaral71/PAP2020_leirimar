@@ -43,7 +43,7 @@ drawTop(ADMIN_FORMANDOS);
                         <th><center><a title="Adicionar" class="btn-sm btn-success" href="inscricoes.php"><i class="fa fa-plus"></i></a></center></th>
                     </thead>
                       <?php
-                      $sql=("SELECT * FROM funcionarios INNER JOIN formacaoinscritos ON funcionarioId=formacaoInscritoFuncionarioId INNER JOIN formacoes ON formacaoInscritoFormacaoId=formacaoId INNER JOIN anoLectivos ON formacaoAnoLectivoId=AnoLectivoId WHERE formacaoInscritoPapel='formando' AND anoLectivoEstado='activo' order by funcionarioId asc, formacaoId asc");
+                      $sql=("SELECT * FROM funcionarios INNER JOIN formacaoinscritos ON funcionarioId=formacaoInscritoFuncionarioId INNER JOIN formacoes ON formacaoInscritoFormacaoId=formacaoId INNER JOIN anoLectivos ON formacaoAnoLectivoId=AnoLectivoId WHERE formacaoInscritoPapel='formando' and formacaoInscritoEstado='inscrito' AND anoLectivoEstado='activo' order by funcionarioId asc, formacaoId asc");
                       $result=mysqli_query($con,$sql);
                       while($dados=mysqli_fetch_array($result)){
                       ?>

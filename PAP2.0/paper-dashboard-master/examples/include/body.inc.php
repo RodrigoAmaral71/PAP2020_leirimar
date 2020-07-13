@@ -213,7 +213,6 @@ function drawTop($menu=VOID,$erro=false){
                         resNum=parseInt(result);
                         if(resNum==1)
                             alert('Impossível eliminar esta pessoa porque tem registos relacionados');
-
                         else if(confirm('De certeza que quer eliminar "'+ result +'" da Base de Dados?'))
                             window.location="apagarPessoa.php?id="+id;
                     }

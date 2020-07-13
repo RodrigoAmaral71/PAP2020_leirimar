@@ -84,7 +84,7 @@ drawTop(ADMIN_PESSOAS);
                               <input type="text" class="form-control" placeholder="Grupo Disciplinar" id="gDisciplinar" name="gDisciplinar">
                           </div>
                           <div class="col-md-3">
-                              <select class="form-control" name="tipo" id="tipo">
+                              <select class="form-control" name="tipo" id="tipo" required>
                                   <option value="-1">Tipo de Perfil</option>
                                   <?php
                                   $sql="SELECT * FROM funcionariotipos";

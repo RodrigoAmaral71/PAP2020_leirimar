@@ -160,7 +160,7 @@ drawTop(VOID);
                               <tbody>
                               <tr>
                                   <?php
-                                  $sql=("SELECT * FROM funcionarios INNER JOIN formacaoinscritos ON funcionarioId=formacaoInscritoFuncionarioId INNER JOIN formacoes ON formacaoInscritoFormacaoId=formacaoId WHERE formacaoInscritoEstado='pendente' ORDER BY formacaoInscritoFuncionarioId ASC");
+                                  $sql=("SELECT * FROM funcionarios INNER JOIN formacaoinscritos ON funcionarioId=formacaoInscritoFuncionarioId INNER JOIN formacoes ON formacaoInscritoFormacaoId=formacaoId WHERE formacaoInscritoEstado='pendente' and formacaoInscritoPapel='formando' ORDER BY formacaoInscritoFuncionarioId ASC");
                                   $result=mysqli_query($con,$sql);
                                   while($dados=mysqli_fetch_array($result)){
                                   ?>

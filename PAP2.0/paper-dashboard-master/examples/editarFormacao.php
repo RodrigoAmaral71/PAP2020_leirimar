@@ -83,6 +83,11 @@ drawTop(ADMIN_FORMACOES);
                           </div>
                       </div>
                       <div class="form-group row">
+                          <div class="col-md-12">
+                              <input type="text" class="form-control" value="<?php echo $dados['formacaoDescricao'] ?>" id="descricao" name="descricao">
+                          </div>
+                      </div>
+                      <div class="form-group row">
                           <div class="col-md-6">
                               <select class="form-control" id="estado" name="estado">
                                   <?php
@@ -107,11 +112,6 @@ drawTop(ADMIN_FORMACOES);
                                           <option value="<?php echo $dados['anoLectivoId']; ?>"><?php echo $dados['anoLectivoNome'] ?></option>
                                       <?php } ?>
                                   </select>
-                          </div>
-                      </div>
-                      <div class="form-group row">
-                          <div class="col-md-12">
-                              <input type="text" class="form-control" placeholder="Descrição" id="descricao" name="descricao">
                           </div>
                       </div>
                       <input type="submit" class="btn btn-success fa fa-plus preto" value="Confirmar">

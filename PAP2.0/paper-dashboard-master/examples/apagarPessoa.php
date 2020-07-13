@@ -1,7 +1,7 @@
 <?php
 $id=intval($_GET['id']);
 $con=mysqli_connect("localhost", "root", "", "pap2020formacao");
-$sql="DELETE FROM funcionarios WHERE funcionarioId=$id";
+$sql="DELETE FROM funcionarios WHERE funcionarioId=".$id;
 echo mysqli_query($con,$sql);
-
-header("location:pessoas.php");
+echo mysqli_error($con);
+//header("location:pessoas.php");
